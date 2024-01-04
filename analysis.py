@@ -492,7 +492,7 @@ if(d != () and len(d) > 1):
             temp_show_sku_df.index = temp_list
 
 
-            table_column.markdown(f'<p class="big-font"><strong>{d[0].strftime('%d %b %Y')} to {d[1].strftime('%d %b %Y')} and {d2[0].strftime('%d %b %Y')} to {d2[1].strftime('%d %b %Y')}</strong></p>', unsafe_allow_html=True)
+            table_column.markdown(f"<p class='big-font'><strong>{d[0].strftime('%d %b %Y')} to {d[1].strftime('%d %b %Y')} and {d2[0].strftime('%d %b %Y')} to {d2[1].strftime('%d %b %Y')}</strong></p>", unsafe_allow_html=True)
             table_column.write(temp_show_sku_df)
             # table_column.write(show_sku_df2)
 
