@@ -534,7 +534,7 @@ if(d != () and len(d) > 1):
                 merged_show_sku_df['merged_refunded_revenue'] = merged_show_sku_df['Total Refund (£)_x'] + merged_show_sku_df['Total Refund (£)_y']
 
                 t1_2, t2_2, t3_2 = merged_show_sku_df['merged_units'].idxmax(), merged_show_sku_df['merged_refunded_units'].idxmax(), merged_show_sku_df['merged_units'].idxmin()
-                table_column.markdown(f'<p class="small-font"><strong>{d[0].strftime('%d %b %Y')} to {d[1].strftime('%d %b %Y')} and {d2[0].strftime('%d %b %Y')} to {d2[1].strftime('%d %b %Y')}</strong></p>', unsafe_allow_html=True)
+                table_column.markdown(f"<p class='small-font'><strong>{d[0].strftime('%d %b %Y')} to {d[1].strftime('%d %b %Y')} and {d2[0].strftime('%d %b %Y')} to {d2[1].strftime('%d %b %Y')}</strong></p>", unsafe_allow_html=True)
                 if(merged_show_sku_df.iloc[t1_2]['merged_units'].astype(int) != 1):
                     table_column.markdown(f'<p class="small-font"><strong>Best Seller:</strong> {merged_show_sku_df.iloc[t1_2]["merged_units"].astype(int)} units of size: {merged_show_sku_df.iloc[t1_2]["Size"]} with a revenue of £{(merged_show_sku_df.iloc[t1_2]["merged_revenue"].astype(int)):,}</p>', unsafe_allow_html=True)
                 else:
