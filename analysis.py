@@ -561,9 +561,9 @@ if(d != () and len(d) > 1):
             graph_df.rename(columns={'price_inc': 'Revenue', 'date': 'Date', 'quantity': 'Quantity'}, inplace=True)
             
             rev_df = graph_df[['Date', 'Revenue']].groupby('Date').sum().reset_index()
-            rev_df.rename(columns={'Revenue': f'{d[0].strftime('%d %b %Y')} to {d[1].strftime('%d %b %Y')}'}, inplace=True)
+            rev_df.rename(columns={'Revenue': f"{d[0].strftime('%d %b %Y')} to {d[1].strftime('%d %b %Y')}"}, inplace=True)
             temp_df = graph_df[['Date', 'Quantity']].groupby('Date').count().reset_index()
-            temp_df.rename(columns={'Quantity': f'{d[0].strftime('%d %b %Y')} to {d[1].strftime('%d %b %Y')}'}, inplace=True)
+            temp_df.rename(columns={'Quantity': f"{d[0].strftime('%d %b %Y')} to {d[1].strftime('%d %b %Y')}"}, inplace=True)
 
             sub_1.line_chart(temp_df, x="Date", y=[f"{d[0].strftime('%d %b %Y')} to {d[1].strftime('%d %b %Y')}"], color=["#0000FF"])
             sub_2.line_chart(rev_df, x="Date", y=[f"{d[0].strftime('%d %b %Y')} to {d[1].strftime('%d %b %Y')}"], color=["#0000FF"])
@@ -579,12 +579,12 @@ if(d != () and len(d) > 1):
             rev_df = graph_df[['Date', 'Revenue']].groupby('Date').sum().reset_index()
             rev_df2 = graph_df2[['Date', 'Revenue']].groupby('Date').sum().reset_index()
             rev_df['Revenue_2'] = rev_df2['Revenue']
-            rev_df.rename(columns={'Revenue': f'{d[0].strftime('%d %b %Y')} to {d[1].strftime('%d %b %Y')}', 'Revenue_2': f'{d2[0].strftime('%d %b %Y')} to {d2[1].strftime('%d %b %Y')}'}, inplace=True)
+            rev_df.rename(columns={'Revenue': f"{d[0].strftime('%d %b %Y')} to {d[1].strftime('%d %b %Y')}", 'Revenue_2': f"{d2[0].strftime('%d %b %Y')} to {d2[1].strftime('%d %b %Y')}"}, inplace=True)
 
             temp_df = graph_df[['Date', 'Quantity']].groupby('Date').count().reset_index()
             temp_df2 = graph_df2[['Date', 'Quantity']].groupby('Date').count().reset_index()
             temp_df['Quantity_2'] = temp_df2['Quantity']
-            temp_df.rename(columns={'Quantity': f'{d[0].strftime('%d %b %Y')} to {d[1].strftime('%d %b %Y')}', 'Quantity_2': f'{d2[0].strftime('%d %b %Y')} to {d2[1].strftime('%d %b %Y')}'}, inplace=True)
+            temp_df.rename(columns={'Quantity': f"{d[0].strftime('%d %b %Y')} to {d[1].strftime('%d %b %Y')}", 'Quantity_2': f"{d2[0].strftime('%d %b %Y')} to {d2[1].strftime('%d %b %Y')}"}, inplace=True)
 
             # fig1 = alt.Chart(rev_df, title=f'{selected_prod} Revenue from {d[0]} to {d[1]}').mark_line().encode(
             #     x='Day')
