@@ -248,19 +248,19 @@ if(d != () and len(d) > 1):
 
         c1 = c1.container(border=True)
         c1.markdown(f'<p class="small-font">Total Revenue</p>', unsafe_allow_html=True)
-        c1.markdown(f'<p class="big-font">£<strong>{(np.round(dispatched_df['price_inc'].sum(), 2)):,}</strong></p>', unsafe_allow_html=True)
+        c1.markdown(f'<p class="big-font">£<strong>{(np.round(dispatched_df["price_inc"].sum(), 2)):,}</strong></p>', unsafe_allow_html=True)
 
         c2 = c2.container(border=True)
         c2.markdown(f'<p class="small-font">Units Sold</p>', unsafe_allow_html=True)
-        c2.markdown(f'<p class="big-font"><strong>{(dispatched_df['fifo_quantity'].sum()):,}</strong></p>', unsafe_allow_html=True)
+        c2.markdown(f'<p class="big-font"><strong>{(dispatched_df["fifo_quantity"].sum()):,}</strong></p>', unsafe_allow_html=True)
 
         c3 = c3.container(border=True)
         c3.markdown(f'<p class="small-font">Total Refund</p>', unsafe_allow_html=True)
-        c3.markdown(f'<p class="big-font">£<strong>{(np.round(refunded_df['price_inc'].sum(), 2)):,}</strong></p>', unsafe_allow_html=True)
+        c3.markdown(f'<p class="big-font">£<strong>{(np.round(refunded_df["price_inc"].sum(), 2)):,}</strong></p>', unsafe_allow_html=True)
 
         c4 = c4.container(border=True)
         c4.markdown(f'<p class="small-font">Units Refunded</p>', unsafe_allow_html=True)
-        c4.markdown(f'<p class="big-font"><strong>{(refunded_df['fifo_quantity'].sum()):,}</strong></p>', unsafe_allow_html=True)
+        c4.markdown(f'<p class="big-font"><strong>{(refunded_df["fifo_quantity"].sum()):,}</strong></p>', unsafe_allow_html=True)
 
 
     if (len(d2) == 2):
@@ -270,41 +270,41 @@ if(d != () and len(d) > 1):
         c1 = c1.container(border=True)
         c1.markdown(f'<p class="small-font">Total Revenue</p>', unsafe_allow_html=True)
         if p1 > 0:
-            c1.markdown(f'<p class="big-font">£<strong>{(np.round(dispatched_df['price_inc'].sum(), 2)):,}</strong><span style="color: green;"> (+{p1}%)</span></p>', unsafe_allow_html=True)
+            c1.markdown(f'<p class="big-font">£<strong>{(np.round(dispatched_df["price_inc"].sum(), 2)):,}</strong><span style="color: green;"> (+{p1}%)</span></p>', unsafe_allow_html=True)
         elif p1 == 0:
-            c1.markdown(f'<p class="big-font">£<strong>{(np.round(dispatched_df['price_inc'].sum(), 2)):,}</strong><span style="color: black;"> (0%)</span></p>', unsafe_allow_html=True)
+            c1.markdown(f'<p class="big-font">£<strong>{(np.round(dispatched_df["price_inc"].sum(), 2)):,}</strong><span style="color: black;"> (0%)</span></p>', unsafe_allow_html=True)
         else:
-            c1.markdown(f'<p class="big-font">£<strong>{(np.round(dispatched_df['price_inc'].sum(), 2)):,}</strong><span style="color: red;"> ({p1}%)</span></p>', unsafe_allow_html=True)
+            c1.markdown(f'<p class="big-font">£<strong>{(np.round(dispatched_df["price_inc"].sum(), 2)):,}</strong><span style="color: red;"> ({p1}%)</span></p>', unsafe_allow_html=True)
 
         p2 = percentage_change(dispatched_df['fifo_quantity'].sum(), dispatched_df2['fifo_quantity'].sum())
         c2 = c2.container(border=True)
         c2.markdown(f'<p class="small-font">Units Sold</p>', unsafe_allow_html=True)
         if p2 > 0:
-            c2.markdown(f'<p class="big-font"><strong>{(dispatched_df['fifo_quantity'].sum()):,}</strong><span style="color: green;"> (+{p2}%)</span></p>', unsafe_allow_html=True)
+            c2.markdown(f'<p class="big-font"><strong>{(dispatched_df["fifo_quantity"].sum()):,}</strong><span style="color: green;"> (+{p2}%)</span></p>', unsafe_allow_html=True)
         elif p2 == 0:
-            c2.markdown(f'<p class="big-font"><strong>{(dispatched_df['fifo_quantity'].sum()):,}</strong><span style="color: black;"> (0%)</span></p>', unsafe_allow_html=True)
+            c2.markdown(f'<p class="big-font"><strong>{(dispatched_df["fifo_quantity"].sum()):,}</strong><span style="color: black;"> (0%)</span></p>', unsafe_allow_html=True)
         else:
-            c2.markdown(f'<p class="big-font"><strong>{(dispatched_df['fifo_quantity'].sum()):,}</strong><span style="color: red;"> ({p2}%)</span></p>', unsafe_allow_html=True)
+            c2.markdown(f'<p class="big-font"><strong>{(dispatched_df["fifo_quantity"].sum()):,}</strong><span style="color: red;"> ({p2}%)</span></p>', unsafe_allow_html=True)
 
         p3 = percentage_change((np.round(refunded_df['price_inc'].sum(), 2)), (np.round(refunded_df2['price_inc'].sum(), 2)))
         c3 = c3.container(border=True)
         c3.markdown(f'<p class="small-font">Total Refund</p>', unsafe_allow_html=True)
         if p3 > 0:
-            c3.markdown(f'<p class="big-font">£<strong>{(np.round(refunded_df['price_inc'].sum(), 2)):,}</strong><span style="color: green;"> (+{p3}%)</span></p>', unsafe_allow_html=True)
+            c3.markdown(f'<p class="big-font">£<strong>{(np.round(refunded_df["price_inc"].sum(), 2)):,}</strong><span style="color: green;"> (+{p3}%)</span></p>', unsafe_allow_html=True)
         elif p3 == 0:
-            c3.markdown(f'<p class="big-font">£<strong>{(np.round(refunded_df['price_inc'].sum(), 2)):,}</strong><span style="color: black;"> (0%)</span></p>', unsafe_allow_html=True)
+            c3.markdown(f'<p class="big-font">£<strong>{(np.round(refunded_df["price_inc"].sum(), 2)):,}</strong><span style="color: black;"> (0%)</span></p>', unsafe_allow_html=True)
         else:
-            c3.markdown(f'<p class="big-font">£<strong>{(np.round(refunded_df['price_inc'].sum(), 2)):,}</strong><span style="color: red;"> ({p3}%)</span></p>', unsafe_allow_html=True)
+            c3.markdown(f'<p class="big-font">£<strong>{(np.round(refunded_df["price_inc"].sum(), 2)):,}</strong><span style="color: red;"> ({p3}%)</span></p>', unsafe_allow_html=True)
 
         p4 = percentage_change(refunded_df['fifo_quantity'].sum(), refunded_df2['fifo_quantity'].sum())
         c4 = c4.container(border=True)
         c4.markdown(f'<p class="small-font">Units Refunded</p>', unsafe_allow_html=True)
         if p4 > 0:
-            c4.markdown(f'<p class="big-font"><strong>{(refunded_df['fifo_quantity'].sum()):,}</strong><span style="color: green;"> (+{p4}%)</span></p>', unsafe_allow_html=True)
+            c4.markdown(f'<p class="big-font"><strong>{(refunded_df["fifo_quantity"].sum()):,}</strong><span style="color: green;"> (+{p4}%)</span></p>', unsafe_allow_html=True)
         elif p4 == 0:
-            c4.markdown(f'<p class="big-font"><strong>{(refunded_df['fifo_quantity'].sum()):,}</strong><span style="color: black;"> (0%)</span></p>', unsafe_allow_html=True)
+            c4.markdown(f'<p class="big-font"><strong>{(refunded_df["fifo_quantity"].sum()):,}</strong><span style="color: black;"> (0%)</span></p>', unsafe_allow_html=True)
         else:
-            c4.markdown(f'<p class="big-font"><strong>{(refunded_df['fifo_quantity'].sum()):,}</strong><span style="color: red;"> ({p4}%)</span></p>', unsafe_allow_html=True)
+            c4.markdown(f'<p class="big-font"><strong>{(refunded_df["fifo_quantity"].sum()):,}</strong><span style="color: red;"> ({p4}%)</span></p>', unsafe_allow_html=True)
 
 
     # show_df = dispatched_df.groupby('title')['fifo_quantity'].agg(Units='count').sort_values(by=['Units'], ascending=False).reset_index()
@@ -426,17 +426,17 @@ if(d != () and len(d) > 1):
                 t1, t2, t3 = show_sku_df['Units'].idxmax(), show_sku_df['Units Refunded'].idxmax(), show_sku_df['Units'].idxmin()
                 table_column.markdown(f'<p class="big-font"><strong>{selected_prod}</strong></p>', unsafe_allow_html=True)
                 if (show_sku_df.iloc[t1]['Units'].astype(int) != 1):
-                    table_column.markdown(f'<p class="small-font"><strong>Best Seller:</strong> {show_sku_df.iloc[t1]['Units'].astype(int)} units of size: {show_sku_df.iloc[t1]['Size']} with a revenue of £{(show_sku_df.iloc[t1]['Revenue (£)'].astype(int)):,}</p>', unsafe_allow_html=True)
+                    table_column.markdown(f'<p class="small-font"><strong>Best Seller:</strong> {show_sku_df.iloc[t1]["Units"].astype(int)} units of size: {show_sku_df.iloc[t1]["Size"]} with a revenue of £{(show_sku_df.iloc[t1]["Revenue (£)"].astype(int)):,}</p>', unsafe_allow_html=True)
                 else:
-                    table_column.markdown(f'<p class="small-font"><strong>Best Seller:</strong> {show_sku_df.iloc[t1]['Units'].astype(int)} unit of size: {show_sku_df.iloc[t1]['Size']} with a revenue of £{(show_sku_df.iloc[t1]['Revenue (£)'].astype(int)):,}</p>', unsafe_allow_html=True)
+                    table_column.markdown(f'<p class="small-font"><strong>Best Seller:</strong> {show_sku_df.iloc[t1]["Units"].astype(int)} unit of size: {show_sku_df.iloc[t1]["Size"]} with a revenue of £{(show_sku_df.iloc[t1]["Revenue (£)"].astype(int)):,}</p>', unsafe_allow_html=True)
                 if (show_sku_df.iloc[t2]['Units Refunded'].astype(int) != 1):
-                    table_column.markdown(f'<p class="small-font"><strong>Most Refunded:</strong> {show_sku_df.iloc[t2]['Units Refunded'].astype(int)} units of size: {show_sku_df.iloc[t1]['Size']} with a revenue of £{(show_sku_df.iloc[t1]['Total Refund (£)'].astype(int)):,}</p>', unsafe_allow_html=True)
+                    table_column.markdown(f'<p class="small-font"><strong>Most Refunded:</strong> {show_sku_df.iloc[t2]["Units Refunded"].astype(int)} units of size: {show_sku_df.iloc[t1]["Size"]} with a revenue of £{(show_sku_df.iloc[t1]["Total Refund (£)"].astype(int)):,}</p>', unsafe_allow_html=True)
                 else:
-                    table_column.markdown(f'<p class="small-font"><strong>Most Refunded:</strong> {show_sku_df.iloc[t2]['Units Refunded'].astype(int)} unit of size: {show_sku_df.iloc[t1]['Size']} with a revenue of £{(show_sku_df.iloc[t1]['Total Refund (£)'].astype(int)):,}</p>', unsafe_allow_html=True)
+                    table_column.markdown(f'<p class="small-font"><strong>Most Refunded:</strong> {show_sku_df.iloc[t2]["Units Refunded"].astype(int)} unit of size: {show_sku_df.iloc[t1]["Size"]} with a revenue of £{(show_sku_df.iloc[t1]["Total Refund (£)"].astype(int)):,}</p>', unsafe_allow_html=True)
                 if (show_sku_df.iloc[t3]['Units'].astype(int) != 1):
-                    table_column.markdown(f'<p class="small-font"><strong>Least Sold:</strong> {show_sku_df.iloc[t3]['Units'].astype(int)} units of size: {show_sku_df.iloc[t1]['Size']} with a revenue of £{(show_sku_df.iloc[t1]['Revenue (£)'].astype(int)):,}</p>', unsafe_allow_html=True)
+                    table_column.markdown(f'<p class="small-font"><strong>Least Sold:</strong> {show_sku_df.iloc[t3]["Units"].astype(int)} units of size: {show_sku_df.iloc[t1]["Size"]} with a revenue of £{(show_sku_df.iloc[t1]["Revenue (£)"].astype(int)):,}</p>', unsafe_allow_html=True)
                 else:
-                    table_column.markdown(f'<p class="small-font"><strong>Least Sold:</strong> {show_sku_df.iloc[t3]['Units'].astype(int)} unit of size: {show_sku_df.iloc[t1]['Size']} with a revenue of £{(show_sku_df.iloc[t1]['Revenue (£)'].astype(int)):,}</p>', unsafe_allow_html=True)
+                    table_column.markdown(f'<p class="small-font"><strong>Least Sold:</strong> {show_sku_df.iloc[t3]["Units"].astype(int)} unit of size: {show_sku_df.iloc[t1]["Size"]} with a revenue of £{(show_sku_df.iloc[t1]["Revenue (£)"].astype(int)):,}</p>', unsafe_allow_html=True)
                 # table_column.write(f'{show_sku_df.iloc[t1]['Size']} having an SKU reference of {show_sku_df.iloc[t1]['SKU Reference']} sold the most units: {show_sku_df.iloc[t1]['Units'].astype(int)} with a revenue of £{(show_sku_df.iloc[t1]['Revenue (£)'].astype(int)):,}')
                 # table_column.write(f'{show_sku_df.iloc[t2]['Size']} having an SKU reference of {show_sku_df.iloc[t2]['SKU Reference']} had the most units refunded: {show_sku_df.iloc[t2]['Units Refunded'].astype(int)} with refund of £{(show_sku_df.iloc[t2]['Total Refund (£)'].astype(int)):,}')
                 # table_column.write(f'{show_sku_df.iloc[t3]['Size']} having an SKU reference of {show_sku_df.iloc[t3]['SKU Reference']} had the least units sold: {show_sku_df.iloc[t3]['Units'].astype(int)} with a revenue of £{(show_sku_df.iloc[t3]['Revenue (£)'].astype(int)):,}')
@@ -505,22 +505,23 @@ if(d != () and len(d) > 1):
             )
 
             if (len(show_sku_df) > 2):
-        
+
                 t1, t2, t3 = show_sku_df['Units'].idxmax(), show_sku_df['Units Refunded'].idxmax(), show_sku_df['Units'].idxmin()
                 table_column.markdown(f'<p class="big-font"><strong>{selected_prod}</strong></p>', unsafe_allow_html=True)
                 table_column.markdown(f'<p class="small-font"><strong>{d[0].strftime('%d %b %Y')} to {d[1].strftime('%d %b %Y')}</strong></p>', unsafe_allow_html=True)
                 if (show_sku_df.iloc[t1]['Units'].astype(int) != 1):
-                    table_column.markdown(f'<p class="small-font"><strong>Best Seller:</strong> {show_sku_df.iloc[t1]['Units'].astype(int)} units of size: {show_sku_df.iloc[t1]['Size']} with a revenue of £{(show_sku_df.iloc[t1]['Revenue (£)'].astype(int)):,}</p>', unsafe_allow_html=True)
+                    table_column.markdown(f'<p class="small-font"><strong>Best Seller:</strong> {show_sku_df.iloc[t1]["Units"].astype(int)} units of size: {show_sku_df.iloc[t1]["Size"]} with a revenue of £{(show_sku_df.iloc[t1]["Revenue (£)"].astype(int)):,}</p>', unsafe_allow_html=True)
                 else:
-                    table_column.markdown(f'<p class="small-font"><strong>Best Seller:</strong> {show_sku_df.iloc[t1]['Units'].astype(int)} unit of size: {show_sku_df.iloc[t1]['Size']} with a revenue of £{(show_sku_df.iloc[t1]['Revenue (£)'].astype(int)):,}</p>', unsafe_allow_html=True)
+                    table_column.markdown(f'<p class="small-font"><strong>Best Seller:</strong> {show_sku_df.iloc[t1]["Units"].astype(int)} unit of size: {show_sku_df.iloc[t1]["Size"]} with a revenue of £{(show_sku_df.iloc[t1]["Revenue (£)"].astype(int)):,}</p>', unsafe_allow_html=True)
                 if (show_sku_df.iloc[t2]['Units Refunded'].astype(int) != 1):
-                    table_column.markdown(f'<p class="small-font"><strong>Most Refunded:</strong> {show_sku_df.iloc[t2]['Units Refunded'].astype(int)} units of size: {show_sku_df.iloc[t1]['Size']} with a revenue of £{(show_sku_df.iloc[t1]['Total Refund (£)'].astype(int)):,}</p>', unsafe_allow_html=True)
+                    table_column.markdown(f'<p class="small-font"><strong>Most Refunded:</strong> {show_sku_df.iloc[t2]["Units Refunded"].astype(int)} units of size: {show_sku_df.iloc[t1]["Size"]} with a revenue of £{(show_sku_df.iloc[t1]["Total Refund (£)"].astype(int)):,}</p>', unsafe_allow_html=True)
                 else:
-                    table_column.markdown(f'<p class="small-font"><strong>Most Refunded:</strong> {show_sku_df.iloc[t2]['Units Refunded'].astype(int)} unit of size: {show_sku_df.iloc[t1]['Size']} with a revenue of £{(show_sku_df.iloc[t1]['Total Refund (£)'].astype(int)):,}</p>', unsafe_allow_html=True)
+                    table_column.markdown(f'<p class="small-font"><strong>Most Refunded:</strong> {show_sku_df.iloc[t2]["Units Refunded"].astype(int)} unit of size: {show_sku_df.iloc[t1]["Size"]} with a revenue of £{(show_sku_df.iloc[t1]["Total Refund (£)"].astype(int)):,}</p>', unsafe_allow_html=True)
                 if (show_sku_df.iloc[t3]['Units'].astype(int) != 1):
-                    table_column.markdown(f'<p class="small-font"><strong>Least Sold:</strong> {show_sku_df.iloc[t3]['Units'].astype(int)} units of size: {show_sku_df.iloc[t1]['Size']} with a revenue of £{(show_sku_df.iloc[t1]['Revenue (£)'].astype(int)):,}</p>', unsafe_allow_html=True)
+                    table_column.markdown(f'<p class="small-font"><strong>Least Sold:</strong> {show_sku_df.iloc[t3]["Units"].astype(int)} units of size: {show_sku_df.iloc[t1]["Size"]} with a revenue of £{(show_sku_df.iloc[t1]["Revenue (£)"].astype(int)):,}</p>', unsafe_allow_html=True)
                 else:
-                    table_column.markdown(f'<p class="small-font"><strong>Least Sold:</strong> {show_sku_df.iloc[t3]['Units'].astype(int)} unit of size: {show_sku_df.iloc[t1]['Size']} with a revenue of £{(show_sku_df.iloc[t1]['Revenue (£)'].astype(int)):,}</p>', unsafe_allow_html=True)
+                    table_column.markdown(f'<p class="small-font"><strong>Least Sold:</strong> {show_sku_df.iloc[t3]["Units"].astype(int)} unit of size: {show_sku_df.iloc[t1]["Size"]} with a revenue of £{(show_sku_df.iloc[t1]["Revenue (£)"].astype(int)):,}</p>', unsafe_allow_html=True)
+        
                 # table_column.write(f'{show_sku_df.iloc[t1]['Size']} having an SKU reference of {show_sku_df.iloc[t1]['SKU Reference']} sold the most units: {show_sku_df.iloc[t1]['Units'].astype(int)} with a revenue of £{(show_sku_df.iloc[t1]['Revenue (£)'].astype(int)):,}')
                 # table_column.write(f'{show_sku_df.iloc[t2]['Size']} having an SKU reference of {show_sku_df.iloc[t2]['SKU Reference']} had the most units refunded: {show_sku_df.iloc[t2]['Units Refunded'].astype(int)} with refund of £{(show_sku_df.iloc[t2]['Total Refund (£)'].astype(int)):,}')
                 # table_column.write(f'{show_sku_df.iloc[t3]['Size']} having an SKU reference of {show_sku_df.iloc[t3]['SKU Reference']} had the least units sold: {show_sku_df.iloc[t3]['Units'].astype(int)} with a revenue of £{(show_sku_df.iloc[t3]['Revenue (£)'].astype(int)):,}')
@@ -535,17 +536,17 @@ if(d != () and len(d) > 1):
                 t1_2, t2_2, t3_2 = merged_show_sku_df['merged_units'].idxmax(), merged_show_sku_df['merged_refunded_units'].idxmax(), merged_show_sku_df['merged_units'].idxmin()
                 table_column.markdown(f'<p class="small-font"><strong>{d[0].strftime('%d %b %Y')} to {d[1].strftime('%d %b %Y')} and {d2[0].strftime('%d %b %Y')} to {d2[1].strftime('%d %b %Y')}</strong></p>', unsafe_allow_html=True)
                 if(merged_show_sku_df.iloc[t1_2]['merged_units'].astype(int) != 1):
-                    table_column.markdown(f'<p class="small-font"><strong>Best Seller:</strong> {merged_show_sku_df.iloc[t1_2]['merged_units'].astype(int)} units of size: {merged_show_sku_df.iloc[t1_2]['Size']} with a revenue of £{(merged_show_sku_df.iloc[t1_2]['merged_revenue'].astype(int)):,}</p>', unsafe_allow_html=True)
+                    table_column.markdown(f'<p class="small-font"><strong>Best Seller:</strong> {merged_show_sku_df.iloc[t1_2]["merged_units"].astype(int)} units of size: {merged_show_sku_df.iloc[t1_2]["Size"]} with a revenue of £{(merged_show_sku_df.iloc[t1_2]["merged_revenue"].astype(int)):,}</p>', unsafe_allow_html=True)
                 else:
-                    table_column.markdown(f'<p class="small-font"><strong>Best Seller:</strong> {merged_show_sku_df.iloc[t1_2]['merged_units'].astype(int)} unit of size: {merged_show_sku_df.iloc[t1_2]['Size']} with a revenue of £{(merged_show_sku_df.iloc[t1_2]['merged_revenue'].astype(int)):,}</p>', unsafe_allow_html=True)
+                    table_column.markdown(f'<p class="small-font"><strong>Best Seller:</strong> {merged_show_sku_df.iloc[t1_2]["merged_units"].astype(int)} unit of size: {merged_show_sku_df.iloc[t1_2]["Size"]} with a revenue of £{(merged_show_sku_df.iloc[t1_2]["merged_revenue"].astype(int)):,}</p>', unsafe_allow_html=True)
                 if (merged_show_sku_df.iloc[t2_2]['merged_refunded_units'].astype(int) != 1):
-                    table_column.markdown(f'<p class="small-font"><strong>Most Refunded:</strong> {merged_show_sku_df.iloc[t2_2]['merged_refunded_units'].astype(int)} units of size: {merged_show_sku_df.iloc[t2_2]['Size']} with a revenue of £{(merged_show_sku_df.iloc[t2_2]['merged_refunded_revenue'].astype(int)):,}</p>', unsafe_allow_html=True)
+                    table_column.markdown(f'<p class="small-font"><strong>Most Refunded:</strong> {merged_show_sku_df.iloc[t2_2]["merged_refunded_units"].astype(int)} units of size: {merged_show_sku_df.iloc[t2_2]["Size"]} with a revenue of £{(merged_show_sku_df.iloc[t2_2]["merged_refunded_revenue"].astype(int)):,}</p>', unsafe_allow_html=True)
                 else:
-                    table_column.markdown(f'<p class="small-font"><strong>Most Refunded:</strong> {merged_show_sku_df.iloc[t2_2]['merged_refunded_units'].astype(int)} unit of size: {merged_show_sku_df.iloc[t2_2]['Size']} with a revenue of £{(merged_show_sku_df.iloc[t2_2]['merged_refunded_revenue'].astype(int)):,}</p>', unsafe_allow_html=True)
+                    table_column.markdown(f'<p class="small-font"><strong>Most Refunded:</strong> {merged_show_sku_df.iloc[t2_2]["merged_refunded_units"].astype(int)} unit of size: {merged_show_sku_df.iloc[t2_2]["Size"]} with a revenue of £{(merged_show_sku_df.iloc[t2_2]["merged_refunded_revenue"].astype(int)):,}</p>', unsafe_allow_html=True)
                 if (merged_show_sku_df.iloc[t3_2]['merged_units'].astype(int) != 1):
-                    table_column.markdown(f'<p class="small-font"><strong>Least Sold:</strong> {merged_show_sku_df.iloc[t3_2]['merged_units'].astype(int)} units of size: {merged_show_sku_df.iloc[t3_2]['Size']} with a revenue of £{(merged_show_sku_df.iloc[t3_2]['merged_revenue'].astype(int)):,}</p>', unsafe_allow_html=True)
+                    table_column.markdown(f'<p class="small-font"><strong>Least Sold:</strong> {merged_show_sku_df.iloc[t3_2]["merged_units"].astype(int)} units of size: {merged_show_sku_df.iloc[t3_2]["Size"]} with a revenue of £{(merged_show_sku_df.iloc[t3_2]["merged_revenue"].astype(int)):,}</p>', unsafe_allow_html=True)
                 else:
-                    table_column.markdown(f'<p class="small-font"><strong>Least Sold:</strong> {merged_show_sku_df.iloc[t3_2]['merged_units'].astype(int)} unit of size: {merged_show_sku_df.iloc[t3_2]['Size']} with a revenue of £{(merged_show_sku_df.iloc[t3_2]['merged_revenue'].astype(int)):,}</p>', unsafe_allow_html=True)
+                    table_column.markdown(f'<p class="small-font"><strong>Least Sold:</strong> {merged_show_sku_df.iloc[t3_2]["merged_units"].astype(int)} unit of size: {merged_show_sku_df.iloc[t3_2]["Size"]} with a revenue of £{(merged_show_sku_df.iloc[t3_2]["merged_revenue"].astype(int)):,}</p>', unsafe_allow_html=True)
                 # table_column.write(f'{merged_show_sku_df.iloc[t1_2]['Size']} having an SKU reference of {merged_show_sku_df.iloc[t1_2]['SKU Reference']} sold the most units: {merged_show_sku_df.iloc[t1_2]['merged_units'].astype(int)} with a revenue of £{(merged_show_sku_df.iloc[t1_2]['merged_revenue'].astype(int)):,}</p>', unsafe_allow_html=True)
                 # table_column.write(f'{merged_show_sku_df.iloc[t2_2]['Size']} having an SKU reference of {merged_show_sku_df.iloc[t2_2]['SKU Reference']} had the most units refunded: {merged_show_sku_df.iloc[t2_2]['merged_refunded_units'].astype(int)} with refund of £{(merged_show_sku_df.iloc[t2_2]['merged_refunded_revenue'].astype(int)):,}')
                 # table_column.write(f'{merged_show_sku_df.iloc[t3_2]['Size']} having an SKU reference of {merged_show_sku_df.iloc[t3_2]['SKU Reference']} had the least units sold: {merged_show_sku_df.iloc[t3_2]['merged_units'].astype(int)} with a revenue of £{(merged_show_sku_df.iloc[t3_2]['merged_revenue'].astype(int)):,}')
