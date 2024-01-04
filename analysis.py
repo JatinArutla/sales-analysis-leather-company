@@ -507,8 +507,8 @@ if(d != () and len(d) > 1):
             if (len(show_sku_df) > 2):
 
                 t1, t2, t3 = show_sku_df['Units'].idxmax(), show_sku_df['Units Refunded'].idxmax(), show_sku_df['Units'].idxmin()
-                table_column.markdown(f'<p class="big-font"><strong>{selected_prod}</strong></p>', unsafe_allow_html=True)
-                table_column.markdown(f'<p class="small-font"><strong>{d[0].strftime('%d %b %Y')} to {d[1].strftime('%d %b %Y')}</strong></p>', unsafe_allow_html=True)
+                table_column.markdown(f"<p class='big-font'><strong>{selected_prod}</strong></p>", unsafe_allow_html=True)
+                table_column.markdown(f"<p class='small-font'><strong>{d[0].strftime('%d %b %Y')} to {d[1].strftime('%d %b %Y')}</strong></p>", unsafe_allow_html=True)
                 if (show_sku_df.iloc[t1]['Units'].astype(int) != 1):
                     table_column.markdown(f'<p class="small-font"><strong>Best Seller:</strong> {show_sku_df.iloc[t1]["Units"].astype(int)} units of size: {show_sku_df.iloc[t1]["Size"]} with a revenue of £{(show_sku_df.iloc[t1]["Revenue (£)"].astype(int)):,}</p>', unsafe_allow_html=True)
                 else:
