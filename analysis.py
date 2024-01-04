@@ -410,7 +410,7 @@ if(d != () and len(d) > 1):
         total_show_sku_df.loc['Total'] = total_show_sku_df.select_dtypes(np.number).sum()
 
         if (d2 == ()):
-            table_column.markdown(f'<p class="big-font"><strong>{d[0].strftime('%d %b %Y')} to {d[1].strftime('%d %b %Y')}</strong></p>', unsafe_allow_html=True)
+            table_column.markdown(f"<p class='big-font'><strong>{d[0].strftime('%d %b %Y')} to {d[1].strftime('%d %b %Y')}</strong></p>", unsafe_allow_html=True)
 
             table_column.write(total_show_sku_df)
 
