@@ -614,7 +614,7 @@ if(d != () and len(d) > 1):
 
             temp_df = graph_df[['Date', 'Quantity']].groupby('Date').count().reset_index()
             temp_df2 = graph_df2[['Date', 'Quantity']].groupby('Date').count().reset_index()
-            temp_df['Date_2'] = temp_df['Date']
+            temp_df['Date_2'] = temp_df2['Date']
             temp_df['Quantity_2'] = temp_df2['Quantity']
             # temp_df.rename(columns={'Quantity': f"{d[0].strftime('%d %b %Y')} to {d[1].strftime('%d %b %Y')}", 'Quantity_2': f"{d2[0].strftime('%d %b %Y')} to {d2[1].strftime('%d %b %Y')}"}, inplace=True)
             
