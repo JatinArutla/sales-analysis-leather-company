@@ -74,6 +74,9 @@ dec_31 = datetime.date(next_year, 12, 31)
 
 st.title('Sales Analysis')
 
+# date_options_arr = ['None', 'Today', 'Yesterday', 'Last Week', 'This Month', 'Last Month', 'This Year', 'Last Year']
+# date_options = st.selectbox('Date range options', options=date_options_arr)
+
 d = st.date_input(
     "Select dates",
     (),
@@ -82,6 +85,7 @@ d = st.date_input(
     format="DD.MM.YYYY",
     key=1,
 )
+
 d2 = ()
 
 if(d != () and len(d) > 1):
@@ -561,12 +565,38 @@ if(d != () and len(d) > 1):
             graph_df.rename(columns={'price_inc': 'Revenue', 'date': 'Date', 'quantity': 'Quantity'}, inplace=True)
             
             rev_df = graph_df[['Date', 'Revenue']].groupby('Date').sum().reset_index()
-            rev_df.rename(columns={'Revenue': f"{d[0].strftime('%d %b %Y')} to {d[1].strftime('%d %b %Y')}"}, inplace=True)
+            # rev_df.rename(columns={'Revenue': f"{d[0].strftime('%d %b %Y')} to {d[1].strftime('%d %b %Y')}"}, inplace=True)
             temp_df = graph_df[['Date', 'Quantity']].groupby('Date').count().reset_index()
-            temp_df.rename(columns={'Quantity': f"{d[0].strftime('%d %b %Y')} to {d[1].strftime('%d %b %Y')}"}, inplace=True)
+            # temp_df.rename(columns={'Quantity': f"{d[0].strftime('%d %b %Y')} to {d[1].strftime('%d %b %Y')}"}, inplace=True)
+            temp_df.rename(columns={'Quantity': 'Units'}, inplace=True)
 
-            sub_1.line_chart(temp_df, x="Date", y=[f"{d[0].strftime('%d %b %Y')} to {d[1].strftime('%d %b %Y')}"], color=["#0000FF"])
-            sub_2.line_chart(rev_df, x="Date", y=[f"{d[0].strftime('%d %b %Y')} to {d[1].strftime('%d %b %Y')}"], color=["#0000FF"])
+            # sub_1.line_chart(temp_df, x="Date", y=[f"{d[0].strftime('%d %b %Y')} to {d[1].strftime('%d %b %Y')}"], color=["#0000FF"])
+            # sub_2.line_chart(rev_df, x="Date", y="Revenue")
+
+            # base = alt.Chart(temp_df).encode(
+            #     x='Date',
+            #     y='Units',
+            # ).interactive()
+            # lines = base.mark_line()
+            # points = base.mark_point(filled=True)
+            # sub_1.altair_chart(lines + points, use_container_width=True)
+
+            chart = alt.Chart(temp_df).mark_point(filled=True).encode(x='Date', y='Units')
+            line = alt.Chart(temp_df, title=f'{selected_prod} Units Sold from {d[0].strftime("%d %b %Y")} to {d[1].strftime("%d %b %Y")}').mark_line().encode(x='Date', y='Units').interactive()
+            sub_1.altair_chart(chart + line, use_container_width=True)
+
+            chart = alt.Chart(rev_df).mark_point(filled=True).encode(x='Date', y='Revenue')
+            line = alt.Chart(rev_df, title=f'{selected_prod} Revenue from {d[0].strftime("%d %b %Y")} to {d[1].strftime("%d %b %Y")}').mark_line().encode(x='Date', y='Revenue').interactive()
+            sub_2.altair_chart(chart + line, use_container_width=True)
+
+            # base = alt.Chart(rev_df).encode(
+            #     x='Date',
+            #     y='Revenue',
+            # ).interactive()
+            # lines = base.mark_line()
+            # points = base.mark_point(filled=True)
+            # sub_2.altair_chart(lines + points, use_container_width=True)
+
         
         if (len(d2) == 2):
             graph_df = df[df['title'] == selected_prod]
@@ -579,20 +609,81 @@ if(d != () and len(d) > 1):
             rev_df = graph_df[['Date', 'Revenue']].groupby('Date').sum().reset_index()
             rev_df2 = graph_df2[['Date', 'Revenue']].groupby('Date').sum().reset_index()
             rev_df['Revenue_2'] = rev_df2['Revenue']
-            rev_df.rename(columns={'Revenue': f"{d[0].strftime('%d %b %Y')} to {d[1].strftime('%d %b %Y')}", 'Revenue_2': f"{d2[0].strftime('%d %b %Y')} to {d2[1].strftime('%d %b %Y')}"}, inplace=True)
+            # rev_df.rename(columns={'Revenue': f"{d[0].strftime('%d %b %Y')} to {d[1].strftime('%d %b %Y')}", 'Revenue_2': f"{d2[0].strftime('%d %b %Y')} to {d2[1].strftime('%d %b %Y')}"}, inplace=True)
 
             temp_df = graph_df[['Date', 'Quantity']].groupby('Date').count().reset_index()
             temp_df2 = graph_df2[['Date', 'Quantity']].groupby('Date').count().reset_index()
             temp_df['Quantity_2'] = temp_df2['Quantity']
-            temp_df.rename(columns={'Quantity': f"{d[0].strftime('%d %b %Y')} to {d[1].strftime('%d %b %Y')}", 'Quantity_2': f"{d2[0].strftime('%d %b %Y')} to {d2[1].strftime('%d %b %Y')}"}, inplace=True)
+            # temp_df.rename(columns={'Quantity': f"{d[0].strftime('%d %b %Y')} to {d[1].strftime('%d %b %Y')}", 'Quantity_2': f"{d2[0].strftime('%d %b %Y')} to {d2[1].strftime('%d %b %Y')}"}, inplace=True)
+            
+
+            # base = alt.Chart(temp_df).encode(
+            #     x='Date',
+            #     # y=['Quantity', 'Quantity_2'],
+            # ).repeat(layer=['Quantity', 'Quantity_2']).interactive()
+            # lines = base.mark_line()
+            # points = base.mark_point(filled=True)
+            # sub_1.altair_chart(lines + points, use_container_width=True)
+
+            # base = alt.Chart(rev_df).encode(
+            #     x='Date',
+            #     # y=['Revenue', 'Revenue_2'],
+            # ).repeat(layer=['Revenue', 'Revenue_2']).interactive()
+            # lines = base.mark_line()
+            # points = base.mark_point(filled=True)
+            # sub_2.altair_chart(lines + points, use_container_width=True)
+
+
+
+            # base = alt.Chart(temp_df.reset_index()).encode(x='Date')
+            # base = alt.layer(
+            #     base.mark_line(color='blue').encode(y='Quantity'),
+            #     base.mark_line(color='red').encode(y='Quantity_2'),
+            #     base.mark_point(color='blue', filled=True).encode(y='Quantity'),
+            #     base.mark_point(color='red', filled=True).encode(y='Quantity_2')
+            # ).interactive()
+            # # lines = base.mark_line()
+            # # points = base.mark_point(filled=True)
+            # sub_1.altair_chart(base, use_container_width=True)
+
+
+            # base = alt.Chart(rev_df.reset_index()).encode(x='Date')
+            # base = alt.layer(
+            #     base.mark_line(color='blue').encode(y='Revenue'),
+            #     base.mark_line(color='red').encode(y='Revenue_2'),
+            #     base.mark_point(color='blue', filled=True).encode(y='Revenue'),
+            #     base.mark_point(color='red', filled=True).encode(y='Revenue_2')
+            # ).interactive()
+            # # lines = base.mark_line()
+            # # points = base.mark_point(filled=True)
+            # sub_2.altair_chart(base, use_container_width=True)
+
+
+
+            chart1 = alt.Chart(temp_df).mark_point(color='blue', filled=True).encode(x='Date', y='Quantity')
+            line1 = alt.Chart(temp_df, title=f'{selected_prod} Units Sold').mark_line(color='blue').encode(x='Date', y='Quantity').interactive()
+            chart2 = alt.Chart(temp_df).mark_point(color='red', filled=True).encode(x='Date', y='Quantity_2')
+            line2 = alt.Chart(temp_df, title=f'{selected_prod} Units Sold').mark_line(color='red').encode(x='Date', y='Quantity_2').interactive()
+            sub_1.altair_chart(chart1 + line1 + chart2 + line2, use_container_width=True)
+            sub_1.markdown(f"<p class='small-font'><span style='color: blue;'>Blue line: </span>{d[0].strftime("%d %b %Y")} to {d[1].strftime("%d %b %Y")}</p>", unsafe_allow_html=True)
+            sub_1.markdown(f"<p class='small-font'><span style='color: red;'>Red line: </span>{d2[0].strftime("%d %b %Y")} to {d2[1].strftime("%d %b %Y")}</p>", unsafe_allow_html=True)
+
+            chart1 = alt.Chart(rev_df).mark_point(color='blue', filled=True).encode(x='Date', y='Revenue')
+            line1 = alt.Chart(rev_df, title=f'{selected_prod} Revenue').mark_line(color='blue').encode(x='Date', y='Revenue').interactive()
+            chart2 = alt.Chart(rev_df).mark_point(color='red', filled=True).encode(x='Date', y='Revenue_2')
+            line2 = alt.Chart(rev_df, title=f'{selected_prod} Revenue').mark_line(color='red').encode(x='Date', y='Revenue_2').interactive()
+            sub_2.altair_chart(chart1 + line1 + chart2 + line2, use_container_width=True)
+            sub_2.markdown(f"<p class='small-font'><span style='color: blue;'>Blue line: </span>{d[0].strftime("%d %b %Y")} to {d[1].strftime("%d %b %Y")}</p>", unsafe_allow_html=True)
+            sub_2.markdown(f"<p class='small-font'><span style='color: red;'>Red line: </span>{d2[0].strftime("%d %b %Y")} to {d2[1].strftime("%d %b %Y")}</p>", unsafe_allow_html=True)
+
+
 
             # fig1 = alt.Chart(rev_df, title=f'{selected_prod} Revenue from {d[0]} to {d[1]}').mark_line().encode(
             #     x='Day')
             # sub_1.altair_chart(fig1, use_container_width=True)
-            sub_1.line_chart(temp_df, x="Date", y=[f"{d[0].strftime('%d %b %Y')} to {d[1].strftime('%d %b %Y')}", f"{d2[0].strftime('%d %b %Y')} to {d2[1].strftime('%d %b %Y')}"], color=["#FF0000", "#0000FF"])
-
+            # sub_1.line_chart(temp_df, x="Date", y=[f"{d[0].strftime('%d %b %Y')} to {d[1].strftime('%d %b %Y')}", f"{d2[0].strftime('%d %b %Y')} to {d2[1].strftime('%d %b %Y')}"], color=["#FF0000", "#0000FF"])
             
             # fig2 = alt.Chart(temp_df, title=f'{selected_prod} Units Sold from {d[0]} to {d[1]}').mark_line().encode(
             #     x='Day', y='Quantity')
             # sub_2.altair_chart(fig2, use_container_width=True)
-            sub_2.line_chart(rev_df, x="Date", y=[f"{d[0].strftime('%d %b %Y')} to {d[1].strftime('%d %b %Y')}", f"{d2[0].strftime('%d %b %Y')} to {d2[1].strftime('%d %b %Y')}"], color=["#FF0000", "#0000FF"])
+            # sub_2.line_chart(rev_df, x="Date", y=[f"{d[0].strftime('%d %b %Y')} to {d[1].strftime('%d %b %Y')}", f"{d2[0].strftime('%d %b %Y')} to {d2[1].strftime('%d %b %Y')}"], color=["#FF0000", "#0000FF"])
