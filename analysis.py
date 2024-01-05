@@ -608,11 +608,13 @@ if(d != () and len(d) > 1):
 
             rev_df = graph_df[['Date', 'Revenue']].groupby('Date').sum().reset_index()
             rev_df2 = graph_df2[['Date', 'Revenue']].groupby('Date').sum().reset_index()
+            rev_df['Date_2'] = rev_df2['Date']
             rev_df['Revenue_2'] = rev_df2['Revenue']
             # rev_df.rename(columns={'Revenue': f"{d[0].strftime('%d %b %Y')} to {d[1].strftime('%d %b %Y')}", 'Revenue_2': f"{d2[0].strftime('%d %b %Y')} to {d2[1].strftime('%d %b %Y')}"}, inplace=True)
 
             temp_df = graph_df[['Date', 'Quantity']].groupby('Date').count().reset_index()
             temp_df2 = graph_df2[['Date', 'Quantity']].groupby('Date').count().reset_index()
+            temp_df['Date_2'] = temp_df['Date']
             temp_df['Quantity_2'] = temp_df2['Quantity']
             # temp_df.rename(columns={'Quantity': f"{d[0].strftime('%d %b %Y')} to {d[1].strftime('%d %b %Y')}", 'Quantity_2': f"{d2[0].strftime('%d %b %Y')} to {d2[1].strftime('%d %b %Y')}"}, inplace=True)
             
@@ -663,7 +665,7 @@ if(d != () and len(d) > 1):
             chart1 = alt.Chart(temp_df).mark_point(color='blue', filled=True).encode(x='Date', y='Quantity')
             line1 = alt.Chart(temp_df, title=f'{selected_prod} Units Sold').mark_line(color='blue').encode(x='Date', y='Quantity').interactive()
             chart2 = alt.Chart(temp_df).mark_point(color='red', filled=True).encode(x='Date', y='Quantity_2')
-            line2 = alt.Chart(temp_df, title=f'{selected_prod} Units Sold').mark_line(color='red').encode(x='Date', y='Quantity_2').interactive()
+            line2 = alt.Chart(temp_df, title=f'{selected_prod} Units Sold').mark_line(color='red').encode(x='Date_2', y='Quantity_2').interactive()
             sub_1.altair_chart(chart1 + line1 + chart2 + line2, use_container_width=True)
             sub_1.markdown(f"<p class='small-font'><span style='color: blue;'>Blue: </span>{d[0].strftime('%d %b %Y')} to {d[1].strftime('%d %b %Y')}</p>", unsafe_allow_html=True)
             sub_1.markdown(f"<p class='small-font'><span style='color: red;'>Red: </span>{d2[0].strftime('%d %b %Y')} to {d2[1].strftime('%d %b %Y')}</p>", unsafe_allow_html=True)
@@ -671,7 +673,7 @@ if(d != () and len(d) > 1):
             chart1 = alt.Chart(rev_df).mark_point(color='blue', filled=True).encode(x='Date', y='Revenue')
             line1 = alt.Chart(rev_df, title=f'{selected_prod} Revenue').mark_line(color='blue').encode(x='Date', y='Revenue').interactive()
             chart2 = alt.Chart(rev_df).mark_point(color='red', filled=True).encode(x='Date', y='Revenue_2')
-            line2 = alt.Chart(rev_df, title=f'{selected_prod} Revenue').mark_line(color='red').encode(x='Date', y='Revenue_2').interactive()
+            line2 = alt.Chart(rev_df, title=f'{selected_prod} Revenue').mark_line(color='red').encode(x='Date_2', y='Revenue_2').interactive()
             sub_2.altair_chart(chart1 + line1 + chart2 + line2, use_container_width=True)
             sub_2.markdown(f"<p class='small-font'><span style='color: blue;'>Blue: </span>{d[0].strftime('%d %b %Y')} to {d[1].strftime('%d %b %Y')}</p>", unsafe_allow_html=True)
             sub_2.markdown(f"<p class='small-font'><span style='color: red;'>Red: </span>{d2[0].strftime('%d %b %Y')} to {d2[1].strftime('%d %b %Y')}</p>", unsafe_allow_html=True)
