@@ -67,23 +67,37 @@ df['date'] = pd.to_datetime(df['date'])
 orig_df = pd.read_csv('orders.csv')
 orig_df['date'] = pd.to_datetime(orig_df['date'])
 
-today = datetime.datetime.now()
-prev_year = today.year - 3
-next_year = today.year - 1
-jan_1 = datetime.date(prev_year, 1, 1)
-dec_31 = datetime.date(next_year, 12, 31)
+# today = datetime.datetime.now()
+# prev_year = today.year - 3
+# next_year = today.year - 1
+# jan_1 = datetime.date(prev_year, 1, 1)
+# dec_31 = datetime.date(next_year, 12, 31)
 
 st.title('Sales Analysis')
 
 # date_options_arr = ['None', 'Today', 'Yesterday', 'Last Week', 'This Month', 'Last Month', 'This Year', 'Last Year']
 # date_options = st.selectbox('Date range options', options=date_options_arr)
 
-d = st.date_input(
-    "Select dates",
-    (),
-    jan_1,
-    dec_31,
-    format="DD.MM.YYYY",
-    key=1,
-)
+# d = st.date_input(
+#     "Select dates",
+#     (),
+#     jan_1,
+#     dec_31,
+#     format="DD.MM.YYYY",
+#     key=1,
+# )
 
+one_cat_df = df.groupby('F_Cat')['quantity'].count().reset_index()
+selection = dataframe_with_selections(one_cat_df, 1)
+
+if (selection['selected_rows_indices'] != []):
+    selected_prod = one_cat_df.loc[selection['selected_rows_indices'][0]]['F_Cat']
+    df = df[df['F_Cat'] == selected_prod]
+    two_cat_df = df.groupby('S_Cat')['quantity'].count().reset_index()
+    selection2 = dataframe_with_selections(two_cat_df, 2)
+
+    if(selection2['selected_rows_indices'] != []):
+        selected_prod = two_cat_df.loc[selection2['selected_rows_indices'][0]]['S_Cat']
+        df = df[df['S_Cat'] == selected_prod]
+        three_cat_df = df.groupby('T_Cat')['quantity'].count().reset_index()
+        selection3 = dataframe_with_selections(three_cat_df, 3)
