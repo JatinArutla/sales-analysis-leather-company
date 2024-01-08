@@ -9,6 +9,15 @@ plt.style.use('fivethirtyeight')
 import seaborn as sns
 import datetime
 import re
+from sklearn.model_selection import TimeSeriesSplit
+
+import holidays
+
+import xgboost as xgb
+from sklearn.metrics import mean_squared_error
+color_pal = sns.color_palette()
+plt.style.use('fivethirtyeight')
+
 
 pd.options.mode.chained_assignment = None
 
@@ -556,8 +565,10 @@ if(d != () and len(d) > 1):
                 # table_column.write(f'{merged_show_sku_df.iloc[t3_2]['Size']} having an SKU reference of {merged_show_sku_df.iloc[t3_2]['SKU Reference']} had the least units sold: {merged_show_sku_df.iloc[t3_2]['merged_units'].astype(int)} with a revenue of £{(merged_show_sku_df.iloc[t3_2]['merged_revenue'].astype(int)):,}')
 
 
-
-        sub_1, sub_2 = graph_column.tabs(["Units", "Revenue"])
+        if(len(d2) == 0):
+            sub_1, sub_2, sub_3 = graph_column.tabs(["Units", "Revenue", "Projection"])
+        else:
+            sub_1, sub_2 = graph_column.tabs(["Units", "Revenue"])
 
         if (len(d2) == 0):
             graph_df = df[df['title'] == selected_prod]
@@ -689,3 +700,97 @@ if(d != () and len(d) > 1):
             #     x='Day', y='Quantity')
             # sub_2.altair_chart(fig2, use_container_width=True)
             # sub_2.line_chart(rev_df, x="Date", y=[f"{d[0].strftime('%d %b %Y')} to {d[1].strftime('%d %b %Y')}", f"{d2[0].strftime('%d %b %Y')} to {d2[1].strftime('%d %b %Y')}"], color=["#FF0000", "#0000FF"])
+
+
+        if (len(d2) == 0):
+            projected_df = df[df['title'] == selected_prod]
+            projected_df = pd.DataFrame(projected_df.groupby('date')['quantity'].sum())
+            projected_df['quantity'] = projected_df['quantity'].replace(np.nan, 0.0)
+            projected_df['quantity'] = projected_df['quantity'].replace('None', 0.0)
+            projected_df['quantity'] = projected_df['quantity'].astype(float)
+
+            projected_df['hols'] = pd.Series(projected_df.index).apply(lambda x: holidays.CountryHoliday('UK').get(x)).values
+            projected_df['hols'] = projected_df['hols'].astype('bool').astype('int')
+
+            projected_df.reset_index(inplace=True)
+
+            projected_df_test = projected_df.loc[projected_df.date > '2023-09-30'].copy()
+            projected_df = projected_df.loc[projected_df.date <= '2023-09-30'].copy()
+
+            projected_df = projected_df.set_index('date')
+            projected_df.index = pd.to_datetime(projected_df.index)
+            projected_df_test = projected_df_test.set_index('date')
+            projected_df_test.index = pd.to_datetime(projected_df_test.index)
+
+            def create_features(df):
+                """
+                Create time series features based on time series index.
+                """
+                df = df.copy()
+            #     df['hour'] = df.index.hour
+                df['dayofweek'] = df.index.dayofweek
+                df['quarter'] = df.index.quarter
+                df['month'] = df.index.month
+                df['year'] = df.index.year
+                df['dayofyear'] = df.index.dayofyear
+                df['dayofmonth'] = df.index.day
+                df['weekofyear'] = df.index.isocalendar().week
+                return df
+            projected_df = create_features(projected_df)
+            
+            def add_lags(df):
+                target_map = df['quantity'].to_dict()
+                df['lag1'] = (df.index - pd.Timedelta('7 days')).map(target_map)
+                df['lag2'] = (df.index - pd.Timedelta('35 days')).map(target_map)
+                df['lag3'] = (df.index - pd.Timedelta('91 days')).map(target_map)
+                df['lag4'] = (df.index - pd.Timedelta('140 days')).map(target_map)
+                df['lag5'] = (df.index - pd.Timedelta('364 days')).map(target_map)
+                return df
+            projected_df = add_lags(projected_df)
+
+            tss = TimeSeriesSplit(n_splits=5, test_size=90, gap=7)
+            projected_df = projected_df.sort_index()
+
+
+            FEATURES = ['dayofyear', 'hols', 'dayofweek', 'quarter', 'month', 'year',
+                        'lag1','lag2','lag3', 'lag4', 'lag5']
+            TARGET = 'quantity'
+
+            X_all = projected_df[FEATURES]
+            y_all = projected_df[TARGET]
+
+            reg = xgb.XGBRegressor(base_score=0.5,
+                                booster='gbtree',    
+                                n_estimators=500,
+                                objective='reg:linear',
+                                max_depth=3,
+                                learning_rate=0.01)
+            reg.fit(X_all, y_all,
+                    eval_set=[(X_all, y_all)],
+                    verbose=100)
+            
+            # Create future dataframe
+            future = pd.date_range('2023-11-01','2024-12-31', freq='1d')
+            future_df = pd.DataFrame(index=future)
+            future_df['isFuture'] = True
+            projected_df['isFuture'] = False
+            df_and_future = pd.concat([projected_df, future_df])
+            df_and_future = create_features(df_and_future)
+            df_and_future = add_lags(df_and_future)
+
+            future_w_features = df_and_future.query('isFuture').copy()
+            future_w_features['pred'] = reg.predict(future_w_features[FEATURES])
+            # df_test['quantity'].plot()
+            projected_df_test['quantity'] = projected_df_test['quantity'].replace(np.nan, 0.0)
+            future_w_features['actual_values'] = projected_df_test['quantity'].astype(float)
+            future_w_features.reset_index(inplace=True)
+            # future_w_features[['actual_values', 'pred']].plot(figsize=(10, 5),
+            #                             ms=3,
+            #                             lw=3,
+            #                             title='Future Predictions')
+
+            # sub_3.write(future_w_features[['actual_values', 'pred']])
+
+            line1 = alt.Chart(future_w_features[['index', 'pred']], title=f'{selected_prod} Projection').mark_line(color='blue').encode(x='index', y='pred')
+            line2 = alt.Chart(future_w_features[['index', 'actual_values']], title=f'{selected_prod} Projection').mark_line(color='red').encode(x='index', y='actual_values').interactive()
+            sub_3.altair_chart(line2 + line1, use_container_width=True)
