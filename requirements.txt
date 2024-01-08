@@ -3,7 +3,7 @@ holidays==0.40
 matplotlib==3.8.2
 numpy==1.26.3
 pandas==2.1.4
-scikit-learn
+scikit_learn
 seaborn==0.13.1
 streamlit==1.29.0
 xgboost==2.0.3
