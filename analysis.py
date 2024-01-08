@@ -528,13 +528,13 @@ if(d != () and len(d) > 1):
                 else:
                     table_column.markdown(f'<p class="small-font"><strong>Best Seller:</strong> {show_sku_df.iloc[t1]["Units"].astype(int)} unit of size: {show_sku_df.iloc[t1]["Size"]} with a revenue of £{(show_sku_df.iloc[t1]["Revenue (£)"].astype(int)):,}</p>', unsafe_allow_html=True)
                 if (show_sku_df.iloc[t2]['Units Refunded'].astype(int) != 1):
-                    table_column.markdown(f'<p class="small-font"><strong>Most Refunded:</strong> {show_sku_df.iloc[t2]["Units Refunded"].astype(int)} units of size: {show_sku_df.iloc[t1]["Size"]} with a revenue of £{(show_sku_df.iloc[t1]["Total Refund (£)"].astype(int)):,}</p>', unsafe_allow_html=True)
+                    table_column.markdown(f'<p class="small-font"><strong>Most Refunded:</strong> {show_sku_df.iloc[t2]["Units Refunded"].astype(int)} units of size: {show_sku_df.iloc[t2]["Size"]} with a revenue of £{(show_sku_df.iloc[t2]["Total Refund (£)"].astype(int)):,}</p>', unsafe_allow_html=True)
                 else:
-                    table_column.markdown(f'<p class="small-font"><strong>Most Refunded:</strong> {show_sku_df.iloc[t2]["Units Refunded"].astype(int)} unit of size: {show_sku_df.iloc[t1]["Size"]} with a revenue of £{(show_sku_df.iloc[t1]["Total Refund (£)"].astype(int)):,}</p>', unsafe_allow_html=True)
+                    table_column.markdown(f'<p class="small-font"><strong>Most Refunded:</strong> {show_sku_df.iloc[t2]["Units Refunded"].astype(int)} unit of size: {show_sku_df.iloc[t2]["Size"]} with a revenue of £{(show_sku_df.iloc[t2]["Total Refund (£)"].astype(int)):,}</p>', unsafe_allow_html=True)
                 if (show_sku_df.iloc[t3]['Units'].astype(int) != 1):
-                    table_column.markdown(f'<p class="small-font"><strong>Least Sold:</strong> {show_sku_df.iloc[t3]["Units"].astype(int)} units of size: {show_sku_df.iloc[t1]["Size"]} with a revenue of £{(show_sku_df.iloc[t1]["Revenue (£)"].astype(int)):,}</p>', unsafe_allow_html=True)
+                    table_column.markdown(f'<p class="small-font"><strong>Least Sold:</strong> {show_sku_df.iloc[t3]["Units"].astype(int)} units of size: {show_sku_df.iloc[t1]["Size"]} with a revenue of £{(show_sku_df.iloc[t3]["Revenue (£)"].astype(int)):,}</p>', unsafe_allow_html=True)
                 else:
-                    table_column.markdown(f'<p class="small-font"><strong>Least Sold:</strong> {show_sku_df.iloc[t3]["Units"].astype(int)} unit of size: {show_sku_df.iloc[t1]["Size"]} with a revenue of £{(show_sku_df.iloc[t1]["Revenue (£)"].astype(int)):,}</p>', unsafe_allow_html=True)
+                    table_column.markdown(f'<p class="small-font"><strong>Least Sold:</strong> {show_sku_df.iloc[t3]["Units"].astype(int)} unit of size: {show_sku_df.iloc[t1]["Size"]} with a revenue of £{(show_sku_df.iloc[t3]["Revenue (£)"].astype(int)):,}</p>', unsafe_allow_html=True)
         
                 # table_column.write(f'{show_sku_df.iloc[t1]['Size']} having an SKU reference of {show_sku_df.iloc[t1]['SKU Reference']} sold the most units: {show_sku_df.iloc[t1]['Units'].astype(int)} with a revenue of £{(show_sku_df.iloc[t1]['Revenue (£)'].astype(int)):,}')
                 # table_column.write(f'{show_sku_df.iloc[t2]['Size']} having an SKU reference of {show_sku_df.iloc[t2]['SKU Reference']} had the most units refunded: {show_sku_df.iloc[t2]['Units Refunded'].astype(int)} with refund of £{(show_sku_df.iloc[t2]['Total Refund (£)'].astype(int)):,}')
