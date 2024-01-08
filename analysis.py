@@ -794,3 +794,4 @@ if(d != () and len(d) > 1):
             line1 = alt.Chart(future_w_features[['index', 'pred']], title=f'{selected_prod} Projection').mark_line(color='blue').encode(x='index', y='pred')
             line2 = alt.Chart(future_w_features[['index', 'actual_values']], title=f'{selected_prod} Projection').mark_line(color='red').encode(x='index', y='actual_values').interactive()
             sub_3.altair_chart(line2 + line1, use_container_width=True)
+            # temp
