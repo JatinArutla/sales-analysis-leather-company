@@ -396,13 +396,13 @@ if(len(d) > 1):
 
                         graph_df = dispatched_df[['date', 'Units']].groupby('date').count().reset_index()
                         graph_df.rename(columns={'date': 'Date'}, inplace=True)
+                        chart = alt.Chart(graph_df).mark_point(filled=True).encode(x='Date', y='Units')
                         graph_df.set_index('Date', inplace=True)
                         graph_df = graph_df.asfreq('D')
                         graph_df['Units'] = graph_df['Units'].replace(np.nan, 0)
                         graph_df.reset_index(inplace=True)
-                        chart = alt.Chart(graph_df).mark_point(filled=True).encode(x='Date', y='Units')
                         line = alt.Chart(graph_df, title=f'{selected_prod} Units Sold from {d[0].strftime("%d %b %Y")} to {d[1].strftime("%d %b %Y")}').mark_line().encode(x='Date', y='Units').interactive()
-                        st.altair_chart(line, use_container_width=True)
+                        st.altair_chart(chart + line, use_container_width=True)
 
                 else:
                     dispatched_three_cat_df = dispatched_df.groupby('T_Cat')['Units'].sum().reset_index().sort_values(by=['Units'], ascending=False).reset_index(drop=True)
@@ -461,14 +461,14 @@ if(len(d) > 1):
                             st.dataframe(dispatched_sku_three_cat_df, use_container_width=True)
 
                             graph_df = dispatched_df[['date', 'Units']].groupby('date').count().reset_index()
+                            chart = alt.Chart(graph_df).mark_point(filled=True).encode(x='Date', y='Units')
                             graph_df.rename(columns={'date': 'Date'}, inplace=True)
                             graph_df.set_index('Date', inplace=True)
                             graph_df = graph_df.asfreq('D')
                             graph_df['Units'] = graph_df['Units'].replace(np.nan, 0)
                             graph_df.reset_index(inplace=True)
-                            chart = alt.Chart(graph_df).mark_point(filled=True).encode(x='Date', y='Units')
                             line = alt.Chart(graph_df, title=f'{selected_prod} Units Sold from {d[0].strftime("%d %b %Y")} to {d[1].strftime("%d %b %Y")}').mark_line().encode(x='Date', y='Units').interactive()
-                            st.altair_chart(line, use_container_width=True)
+                            st.altair_chart(chart + line, use_container_width=True)
 
         else:
             dispatched_product_two_cat_df = dispatched_df.groupby('Product Name')['Units'].sum().reset_index().sort_values(by=['Units'], ascending=False).reset_index(drop=True)
@@ -510,10 +510,10 @@ if(len(d) > 1):
 
                 graph_df = dispatched_df[['date', 'Units']].groupby('date').count().reset_index()
                 graph_df.rename(columns={'date': 'Date'}, inplace=True)
+                chart = alt.Chart(graph_df).mark_point(filled=True).encode(x='Date', y='Units')
                 graph_df.set_index('Date', inplace=True)
                 graph_df = graph_df.asfreq('D')
                 graph_df['Units'] = graph_df['Units'].replace(np.nan, 0)
                 graph_df.reset_index(inplace=True)
-                chart = alt.Chart(graph_df).mark_point(filled=True).encode(x='Date', y='Units')
                 line = alt.Chart(graph_df, title=f'{selected_prod} Units Sold from {d[0].strftime("%d %b %Y")} to {d[1].strftime("%d %b %Y")}').mark_line().encode(x='Date', y='Units').interactive()
-                st.altair_chart(line, use_container_width=True)
+                st.altair_chart(chart + line, use_container_width=True)
