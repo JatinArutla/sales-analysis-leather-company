@@ -451,7 +451,6 @@ if(len(d) > 1):
                             st.dataframe(dispatched_sku_three_cat_df, use_container_width=True)
 
         else:
-            
             dispatched_product_two_cat_df = dispatched_df.groupby('Product Name')['Units'].sum().reset_index().sort_values(by=['Units'], ascending=False).reset_index(drop=True)
             dispatched_product_rev_two_cat_df = dispatched_df.groupby('Product Name')['Revenue (£)'].sum().reset_index().sort_values(by=['Revenue (£)'], ascending=False).reset_index(drop=True)
             refunded_product_two_cat_df = refunded_df.groupby('Product Name')['Units Refunded'].sum().reset_index().sort_values(by=['Units Refunded'], ascending=False).reset_index(drop=True)
