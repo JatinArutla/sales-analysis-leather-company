@@ -50,52 +50,23 @@ def percentage_change_df(df, orig, new, col_name):
     return df
 
 def sku_condense_dataframe(dispatched_df, refunded_df):
-    dispatched_sku_three_cat_df = dispatched_df.groupby(['Size', 'SKU Reference'])['Units'].sum().reset_index().sort_values(by=['Units'], ascending=False).reset_index(drop=True)
-    dispatched_sku_rev_three_cat_df = dispatched_df.groupby(['Size', 'SKU Reference'])['Revenue (£)'].sum().reset_index().sort_values(by=['Revenue (£)'], ascending=False).reset_index(drop=True)
-    refunded_sku_three_cat_df = refunded_df.groupby(['Size', 'SKU Reference'])['Units Refunded'].sum().reset_index().sort_values(by=['Units Refunded'], ascending=False).reset_index(drop=True)
-    refunded_sku_rev_three_cat_df = refunded_df.groupby(['Size', 'SKU Reference'])['Total Refund (£)'].sum().reset_index().sort_values(by=['Total Refund (£)'], ascending=False).reset_index(drop=True)
+        dispatched_sku_three_cat_df = dispatched_df.groupby(['Size', 'SKU Reference'])['Units'].sum().reset_index().sort_values(by=['Units'], ascending=False).reset_index(drop=True)
+        dispatched_sku_rev_three_cat_df = dispatched_df.groupby(['Size', 'SKU Reference'])['Revenue (£)'].sum().reset_index().sort_values(by=['Revenue (£)'], ascending=False).reset_index(drop=True)
+        refunded_sku_three_cat_df = refunded_df.groupby(['Size', 'SKU Reference'])['Units Refunded'].sum().reset_index().sort_values(by=['Units Refunded'], ascending=False).reset_index(drop=True)
+        refunded_sku_rev_three_cat_df = refunded_df.groupby(['Size', 'SKU Reference'])['Total Refund (£)'].sum().reset_index().sort_values(by=['Total Refund (£)'], ascending=False).reset_index(drop=True)
 
-    dispatched_sku_rev_three_cat_df['Revenue (£)'] = np.round(dispatched_sku_rev_three_cat_df['Revenue (£)'], 0)
-    dispatched_sku_three_cat_df = pd.merge(dispatched_sku_three_cat_df, dispatched_sku_rev_three_cat_df, how="outer", on=['Size', 'SKU Reference'])
-    refunded_sku_rev_three_cat_df['Total Refund (£)'] = np.round(refunded_sku_rev_three_cat_df['Total Refund (£)'], 0)
-    refunded_sku_three_cat_df = pd.merge(refunded_sku_three_cat_df, refunded_sku_rev_three_cat_df, how="outer", on=['Size', 'SKU Reference'])
-    dispatched_sku_three_cat_df = pd.merge(dispatched_sku_three_cat_df, refunded_sku_three_cat_df, how="outer", on=['Size', 'SKU Reference'])
-    dispatched_sku_three_cat_df.replace(np.NaN, 0, inplace=True)
-    temp2_df = dispatched_sku_three_cat_df['Size'].str.split(': ', expand=True)
-    temp2_df.columns = ['F_Size', 'Size']
-    dispatched_sku_three_cat_df['SKU Reference'] = dispatched_sku_three_cat_df['SKU Reference'].astype(str)
-    dispatched_sku_three_cat_df['Size'] = temp2_df['Size']
-    return dispatched_sku_three_cat_df
+        dispatched_sku_rev_three_cat_df['Revenue (£)'] = np.round(dispatched_sku_rev_three_cat_df['Revenue (£)'], 0)
+        dispatched_sku_three_cat_df = pd.merge(dispatched_sku_three_cat_df, dispatched_sku_rev_three_cat_df, how="outer", on=['Size', 'SKU Reference'])
+        refunded_sku_rev_three_cat_df['Total Refund (£)'] = np.round(refunded_sku_rev_three_cat_df['Total Refund (£)'], 0)
+        refunded_sku_three_cat_df = pd.merge(refunded_sku_three_cat_df, refunded_sku_rev_three_cat_df, how="outer", on=['Size', 'SKU Reference'])
+        dispatched_sku_three_cat_df = pd.merge(dispatched_sku_three_cat_df, refunded_sku_three_cat_df, how="outer", on=['Size', 'SKU Reference'])
+        dispatched_sku_three_cat_df.replace(np.NaN, 0, inplace=True)
+        temp2_df = dispatched_sku_three_cat_df['Size'].str.split(': ', expand=True)
+        temp2_df.columns = ['F_Size', 'Size']
+        dispatched_sku_three_cat_df['SKU Reference'] = dispatched_sku_three_cat_df['SKU Reference'].astype(str)
+        dispatched_sku_three_cat_df['Size'] = temp2_df['Size']
+        return dispatched_sku_three_cat_df
 
-def product_condense_dataframe(dispatched_df, refunded_df):
-    dispatched_product_two_cat_df = dispatched_df.groupby('Product Name')['Units'].sum().reset_index().sort_values(by=['Units'], ascending=False).reset_index(drop=True)
-    dispatched_product_rev_two_cat_df = dispatched_df.groupby('Product Name')['Revenue (£)'].sum().reset_index().sort_values(by=['Revenue (£)'], ascending=False).reset_index(drop=True)
-    refunded_product_two_cat_df = refunded_df.groupby('Product Name')['Units Refunded'].sum().reset_index().sort_values(by=['Units Refunded'], ascending=False).reset_index(drop=True)
-    refunded_product_rev_two_cat_df = refunded_df.groupby('Product Name')['Total Refund (£)'].sum().reset_index().sort_values(by=['Total Refund (£)'], ascending=False).reset_index(drop=True)
-    
-    dispatched_product_rev_two_cat_df['Revenue (£)'] = np.round(dispatched_product_rev_two_cat_df['Revenue (£)'], 0)
-    dispatched_product_two_cat_df = pd.merge(dispatched_product_two_cat_df, dispatched_product_rev_two_cat_df, how="outer", on="Product Name")
-    refunded_product_rev_two_cat_df['Total Refund (£)'] = np.round(refunded_product_rev_two_cat_df['Total Refund (£)'], 0)
-    refunded_product_two_cat_df = pd.merge(refunded_product_two_cat_df, refunded_product_rev_two_cat_df, how="outer", on="Product Name")
-    dispatched_product_two_cat_df = pd.merge(dispatched_product_two_cat_df, refunded_product_two_cat_df, how="outer", on="Product Name")
-    dispatched_product_two_cat_df.replace(np.NaN, 0, inplace=True)
-    return dispatched_product_two_cat_df
-
-def graph_condense(dispatched_df):
-    graph_df = dispatched_df[['date', 'Units']].groupby('date').count().reset_index()
-    graph_df.rename(columns={'date': 'Date'}, inplace=True)
-    graph_df.set_index('Date', inplace=True)
-    graph_df = graph_df.asfreq('D')
-    graph_df['Units'] = graph_df['Units'].replace(np.nan, 0)
-    graph_df.reset_index(inplace=True)
-    graph_df['Date'] = graph_df['Date'].astype(str)
-    temp = graph_df['Date'].str.split(' ', expand=True)
-    temp.columns = ['Date']
-    graph_df['Date'] = temp['Date']
-    graph_df['Date'] = pd.to_datetime(graph_df['Date'])
-    chart = alt.Chart(graph_df).mark_point(filled=True).encode(x='Date', y='Units')
-    line = alt.Chart(graph_df, title=f'{selected_prod} Units Sold from {d[0].strftime("%d %b %Y")} to {d[1].strftime("%d %b %Y")}').mark_line().encode(x='Date', y='Units').interactive()
-    return chart, line
 
 st.markdown("""
 <style>
@@ -402,8 +373,18 @@ if(len(d) > 1):
 
                 if(len(three_cat_df) == 0):
                     product_df = dispatched_df.groupby('Product Name')['Units'].sum().reset_index().sort_values(by=['Units'], ascending=False).reset_index(drop=True)
-
-                    dispatched_product_three_cat_df = product_condense_dataframe(dispatched_df, refunded_df)
+                    
+                    dispatched_product_three_cat_df = dispatched_df.groupby('Product Name')['Units'].sum().reset_index().sort_values(by=['Units'], ascending=False).reset_index(drop=True)
+                    dispatched_product_rev_three_cat_df = dispatched_df.groupby('Product Name')['Revenue (£)'].sum().reset_index().sort_values(by=['Revenue (£)'], ascending=False).reset_index(drop=True)
+                    refunded_product_three_cat_df = refunded_df.groupby('Product Name')['Units Refunded'].sum().reset_index().sort_values(by=['Units Refunded'], ascending=False).reset_index(drop=True)
+                    refunded_product_rev_three_cat_df = refunded_df.groupby('Product Name')['Total Refund (£)'].sum().reset_index().sort_values(by=['Total Refund (£)'], ascending=False).reset_index(drop=True)
+                    
+                    dispatched_product_rev_three_cat_df['Revenue (£)'] = np.round(dispatched_product_rev_three_cat_df['Revenue (£)'], 0)
+                    dispatched_product_three_cat_df = pd.merge(dispatched_product_three_cat_df, dispatched_product_rev_three_cat_df, how="outer", on="Product Name")
+                    refunded_product_rev_three_cat_df['Total Refund (£)'] = np.round(refunded_product_rev_three_cat_df['Total Refund (£)'], 0)
+                    refunded_product_three_cat_df = pd.merge(refunded_product_three_cat_df, refunded_product_rev_three_cat_df, how="outer", on="Product Name")
+                    dispatched_product_three_cat_df = pd.merge(dispatched_product_three_cat_df, refunded_product_three_cat_df, how="outer", on="Product Name")
+                    dispatched_product_three_cat_df.replace(np.NaN, 0, inplace=True)
                     
                     selection4 = dataframe_with_selections(dispatched_product_three_cat_df, 4)
                     if(selection4['selected_rows_indices'] != []):
@@ -412,12 +393,40 @@ if(len(d) > 1):
                         dispatched_df = dispatched_df[dispatched_df['Product Name'] == selected_prod]
                         refunded_df = refunded_df[refunded_df['Product Name'] == selected_prod]
 
+                        # dispatched_sku_three_cat_df = dispatched_df.groupby(['Size', 'SKU Reference'])['Units'].sum().reset_index().sort_values(by=['Units'], ascending=False).reset_index(drop=True)
+                        # dispatched_sku_rev_three_cat_df = dispatched_df.groupby(['Size', 'SKU Reference'])['Revenue (£)'].sum().reset_index().sort_values(by=['Revenue (£)'], ascending=False).reset_index(drop=True)
+                        # refunded_sku_three_cat_df = refunded_df.groupby(['Size', 'SKU Reference'])['Units Refunded'].sum().reset_index().sort_values(by=['Units Refunded'], ascending=False).reset_index(drop=True)
+                        # refunded_sku_rev_three_cat_df = refunded_df.groupby(['Size', 'SKU Reference'])['Total Refund (£)'].sum().reset_index().sort_values(by=['Total Refund (£)'], ascending=False).reset_index(drop=True)
+
+                        # dispatched_sku_rev_three_cat_df['Revenue (£)'] = np.round(dispatched_sku_rev_three_cat_df['Revenue (£)'], 0)
+                        # dispatched_sku_three_cat_df = pd.merge(dispatched_sku_three_cat_df, dispatched_sku_rev_three_cat_df, how="outer", on=['Size', 'SKU Reference'])
+                        # refunded_sku_rev_three_cat_df['Total Refund (£)'] = np.round(refunded_sku_rev_three_cat_df['Total Refund (£)'], 0)
+                        # refunded_sku_three_cat_df = pd.merge(refunded_sku_three_cat_df, refunded_sku_rev_three_cat_df, how="outer", on=['Size', 'SKU Reference'])
+                        # dispatched_sku_three_cat_df = pd.merge(dispatched_sku_three_cat_df, refunded_sku_three_cat_df, how="outer", on=['Size', 'SKU Reference'])
+                        # dispatched_sku_three_cat_df.replace(np.NaN, 0, inplace=True)
+                        # temp2_df = dispatched_sku_three_cat_df['Size'].str.split(': ', expand=True)
+                        # temp2_df.columns = ['F_Size', 'Size']
+                        # dispatched_sku_three_cat_df['SKU Reference'] = dispatched_sku_three_cat_df['SKU Reference'].astype(str)
+                        # dispatched_sku_three_cat_df['Size'] = temp2_df['Size']
+
                         dispatched_sku_three_cat_df = sku_condense_dataframe(dispatched_df, refunded_df)
 
                         table_column, graph_column = st.columns([0.4, 0.6])
                         table_column.dataframe(dispatched_sku_three_cat_df, use_container_width=True)
 
-                        chart, line = graph_condense(dispatched_df)
+                        graph_df = dispatched_df[['date', 'Units']].groupby('date').count().reset_index()
+                        graph_df.rename(columns={'date': 'Date'}, inplace=True)
+                        graph_df.set_index('Date', inplace=True)
+                        graph_df = graph_df.asfreq('D')
+                        graph_df['Units'] = graph_df['Units'].replace(np.nan, 0)
+                        graph_df.reset_index(inplace=True)
+                        graph_df['Date'] = graph_df['Date'].astype(str)
+                        temp = graph_df['Date'].str.split(' ', expand=True)
+                        temp.columns = ['Date']
+                        graph_df['Date'] = temp['Date']
+                        graph_df['Date'] = pd.to_datetime(graph_df['Date'])
+                        chart = alt.Chart(graph_df).mark_point(filled=True).encode(x='Date', y='Units')
+                        line = alt.Chart(graph_df, title=f'{selected_prod} Units Sold from {d[0].strftime("%d %b %Y")} to {d[1].strftime("%d %b %Y")}').mark_line().encode(x='Date', y='Units').interactive()
                         graph_column.altair_chart(line, use_container_width=True)
 
                 else:
@@ -439,7 +448,17 @@ if(len(d) > 1):
                         dispatched_df = dispatched_df[dispatched_df['T_Cat'] == selected_prod]
                         refunded_df = refunded_df[refunded_df['T_Cat'] == selected_prod]
 
-                        dispatched_product_three_cat_df = product_condense_dataframe(dispatched_df, refunded_df)
+                        dispatched_product_three_cat_df = dispatched_df.groupby('Product Name')['Units'].sum().reset_index().sort_values(by=['Units'], ascending=False).reset_index(drop=True)
+                        dispatched_product_rev_three_cat_df = dispatched_df.groupby('Product Name')['Revenue (£)'].sum().reset_index().sort_values(by=['Revenue (£)'], ascending=False).reset_index(drop=True)
+                        refunded_product_three_cat_df = refunded_df.groupby('Product Name')['Units Refunded'].sum().reset_index().sort_values(by=['Units Refunded'], ascending=False).reset_index(drop=True)
+                        refunded_product_rev_three_cat_df = refunded_df.groupby('Product Name')['Total Refund (£)'].sum().reset_index().sort_values(by=['Total Refund (£)'], ascending=False).reset_index(drop=True)
+                        
+                        dispatched_product_rev_three_cat_df['Revenue (£)'] = np.round(dispatched_product_rev_three_cat_df['Revenue (£)'], 0)
+                        dispatched_product_three_cat_df = pd.merge(dispatched_product_three_cat_df, dispatched_product_rev_three_cat_df, how="outer", on="Product Name")
+                        refunded_product_rev_three_cat_df['Total Refund (£)'] = np.round(refunded_product_rev_three_cat_df['Total Refund (£)'], 0)
+                        refunded_product_three_cat_df = pd.merge(refunded_product_three_cat_df, refunded_product_rev_three_cat_df, how="outer", on="Product Name")
+                        dispatched_product_three_cat_df = pd.merge(dispatched_product_three_cat_df, refunded_product_three_cat_df, how="outer", on="Product Name")
+                        dispatched_product_three_cat_df.replace(np.NaN, 0, inplace=True)
 
                         selection5 = dataframe_with_selections(dispatched_product_three_cat_df, 5)
                         if(selection5['selected_rows_indices'] != []):
@@ -448,16 +467,54 @@ if(len(d) > 1):
                             dispatched_df = dispatched_df[dispatched_df['Product Name'] == selected_prod]
                             refunded_df = refunded_df[refunded_df['Product Name'] == selected_prod]
 
+                            # dispatched_sku_three_cat_df = dispatched_df.groupby(['Size', 'SKU Reference'])['Units'].sum().reset_index().sort_values(by=['Units'], ascending=False).reset_index(drop=True)
+                            # dispatched_sku_rev_three_cat_df = dispatched_df.groupby(['Size', 'SKU Reference'])['Revenue (£)'].sum().reset_index().sort_values(by=['Revenue (£)'], ascending=False).reset_index(drop=True)
+                            # refunded_sku_three_cat_df = refunded_df.groupby(['Size', 'SKU Reference'])['Units Refunded'].sum().reset_index().sort_values(by=['Units Refunded'], ascending=False).reset_index(drop=True)
+                            # refunded_sku_rev_three_cat_df = refunded_df.groupby(['Size', 'SKU Reference'])['Total Refund (£)'].sum().reset_index().sort_values(by=['Total Refund (£)'], ascending=False).reset_index(drop=True)
+
+                            # dispatched_sku_rev_three_cat_df['Revenue (£)'] = np.round(dispatched_sku_rev_three_cat_df['Revenue (£)'], 0)
+                            # dispatched_sku_three_cat_df = pd.merge(dispatched_sku_three_cat_df, dispatched_sku_rev_three_cat_df, how="outer", on=['Size', 'SKU Reference'])
+                            # refunded_sku_rev_three_cat_df['Total Refund (£)'] = np.round(refunded_sku_rev_three_cat_df['Total Refund (£)'], 0)
+                            # refunded_sku_three_cat_df = pd.merge(refunded_sku_three_cat_df, refunded_sku_rev_three_cat_df, how="outer", on=['Size', 'SKU Reference'])
+                            # dispatched_sku_three_cat_df = pd.merge(dispatched_sku_three_cat_df, refunded_sku_three_cat_df, how="outer", on=['Size', 'SKU Reference'])
+                            # dispatched_sku_three_cat_df.replace(np.NaN, 0, inplace=True)
+                            # temp2_df = dispatched_sku_three_cat_df['Size'].str.split(': ', expand=True)
+                            # temp2_df.columns = ['F_Size', 'Size']
+                            # dispatched_sku_three_cat_df['SKU Reference'] = dispatched_sku_three_cat_df['SKU Reference'].astype(str)
+                            # dispatched_sku_three_cat_df['Size'] = temp2_df['Size']
+
                             dispatched_sku_three_cat_df = sku_condense_dataframe(dispatched_df, refunded_df)
 
                             table_column, graph_column = st.columns([0.4, 0.6])
                             table_column.dataframe(dispatched_sku_three_cat_df, use_container_width=True)
 
-                            chart, line = graph_condense(dispatched_df)
+                            graph_df = dispatched_df[['date', 'Units']].groupby('date').count().reset_index()
+                            graph_df.rename(columns={'date': 'Date'}, inplace=True)
+                            graph_df.set_index('Date', inplace=True)
+                            graph_df = graph_df.asfreq('D')
+                            graph_df['Units'] = graph_df['Units'].replace(np.nan, 0)
+                            graph_df.reset_index(inplace=True)
+                            graph_df['Date'] = graph_df['Date'].astype(str)
+                            temp = graph_df['Date'].str.split(' ', expand=True)
+                            temp.columns = ['Date']
+                            graph_df['Date'] = temp['Date']
+                            graph_df['Date'] = pd.to_datetime(graph_df['Date'])
+                            chart = alt.Chart(graph_df).mark_point(filled=True).encode(x='Date', y='Units')
+                            line = alt.Chart(graph_df, title=f'{selected_prod} Units Sold from {d[0].strftime("%d %b %Y")} to {d[1].strftime("%d %b %Y")}').mark_line().encode(x='Date', y='Units').interactive()
                             graph_column.altair_chart(line, use_container_width=True)
 
         else:
-            dispatched_product_two_cat_df = product_condense_dataframe(dispatched_df, refunded_df)
+            dispatched_product_two_cat_df = dispatched_df.groupby('Product Name')['Units'].sum().reset_index().sort_values(by=['Units'], ascending=False).reset_index(drop=True)
+            dispatched_product_rev_two_cat_df = dispatched_df.groupby('Product Name')['Revenue (£)'].sum().reset_index().sort_values(by=['Revenue (£)'], ascending=False).reset_index(drop=True)
+            refunded_product_two_cat_df = refunded_df.groupby('Product Name')['Units Refunded'].sum().reset_index().sort_values(by=['Units Refunded'], ascending=False).reset_index(drop=True)
+            refunded_product_rev_two_cat_df = refunded_df.groupby('Product Name')['Total Refund (£)'].sum().reset_index().sort_values(by=['Total Refund (£)'], ascending=False).reset_index(drop=True)
+            
+            dispatched_product_rev_two_cat_df['Revenue (£)'] = np.round(dispatched_product_rev_two_cat_df['Revenue (£)'], 0)
+            dispatched_product_two_cat_df = pd.merge(dispatched_product_two_cat_df, dispatched_product_rev_two_cat_df, how="outer", on="Product Name")
+            refunded_product_rev_two_cat_df['Total Refund (£)'] = np.round(refunded_product_rev_two_cat_df['Total Refund (£)'], 0)
+            refunded_product_two_cat_df = pd.merge(refunded_product_two_cat_df, refunded_product_rev_two_cat_df, how="outer", on="Product Name")
+            dispatched_product_two_cat_df = pd.merge(dispatched_product_two_cat_df, refunded_product_two_cat_df, how="outer", on="Product Name")
+            dispatched_product_two_cat_df.replace(np.NaN, 0, inplace=True)
 
             selection4 = dataframe_with_selections(dispatched_product_two_cat_df, 4)
             if(selection4['selected_rows_indices'] != []):
@@ -466,10 +523,38 @@ if(len(d) > 1):
                 dispatched_df = dispatched_df[dispatched_df['Product Name'] == selected_prod]
                 refunded_df = refunded_df[refunded_df['Product Name'] == selected_prod]
 
+                # dispatched_sku_two_cat_df = dispatched_df.groupby(['Size', 'SKU Reference'])['Units'].sum().reset_index().sort_values(by=['Units'], ascending=False).reset_index(drop=True)
+                # dispatched_sku_rev_two_cat_df = dispatched_df.groupby(['Size', 'SKU Reference'])['Revenue (£)'].sum().reset_index().sort_values(by=['Revenue (£)'], ascending=False).reset_index(drop=True)
+                # refunded_sku_two_cat_df = refunded_df.groupby(['Size', 'SKU Reference'])['Units Refunded'].sum().reset_index().sort_values(by=['Units Refunded'], ascending=False).reset_index(drop=True)
+                # refunded_sku_rev_two_cat_df = refunded_df.groupby(['Size', 'SKU Reference'])['Total Refund (£)'].sum().reset_index().sort_values(by=['Total Refund (£)'], ascending=False).reset_index(drop=True)
+
+                # dispatched_sku_rev_two_cat_df['Revenue (£)'] = np.round(dispatched_sku_rev_two_cat_df['Revenue (£)'], 0)
+                # dispatched_sku_two_cat_df = pd.merge(dispatched_sku_two_cat_df, dispatched_sku_rev_two_cat_df, how="outer", on=['Size', 'SKU Reference'])
+                # refunded_sku_rev_two_cat_df['Total Refund (£)'] = np.round(refunded_sku_rev_two_cat_df['Total Refund (£)'], 0)
+                # refunded_sku_two_cat_df = pd.merge(refunded_sku_two_cat_df, refunded_sku_rev_two_cat_df, how="outer", on=['Size', 'SKU Reference'])
+                # dispatched_sku_two_cat_df = pd.merge(dispatched_sku_two_cat_df, refunded_sku_two_cat_df, how="outer", on=['Size', 'SKU Reference'])
+                # dispatched_sku_two_cat_df.replace(np.NaN, 0, inplace=True)
+                # temp2_df = dispatched_sku_two_cat_df['Size'].str.split(': ', expand=True)
+                # temp2_df.columns = ['F_Size', 'Size']
+                # dispatched_sku_two_cat_df['SKU Reference'] = dispatched_sku_two_cat_df['SKU Reference'].astype(str)
+                # dispatched_sku_two_cat_df['Size'] = temp2_df['Size']
+
                 dispatched_sku_two_cat_df = sku_condense_dataframe(dispatched_df, refunded_df)
 
                 table_column, graph_column = st.columns([0.4, 0.6])
                 table_column.dataframe(dispatched_sku_two_cat_df, use_container_width=True)
 
-                chart, line = graph_condense(dispatched_df)
+                graph_df = dispatched_df[['date', 'Units']].groupby('date').count().reset_index()
+                graph_df.rename(columns={'date': 'Date'}, inplace=True)
+                graph_df.set_index('Date', inplace=True)
+                graph_df = graph_df.asfreq('D')
+                graph_df['Units'] = graph_df['Units'].replace(np.nan, 0)
+                graph_df.reset_index(inplace=True)
+                graph_df['Date'] = graph_df['Date'].astype(str)
+                temp = graph_df['Date'].str.split(' ', expand=True)
+                temp.columns = ['Date']
+                graph_df['Date'] = temp['Date']
+                graph_df['Date'] = pd.to_datetime(graph_df['Date'])
+                chart = alt.Chart(graph_df).mark_point(filled=True).encode(x='Date', y='Units')
+                line = alt.Chart(graph_df, title=f'{selected_prod} Units Sold from {d[0].strftime("%d %b %Y")} to {d[1].strftime("%d %b %Y")}').mark_line().encode(x='Date', y='Units').interactive()
                 graph_column.altair_chart(line, use_container_width=True)
