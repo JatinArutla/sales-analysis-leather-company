@@ -401,8 +401,6 @@ if(len(d) > 1):
                 three_cat_df = dispatched_df.groupby('T_Cat')['Units'].sum().reset_index().sort_values(by=['Units'], ascending=False).reset_index(drop=True)
 
                 if(len(three_cat_df) == 0):
-                    product_df = dispatched_df.groupby('Product Name')['Units'].sum().reset_index().sort_values(by=['Units'], ascending=False).reset_index(drop=True)
-
                     dispatched_product_three_cat_df = product_condense_dataframe(dispatched_df, refunded_df)
                     
                     selection4 = dataframe_with_selections(dispatched_product_three_cat_df, 4)
