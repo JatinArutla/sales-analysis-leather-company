@@ -391,7 +391,7 @@ if(len(d) > 1):
                         dispatched_sku_three_cat_df['SKU Reference'] = dispatched_sku_three_cat_df['SKU Reference'].astype(str)
                         dispatched_sku_three_cat_df['Size'] = temp2_df['Size']
 
-                        table_column, graph_column = st.columns([0.45, 0.55])
+                        table_column, graph_column = st.columns([0.4, 0.6])
                         table_column.dataframe(dispatched_sku_three_cat_df, use_container_width=True)
 
                         graph_df = dispatched_df[['date', 'Units']].groupby('date').count().reset_index()
@@ -463,7 +463,7 @@ if(len(d) > 1):
                             dispatched_sku_three_cat_df['SKU Reference'] = dispatched_sku_three_cat_df['SKU Reference'].astype(str)
                             dispatched_sku_three_cat_df['Size'] = temp2_df['Size']
 
-                            table_column, graph_column = st.columns([0.45, 0.55])
+                            table_column, graph_column = st.columns([0.4, 0.6])
                             table_column.dataframe(dispatched_sku_three_cat_df, use_container_width=True)
 
                             graph_df = dispatched_df[['date', 'Units']].groupby('date').count().reset_index()
@@ -517,7 +517,7 @@ if(len(d) > 1):
                 dispatched_sku_two_cat_df['SKU Reference'] = dispatched_sku_two_cat_df['SKU Reference'].astype(str)
                 dispatched_sku_two_cat_df['Size'] = temp2_df['Size']
 
-                table_column, graph_column = st.columns([0.45, 0.55])
+                table_column, graph_column = st.columns([0.4, 0.6])
                 table_column.dataframe(dispatched_sku_two_cat_df, use_container_width=True)
 
                 graph_df = dispatched_df[['date', 'Units']].groupby('date').count().reset_index()
