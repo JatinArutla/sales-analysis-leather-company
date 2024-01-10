@@ -315,7 +315,6 @@ if(len(d) > 1):
         else:
             c4.markdown(f'<p class="big-font"><strong>{(refunded_df["Units Refunded"].sum()):,}</strong><span style="color: red;"> ({p4}%)</span></p>', unsafe_allow_html=True)
 
-
     dispatched_one_cat_df = dispatched_df.groupby('F_Cat')['Units'].sum().reset_index().sort_values(by=['Units'], ascending=False).reset_index(drop=True)
     dispatched_rev_one_cat_df = dispatched_df.groupby('F_Cat')['Revenue (£)'].sum().reset_index().sort_values(by=['Revenue (£)'], ascending=False).reset_index(drop=True)
     dispatched_rev_one_cat_df['Revenue (£)'] = np.round(dispatched_rev_one_cat_df['Revenue (£)'], 0)
@@ -392,7 +391,8 @@ if(len(d) > 1):
                         dispatched_sku_three_cat_df['SKU Reference'] = dispatched_sku_three_cat_df['SKU Reference'].astype(str)
                         dispatched_sku_three_cat_df['Size'] = temp2_df['Size']
 
-                        st.dataframe(dispatched_sku_three_cat_df, use_container_width=True)
+                        table_column, graph_column = st.columns([0.45, 0.55])
+                        table_column.dataframe(dispatched_sku_three_cat_df, use_container_width=True)
 
                         graph_df = dispatched_df[['date', 'Units']].groupby('date').count().reset_index()
                         graph_df.rename(columns={'date': 'Date'}, inplace=True)
@@ -407,7 +407,7 @@ if(len(d) > 1):
                         graph_df['Date'] = pd.to_datetime(graph_df['Date'])
                         chart = alt.Chart(graph_df).mark_point(filled=True).encode(x='Date', y='Units')
                         line = alt.Chart(graph_df, title=f'{selected_prod} Units Sold from {d[0].strftime("%d %b %Y")} to {d[1].strftime("%d %b %Y")}').mark_line().encode(x='Date', y='Units').interactive()
-                        st.altair_chart(line, use_container_width=True)
+                        graph_column.altair_chart(line, use_container_width=True)
 
                 else:
                     dispatched_three_cat_df = dispatched_df.groupby('T_Cat')['Units'].sum().reset_index().sort_values(by=['Units'], ascending=False).reset_index(drop=True)
@@ -463,7 +463,8 @@ if(len(d) > 1):
                             dispatched_sku_three_cat_df['SKU Reference'] = dispatched_sku_three_cat_df['SKU Reference'].astype(str)
                             dispatched_sku_three_cat_df['Size'] = temp2_df['Size']
 
-                            st.dataframe(dispatched_sku_three_cat_df, use_container_width=True)
+                            table_column, graph_column = st.columns([0.45, 0.55])
+                            table_column.dataframe(dispatched_sku_three_cat_df, use_container_width=True)
 
                             graph_df = dispatched_df[['date', 'Units']].groupby('date').count().reset_index()
                             graph_df.rename(columns={'date': 'Date'}, inplace=True)
@@ -478,7 +479,7 @@ if(len(d) > 1):
                             graph_df['Date'] = pd.to_datetime(graph_df['Date'])
                             chart = alt.Chart(graph_df).mark_point(filled=True).encode(x='Date', y='Units')
                             line = alt.Chart(graph_df, title=f'{selected_prod} Units Sold from {d[0].strftime("%d %b %Y")} to {d[1].strftime("%d %b %Y")}').mark_line().encode(x='Date', y='Units').interactive()
-                            st.altair_chart(line, use_container_width=True)
+                            graph_column.altair_chart(line, use_container_width=True)
 
         else:
             dispatched_product_two_cat_df = dispatched_df.groupby('Product Name')['Units'].sum().reset_index().sort_values(by=['Units'], ascending=False).reset_index(drop=True)
@@ -516,7 +517,8 @@ if(len(d) > 1):
                 dispatched_sku_two_cat_df['SKU Reference'] = dispatched_sku_two_cat_df['SKU Reference'].astype(str)
                 dispatched_sku_two_cat_df['Size'] = temp2_df['Size']
 
-                st.dataframe(dispatched_sku_two_cat_df, use_container_width=True)
+                table_column, graph_column = st.columns([0.45, 0.55])
+                table_column.dataframe(dispatched_sku_two_cat_df, use_container_width=True)
 
                 graph_df = dispatched_df[['date', 'Units']].groupby('date').count().reset_index()
                 graph_df.rename(columns={'date': 'Date'}, inplace=True)
@@ -531,4 +533,4 @@ if(len(d) > 1):
                 graph_df['Date'] = pd.to_datetime(graph_df['Date'])
                 chart = alt.Chart(graph_df).mark_point(filled=True).encode(x='Date', y='Units')
                 line = alt.Chart(graph_df, title=f'{selected_prod} Units Sold from {d[0].strftime("%d %b %Y")} to {d[1].strftime("%d %b %Y")}').mark_line().encode(x='Date', y='Units').interactive()
-                st.altair_chart(line, use_container_width=True)
+                graph_column.altair_chart(line, use_container_width=True)
