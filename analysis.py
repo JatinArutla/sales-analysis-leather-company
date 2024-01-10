@@ -114,12 +114,12 @@ st.title('Sales Analysis')
 
 
 
-df = pd.read_csv('orders.csv')
+df = pd.read_csv('unduplicated_orders.csv')
 df['date'] = pd.to_datetime(df['date'])
 df.drop_duplicates(inplace=True)
 df.rename(columns={'quantity': 'Units', 'reference': 'SKU Reference', 'title': 'Product Name', 'price_inc': 'Revenue (£)', 'attribute_summary': 'Size'}, inplace=True)
 
-orig_df = pd.read_csv('orders.csv')
+orig_df = pd.read_csv('unduplicated_orders.csv')
 orig_df['date'] = pd.to_datetime(orig_df['date'])
 df.drop_duplicates(inplace=True)
 orig_df.rename(columns={'quantity': 'Units', 'reference': 'SKU Reference', 'title': 'Product Name', 'price_inc': 'Revenue (£)', 'attribute_summary': 'Size'}, inplace=True)
@@ -142,7 +142,7 @@ d = st.date_input(
 d2 = ()
 
 if(len(d) > 1):
-    df = df[(df['date'] >= pd.to_datetime(d[0])) & (df['date'] <= pd.to_datetime(d[1]))].drop(['Unnamed: 0'], axis=1)
+    df = df[(df['date'] >= pd.to_datetime(d[0])) & (df['date'] <= pd.to_datetime(d[1]))]
 
     filters_check = st.checkbox('Enable filters')
 
@@ -413,6 +413,7 @@ if(len(d) > 1):
                         dispatched_sku_three_cat_df = sku_condense_dataframe(dispatched_df, refunded_df)
 
                         table_column, graph_column = st.columns([0.4, 0.6])
+                        table_column.markdown(f'<p class="big-font"><strong>{selected_prod}</strong></p>', unsafe_allow_html=True)
                         table_column.dataframe(dispatched_sku_three_cat_df, use_container_width=True)
 
                         chart, line = graph_condense(dispatched_df)
@@ -449,6 +450,7 @@ if(len(d) > 1):
                             dispatched_sku_three_cat_df = sku_condense_dataframe(dispatched_df, refunded_df)
 
                             table_column, graph_column = st.columns([0.4, 0.6])
+                            table_column.markdown(f'<p class="big-font"><strong>{selected_prod}</strong></p>', unsafe_allow_html=True)
                             table_column.dataframe(dispatched_sku_three_cat_df, use_container_width=True)
 
                             chart, line = graph_condense(dispatched_df)
@@ -467,6 +469,7 @@ if(len(d) > 1):
                 dispatched_sku_two_cat_df = sku_condense_dataframe(dispatched_df, refunded_df)
 
                 table_column, graph_column = st.columns([0.4, 0.6])
+                table_column.markdown(f'<p class="big-font"><strong>{selected_prod}</strong></p>', unsafe_allow_html=True)
                 table_column.dataframe(dispatched_sku_two_cat_df, use_container_width=True)
 
                 chart, line = graph_condense(dispatched_df)
