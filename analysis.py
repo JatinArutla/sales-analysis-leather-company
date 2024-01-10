@@ -431,11 +431,12 @@ if(len(d) > 1):
                         table_column, graph_column = st.columns([0.4, 0.6])
                         table_column.markdown(f'<p class="big-font"><strong>{selected_prod}</strong></p>', unsafe_allow_html=True)
                         table_column.dataframe(dispatched_sku_three_cat_df, use_container_width=True)
-                        columns_list = dispatched_sku_three_cat_df.columns
-                        total_df = pd.DataFrame(columns=columns_list)
-                        total_df.loc['Total'] = dispatched_sku_three_cat_df.select_dtypes(np.number).sum()
-                        table_column.dataframe(total_df, use_container_width=True)
-                        sku_summary(dispatched_sku_three_cat_df)
+                        if(len(dispatched_sku_three_cat_df) > 1):
+                            columns_list = dispatched_sku_three_cat_df.columns
+                            total_df = pd.DataFrame(columns=columns_list)
+                            total_df.loc['Total'] = dispatched_sku_three_cat_df.select_dtypes(np.number).sum()
+                            table_column.dataframe(total_df, use_container_width=True)
+                            sku_summary(dispatched_sku_three_cat_df)
 
                         chart, line = graph_condense(dispatched_df)
                         graph_column.altair_chart(line, use_container_width=True)
@@ -473,11 +474,12 @@ if(len(d) > 1):
                             table_column, graph_column = st.columns([0.4, 0.6])
                             table_column.markdown(f'<p class="big-font"><strong>{selected_prod}</strong></p>', unsafe_allow_html=True)
                             table_column.dataframe(dispatched_sku_three_cat_df, use_container_width=True)
-                            columns_list = dispatched_sku_three_cat_df.columns
-                            total_df = pd.DataFrame(columns=columns_list)
-                            total_df.loc['Total'] = dispatched_sku_three_cat_df.select_dtypes(np.number).sum()
-                            table_column.dataframe(total_df, use_container_width=True)
-                            sku_summary(dispatched_sku_three_cat_df)
+                            if (len(dispatched_sku_three_cat_df) > 1):
+                                columns_list = dispatched_sku_three_cat_df.columns
+                                total_df = pd.DataFrame(columns=columns_list)
+                                total_df.loc['Total'] = dispatched_sku_three_cat_df.select_dtypes(np.number).sum()
+                                table_column.dataframe(total_df, use_container_width=True)
+                                sku_summary(dispatched_sku_three_cat_df)
 
                             chart, line = graph_condense(dispatched_df)
                             graph_column.altair_chart(line, use_container_width=True)
@@ -497,11 +499,12 @@ if(len(d) > 1):
                 table_column, graph_column = st.columns([0.4, 0.6])
                 table_column.markdown(f'<p class="big-font"><strong>{selected_prod}</strong></p>', unsafe_allow_html=True)
                 table_column.dataframe(dispatched_sku_two_cat_df, use_container_width=True)
-                columns_list = dispatched_sku_two_cat_df.columns
-                total_df = pd.DataFrame(columns=columns_list)
-                total_df.loc['Total'] = dispatched_sku_two_cat_df.select_dtypes(np.number).sum()
-                table_column.dataframe(total_df, use_container_width=True)
-                sku_summary(dispatched_sku_two_cat_df)
+                if (len(dispatched_sku_two_cat_df) > 1):
+                    columns_list = dispatched_sku_two_cat_df.columns
+                    total_df = pd.DataFrame(columns=columns_list)
+                    total_df.loc['Total'] = dispatched_sku_two_cat_df.select_dtypes(np.number).sum()
+                    table_column.dataframe(total_df, use_container_width=True)
+                    sku_summary(dispatched_sku_two_cat_df)
 
                 chart, line = graph_condense(dispatched_df)
                 graph_column.altair_chart(line, use_container_width=True)
