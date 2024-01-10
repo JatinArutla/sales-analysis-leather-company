@@ -204,7 +204,7 @@ if(len(d) > 1):
 
     if (len(d2) == 2):
         orig_df['Product Name'] = orig_df['Product Name'].apply(str)
-        orig_df['titProduct Namele'] = orig_df['Product Name'].str.strip()
+        orig_df['Product Name'] = orig_df['Product Name'].str.strip()
         orig_df['model'] = orig_df['model'].apply(str)
         orig_df['model'] = orig_df['model'].str.strip()
         orig_df['SKU Reference'] = orig_df['SKU Reference'].apply(str)
