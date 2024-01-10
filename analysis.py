@@ -400,6 +400,11 @@ if(len(d) > 1):
                         graph_df = graph_df.asfreq('D')
                         graph_df['Units'] = graph_df['Units'].replace(np.nan, 0)
                         graph_df.reset_index(inplace=True)
+                        graph_df['Date'] = graph_df['Date'].astype(str)
+                        temp = graph_df['Date'].str.split(' ', expand=True)
+                        temp.columns = ['Date']
+                        graph_df['Date'] = temp['Date']
+                        graph_df['Date'] = pd.to_datetime(graph_df['Date'])
                         chart = alt.Chart(graph_df).mark_point(filled=True).encode(x='Date', y='Units')
                         line = alt.Chart(graph_df, title=f'{selected_prod} Units Sold from {d[0].strftime("%d %b %Y")} to {d[1].strftime("%d %b %Y")}').mark_line().encode(x='Date', y='Units').interactive()
                         st.altair_chart(line, use_container_width=True)
@@ -466,6 +471,11 @@ if(len(d) > 1):
                             graph_df = graph_df.asfreq('D')
                             graph_df['Units'] = graph_df['Units'].replace(np.nan, 0)
                             graph_df.reset_index(inplace=True)
+                            graph_df['Date'] = graph_df['Date'].astype(str)
+                            temp = graph_df['Date'].str.split(' ', expand=True)
+                            temp.columns = ['Date']
+                            graph_df['Date'] = temp['Date']
+                            graph_df['Date'] = pd.to_datetime(graph_df['Date'])
                             chart = alt.Chart(graph_df).mark_point(filled=True).encode(x='Date', y='Units')
                             line = alt.Chart(graph_df, title=f'{selected_prod} Units Sold from {d[0].strftime("%d %b %Y")} to {d[1].strftime("%d %b %Y")}').mark_line().encode(x='Date', y='Units').interactive()
                             st.altair_chart(line, use_container_width=True)
@@ -514,6 +524,11 @@ if(len(d) > 1):
                 graph_df = graph_df.asfreq('D')
                 graph_df['Units'] = graph_df['Units'].replace(np.nan, 0)
                 graph_df.reset_index(inplace=True)
+                graph_df['Date'] = graph_df['Date'].astype(str)
+                temp = graph_df['Date'].str.split(' ', expand=True)
+                temp.columns = ['Date']
+                graph_df['Date'] = temp['Date']
+                graph_df['Date'] = pd.to_datetime(graph_df['Date'])
                 chart = alt.Chart(graph_df).mark_point(filled=True).encode(x='Date', y='Units')
                 line = alt.Chart(graph_df, title=f'{selected_prod} Units Sold from {d[0].strftime("%d %b %Y")} to {d[1].strftime("%d %b %Y")}').mark_line().encode(x='Date', y='Units').interactive()
                 st.altair_chart(line, use_container_width=True)
