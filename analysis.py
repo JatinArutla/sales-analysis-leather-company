@@ -135,6 +135,12 @@ df['date'] = pd.to_datetime(df['date'])
 df.drop_duplicates(inplace=True)
 df.rename(columns={'quantity': 'Units', 'reference': 'SKU Reference', 'title': 'Product Name', 'price_inc': 'Revenue (£)', 'attribute_summary': 'Size'}, inplace=True)
 
+stock_df = pd.read_csv('stock_levels_10_jan.csv')
+stock_df.rename(columns={'title': 'Product Name', 'stock': 'Stock', 'attribute_summary': 'Size'}, inplace=True)
+temp_stock_df = stock_df['Size'].str.split(': ', expand=True)
+temp_stock_df.columns = ['F_Size', 'Size']
+stock_df['Size'] = temp_stock_df['Size']
+
 orig_df = pd.read_csv('unduplicated_orders.csv')
 orig_df['date'] = pd.to_datetime(orig_df['date'])
 df.drop_duplicates(inplace=True)
@@ -418,6 +424,9 @@ if(len(d) > 1):
 
                 if(len(three_cat_df) == 0):
                     dispatched_product_three_cat_df = product_condense_dataframe(dispatched_df, refunded_df)
+
+                    product_stock_df = stock_df.groupby('Product Name')['Stock'].sum()
+                    dispatched_product_three_cat_df = pd.merge(dispatched_product_three_cat_df, product_stock_df, how="outer", on="Product Name")
                     
                     selection4 = dataframe_with_selections(dispatched_product_three_cat_df, 4)
                     if(selection4['selected_rows_indices'] != []):
@@ -425,8 +434,12 @@ if(len(d) > 1):
                         
                         dispatched_df = dispatched_df[dispatched_df['Product Name'] == selected_prod]
                         refunded_df = refunded_df[refunded_df['Product Name'] == selected_prod]
+                        stock_df = stock_df[stock_df['Product Name'] == selected_prod]
 
                         dispatched_sku_three_cat_df = sku_condense_dataframe(dispatched_df, refunded_df)
+
+                        sku_stock_df = stock_df.groupby('Size')['Stock'].sum()
+                        dispatched_sku_three_cat_df = pd.merge(dispatched_sku_three_cat_df, sku_stock_df, how="outer", on="Size")
 
                         table_column, graph_column = st.columns([0.4, 0.6])
                         table_column.markdown(f'<p class="big-font"><strong>{selected_prod}</strong></p>', unsafe_allow_html=True)
@@ -462,14 +475,21 @@ if(len(d) > 1):
 
                         dispatched_product_three_cat_df = product_condense_dataframe(dispatched_df, refunded_df)
 
+                        product_stock_df = stock_df.groupby('Product Name')['Stock'].sum()
+                        dispatched_product_three_cat_df = pd.merge(dispatched_product_three_cat_df, product_stock_df, how="outer", on="Product Name")
+
                         selection5 = dataframe_with_selections(dispatched_product_three_cat_df, 5)
                         if(selection5['selected_rows_indices'] != []):
                             selected_prod = dispatched_product_three_cat_df.loc[selection5['selected_rows_indices'][0]]['Product Name']
                             
                             dispatched_df = dispatched_df[dispatched_df['Product Name'] == selected_prod]
                             refunded_df = refunded_df[refunded_df['Product Name'] == selected_prod]
+                            stock_df = stock_df[stock_df['Product Name'] == selected_prod]
 
                             dispatched_sku_three_cat_df = sku_condense_dataframe(dispatched_df, refunded_df)
+
+                            sku_stock_df = stock_df.groupby('Size')['Stock'].sum()
+                            dispatched_sku_three_cat_df = pd.merge(dispatched_sku_three_cat_df, sku_stock_df, how="outer", on="Size")
 
                             table_column, graph_column = st.columns([0.4, 0.6])
                             table_column.markdown(f'<p class="big-font"><strong>{selected_prod}</strong></p>', unsafe_allow_html=True)
@@ -487,14 +507,21 @@ if(len(d) > 1):
         else:
             dispatched_product_two_cat_df = product_condense_dataframe(dispatched_df, refunded_df)
 
+            product_stock_df = stock_df.groupby('Product Name')['Stock'].sum()
+            dispatched_product_two_cat_df = pd.merge(dispatched_product_two_cat_df, product_stock_df, how="outer", on="Product Name")
+
             selection4 = dataframe_with_selections(dispatched_product_two_cat_df, 4)
             if(selection4['selected_rows_indices'] != []):
                 selected_prod = dispatched_product_two_cat_df.loc[selection4['selected_rows_indices'][0]]['Product Name']
 
                 dispatched_df = dispatched_df[dispatched_df['Product Name'] == selected_prod]
                 refunded_df = refunded_df[refunded_df['Product Name'] == selected_prod]
+                stock_df = stock_df[stock_df['Product Name'] == selected_prod]
 
                 dispatched_sku_two_cat_df = sku_condense_dataframe(dispatched_df, refunded_df)
+
+                product_stock_df = stock_df.groupby('Size')['Stock'].sum()
+                dispatched_sku_two_cat_df = pd.merge(dispatched_sku_two_cat_df, product_stock_df, how="outer", on="Size")
 
                 table_column, graph_column = st.columns([0.4, 0.6])
                 table_column.markdown(f'<p class="big-font"><strong>{selected_prod}</strong></p>', unsafe_allow_html=True)
