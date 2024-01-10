@@ -97,6 +97,22 @@ def graph_condense(dispatched_df):
     line = alt.Chart(graph_df, title=f'{selected_prod} Units Sold from {d[0].strftime("%d %b %Y")} to {d[1].strftime("%d %b %Y")}').mark_line().encode(x='Date', y='Units').interactive()
     return chart, line
 
+def sku_summary(df):
+    t1, t2, t3 = df['Units'].idxmax(), df['Units Refunded'].idxmax(), df['Units'].idxmin()
+    table_column.markdown(f"<p class='small-font'><strong>{d[0].strftime('%d %b %Y')} to {d[1].strftime('%d %b %Y')}</strong></p>", unsafe_allow_html=True)
+    if(df.iloc[t1]['Units'].astype(int) != 1):
+        table_column.markdown(f'<p class="small-font"><strong>Best Seller:</strong> {df.iloc[t1]["Units"].astype(int)} units of size: {df.iloc[t1]["Size"]} with a revenue of £{(df.iloc[t1]["Revenue (£)"].astype(int)):,}</p>', unsafe_allow_html=True)
+    else:
+        table_column.markdown(f'<p class="small-font"><strong>Best Seller:</strong> {df.iloc[t1]["Units"].astype(int)} unit of size: {df.iloc[t1]["Size"]} with a revenue of £{(df.iloc[t1]["Revenue (£)"].astype(int)):,}</p>', unsafe_allow_html=True)
+    if (df.iloc[t2]['Units Refunded'].astype(int) != 1):
+        table_column.markdown(f'<p class="small-font"><strong>Most Refunded:</strong> {df.iloc[t2]["Units Refunded"].astype(int)} units of size: {df.iloc[t2]["Size"]} with a revenue of £{(df.iloc[t2]["Total Refund (£)"].astype(int)):,}</p>', unsafe_allow_html=True)
+    else:
+        table_column.markdown(f'<p class="small-font"><strong>Most Refunded:</strong> {df.iloc[t2]["Units Refunded"].astype(int)} unit of size: {df.iloc[t2]["Size"]} with a revenue of £{(df.iloc[t2]["Total Refund (£)"].astype(int)):,}</p>', unsafe_allow_html=True)
+    if (df.iloc[t3]['Units'].astype(int) != 1):
+        table_column.markdown(f'<p class="small-font"><strong>Least Sold:</strong> {df.iloc[t3]["Units"].astype(int)} units of size: {df.iloc[t3]["Size"]} with a revenue of £{(df.iloc[t3]["Revenue (£)"].astype(int)):,}</p>', unsafe_allow_html=True)
+    else:
+        table_column.markdown(f'<p class="small-font"><strong>Least Sold:</strong> {df.iloc[t3]["Units"].astype(int)} unit of size: {df.iloc[t3]["Size"]} with a revenue of £{(df.iloc[t3]["Revenue (£)"].astype(int)):,}</p>', unsafe_allow_html=True)
+
 st.markdown("""
 <style>
 .big-font {
@@ -415,6 +431,11 @@ if(len(d) > 1):
                         table_column, graph_column = st.columns([0.4, 0.6])
                         table_column.markdown(f'<p class="big-font"><strong>{selected_prod}</strong></p>', unsafe_allow_html=True)
                         table_column.dataframe(dispatched_sku_three_cat_df, use_container_width=True)
+                        columns_list = dispatched_sku_three_cat_df.columns
+                        total_df = pd.DataFrame(columns=columns_list)
+                        total_df.loc['Total'] = dispatched_sku_three_cat_df.select_dtypes(np.number).sum()
+                        table_column.dataframe(total_df, use_container_width=True)
+                        sku_summary(dispatched_sku_three_cat_df)
 
                         chart, line = graph_condense(dispatched_df)
                         graph_column.altair_chart(line, use_container_width=True)
@@ -452,6 +473,11 @@ if(len(d) > 1):
                             table_column, graph_column = st.columns([0.4, 0.6])
                             table_column.markdown(f'<p class="big-font"><strong>{selected_prod}</strong></p>', unsafe_allow_html=True)
                             table_column.dataframe(dispatched_sku_three_cat_df, use_container_width=True)
+                            columns_list = dispatched_sku_three_cat_df.columns
+                            total_df = pd.DataFrame(columns=columns_list)
+                            total_df.loc['Total'] = dispatched_sku_three_cat_df.select_dtypes(np.number).sum()
+                            table_column.dataframe(total_df, use_container_width=True)
+                            sku_summary(dispatched_sku_three_cat_df)
 
                             chart, line = graph_condense(dispatched_df)
                             graph_column.altair_chart(line, use_container_width=True)
@@ -471,6 +497,11 @@ if(len(d) > 1):
                 table_column, graph_column = st.columns([0.4, 0.6])
                 table_column.markdown(f'<p class="big-font"><strong>{selected_prod}</strong></p>', unsafe_allow_html=True)
                 table_column.dataframe(dispatched_sku_two_cat_df, use_container_width=True)
+                columns_list = dispatched_sku_two_cat_df.columns
+                total_df = pd.DataFrame(columns=columns_list)
+                total_df.loc['Total'] = dispatched_sku_two_cat_df.select_dtypes(np.number).sum()
+                table_column.dataframe(total_df, use_container_width=True)
+                sku_summary(dispatched_sku_two_cat_df)
 
                 chart, line = graph_condense(dispatched_df)
                 graph_column.altair_chart(line, use_container_width=True)
