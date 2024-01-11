@@ -206,7 +206,6 @@ if(len(d) > 1):
         else:
             df = df[df['manufacturer_name'] == brand_options]
 
-
         category_arr = df['Category'].unique().tolist()
         category_arr = np.sort(category_arr).tolist()
         category_arr = ['All categories'] + category_arr
@@ -215,7 +214,6 @@ if(len(d) > 1):
             df = df
         else:
             df = df[df['Category'] == category_options]
-
 
         sub_category_arr = df['T_Cat'].unique().tolist()
         if(np.NaN in sub_category_arr):
@@ -228,7 +226,6 @@ if(len(d) > 1):
         else:
             df = df[df['customs_description'] == sub_category_options]
 
-
         colour_arr = df['colour'].unique().tolist()
         colour_arr = np.sort(colour_arr).tolist()
         colour_arr = ['All colours'] + colour_arr
@@ -238,7 +235,6 @@ if(len(d) > 1):
         else:
             df = df[df['colour'] == colour_options]
 
-        
         size_arr = df['Size'].unique().tolist()
         size_arr = np.sort(size_arr).tolist()
         size_arr = ['All sizes'] + size_arr
