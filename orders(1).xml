@@ -1,0 +1,2796 @@
+<?xml version="1.0" ?>
+<!-- vsCommerce 3 Standard XML Export version 1.0 -->
+<web_orders>
+<web_order>
+<order>
+<order_state>Order Refunded</order_state>
+<order_date>2023-11-30 23:33:30</order_date>
+<dispatch_date>2023-12-01 17:40:57</dispatch_date>
+<product_total_inc>317.99</product_total_inc>
+<product_total_ex>264.992</product_total_ex>
+<shipping_total_inc>15</shipping_total_inc>
+<shipping_total_ex>15.000</shipping_total_ex>
+<shipping_vat>0.000</shipping_vat>
+<grand_total_ex>264.992</grand_total_ex>
+<grand_total_inc>317.990</grand_total_inc>
+<grand_total_vat>52.998</grand_total_vat>
+<discount_ex>15.000</discount_ex>
+<discount_inc>15</discount_inc>
+<discount_vat>0.000</discount_vat>
+<order_currency>GBP</order_currency>
+<order_id>71632</order_id>
+<courier_id>6</courier_id>
+<order_reference>WEB71632</order_reference>
+<order_customer_comments> </order_customer_comments>
+<order_notes></order_notes>
+<order_type>WEB</order_type>
+<fraud_status>Passed</fraud_status>
+<fraud_status_date_changed>2023-12-01 09:56:25</fraud_status_date_changed>
+<courier_name>Ireland, Northern Ireland (3-7 days)</courier_name>
+<inv_priority>N</inv_priority>
+<order_offer_codes_csv></order_offer_codes_csv>
+<order_applied_offers>Free DELIVERY TO IRELAND  when you spend £150.00</order_applied_offers>
+</order>
+<customer>
+<customer_id>69787</customer_id>
+<email_address>rosie@clarkecontracts.com</email_address>
+<billing_title></billing_title>
+<billing_company_name></billing_company_name>
+<billing_firstname>Rosaleen</billing_firstname>
+<billing_lastname>Clarke</billing_lastname>
+<billing_fullname>Rosaleen Clarke</billing_fullname>
+<billing_address1>230 Craigs Road</billing_address1>
+<billing_address2>Cullybackey</billing_address2>
+<billing_town>Ballymena</billing_town>
+<billing_city></billing_city>
+<billing_county>County Antrim</billing_county>
+<billing_country>3</billing_country>
+<billing_country_name>UK - Northern Ireland</billing_country_name>
+<billing_postcode>BT42 1PG</billing_postcode>
+<billing_telephone>07815324211</billing_telephone>
+<billing_mobile></billing_mobile>
+<billing_email>rosie@clarkecontracts.com</billing_email>
+<delivery_title></delivery_title>
+<delivery_company_name></delivery_company_name>
+<delivery_firstname>Rosaleen</delivery_firstname>
+<delivery_lastname>Clarke</delivery_lastname>
+<delivery_fullname>Rosaleen Clarke</delivery_fullname>
+<delivery_address1>230 Craigs Road</delivery_address1>
+<delivery_address2>Cullybackey</delivery_address2>
+<delivery_town>Ballymena</delivery_town>
+<delivery_city></delivery_city>
+<delivery_county>County Antrim</delivery_county>
+<delivery_country>3</delivery_country>
+<delivery_country_name>UK - Northern Ireland</delivery_country_name>
+<delivery_postcode>BT42 1PG</delivery_postcode>
+<delivery_telephone>07815324211</delivery_telephone>
+<email_opt_in>Us</email_opt_in>
+<post_opt_in>No</post_opt_in>
+<heard_about></heard_about>
+</customer>
+<payment>
+<payment_amount>317.99</payment_amount>
+<payment_type>Credit or Debit Card</payment_type>
+<card_holder>Rosaleen Clarke</card_holder>
+<auth_code></auth_code>
+<transaction_reference>act_fnjpydo64my2ralxnculd36tua</transaction_reference>
+<security_reference>public</security_reference>
+<cv2_avs>MATCHED</cv2_avs>
+<notes>10000: Approved (Pay ID: pay_wyxjxzagvgp2laqf56jzpm4ziy, Action ID: act_fnjpydo64my2ralxnculd36tua) - Payment captured</notes>
+</payment>
+<products>
+<product>
+<line>85143</line>
+<model>2810</model>
+<reference>0004365303</reference>
+<child_product_reference>0004365303</child_product_reference>
+<parent_product_reference>00043653</parent_product_reference>
+<barcode></barcode>
+<title>Womens Leather Biker Jacket Coffee: 2810</title>
+<summary>Size: 12</summary>
+<quantity>1</quantity>
+<price_inc>139</price_inc>
+<price_ex>115.833</price_ex>
+<price_vat>23.167</price_vat>
+<tax_rate>20.000</tax_rate>
+<manufacturer_name>ASHWOOD</manufacturer_name>
+<attribute_summary>Size: 12</attribute_summary>
+<personalisation></personalisation>
+<weight>0.00</weight>
+<product_state>0</product_state>
+<amazon_item_code></amazon_item_code>
+<commodity_code></commodity_code>
+<customs_description>Ladies &gt; Leather Jackets &gt; Biker Styles</customs_description>
+<country_of_origin>UK - Mainland</country_of_origin>
+</product>
+<product>
+<line>85144</line>
+<model>2810</model>
+<reference>0004366503</reference>
+<child_product_reference>0004366503</child_product_reference>
+<parent_product_reference>00043665</parent_product_reference>
+<barcode></barcode>
+<title>Womens Leather Biker Jacket Black/yellow: 2810</title>
+<summary>Size: 12</summary>
+<quantity>1</quantity>
+<price_inc>69</price_inc>
+<price_ex>57.500</price_ex>
+<price_vat>11.500</price_vat>
+<tax_rate>20.000</tax_rate>
+<manufacturer_name>ASHWOOD</manufacturer_name>
+<attribute_summary>Size: 12</attribute_summary>
+<personalisation></personalisation>
+<weight>0.00</weight>
+<product_state>0</product_state>
+<amazon_item_code></amazon_item_code>
+<commodity_code></commodity_code>
+<customs_description>Ladies &gt; Leather Jackets &gt; Biker Styles</customs_description>
+<country_of_origin>UK - Mainland</country_of_origin>
+</product>
+<product>
+<line>85145</line>
+<model>G 2131</model>
+<reference>0004157003</reference>
+<child_product_reference>0004157003</child_product_reference>
+<parent_product_reference>00041570</parent_product_reference>
+<barcode></barcode>
+<title>Leather Biker Jacket Burgundy : Lola</title>
+<summary>Size: 12</summary>
+<quantity>1</quantity>
+<price_inc>109.99</price_inc>
+<price_ex>91.658</price_ex>
+<price_vat>18.332</price_vat>
+<tax_rate>20.000</tax_rate>
+<manufacturer_name>ASHWOOD</manufacturer_name>
+<attribute_summary>Size: 12</attribute_summary>
+<personalisation></personalisation>
+<weight>0.00</weight>
+<product_state>0</product_state>
+<amazon_item_code></amazon_item_code>
+<commodity_code></commodity_code>
+<customs_description>Ladies &gt; Ladies Jackets &amp; Coats</customs_description>
+<country_of_origin>UK - Mainland</country_of_origin>
+</product>
+</products>
+<amazon_order_id></amazon_order_id>
+<amazon_fulfillment_method>MFN</amazon_fulfillment_method>
+</web_order>
+<web_order>
+<order>
+<order_state>Order Incomplete</order_state>
+<order_date>2023-11-30 23:26:46</order_date>
+<dispatch_date>0000-00-00 00:00:00</dispatch_date>
+<product_total_inc>639.99</product_total_inc>
+<product_total_ex>533.325</product_total_ex>
+<shipping_total_inc>4.99</shipping_total_inc>
+<shipping_total_ex>4.158</shipping_total_ex>
+<shipping_vat>0.832</shipping_vat>
+<grand_total_ex>533.325</grand_total_ex>
+<grand_total_inc>639.990</grand_total_inc>
+<grand_total_vat>106.665</grand_total_vat>
+<discount_ex>4.158</discount_ex>
+<discount_inc>4.99</discount_inc>
+<discount_vat>0.832</discount_vat>
+<order_currency>GBP</order_currency>
+<order_id>71631</order_id>
+<courier_id>1</courier_id>
+<order_reference>WEB71631</order_reference>
+<order_customer_comments> </order_customer_comments>
+<order_notes></order_notes>
+<order_type>WEB</order_type>
+<fraud_status>Not Checked</fraud_status>
+<fraud_status_date_changed>N/A</fraud_status_date_changed>
+<courier_name>UK Delivery (1-3 Days)</courier_name>
+<inv_priority>N</inv_priority>
+<order_offer_codes_csv></order_offer_codes_csv>
+<order_applied_offers>Free Delivery UK when you spend £50.00</order_applied_offers>
+</order>
+<customer>
+<customer_id>70580</customer_id>
+<email_address>teresamcgovern@aol.com</email_address>
+<billing_title></billing_title>
+<billing_company_name></billing_company_name>
+<billing_firstname>Mcgovern</billing_firstname>
+<billing_lastname>Teresa</billing_lastname>
+<billing_fullname>Mcgovern Teresa</billing_fullname>
+<billing_address1>12 Sandview</billing_address1>
+<billing_address2></billing_address2>
+<billing_town>Faringdon</billing_town>
+<billing_city></billing_city>
+<billing_county>Oxfordshire</billing_county>
+<billing_country>1</billing_country>
+<billing_country_name>UK - Mainland</billing_country_name>
+<billing_postcode>SN7 7UT</billing_postcode>
+<billing_telephone>07716260436</billing_telephone>
+<billing_mobile></billing_mobile>
+<billing_email>teresamcgovern@aol.com</billing_email>
+<delivery_title></delivery_title>
+<delivery_company_name></delivery_company_name>
+<delivery_firstname>Mcgovern</delivery_firstname>
+<delivery_lastname>Teresa</delivery_lastname>
+<delivery_fullname>Mcgovern Teresa</delivery_fullname>
+<delivery_address1>12 Sandview</delivery_address1>
+<delivery_address2></delivery_address2>
+<delivery_town>Faringdon</delivery_town>
+<delivery_city></delivery_city>
+<delivery_county>Oxfordshire</delivery_county>
+<delivery_country>1</delivery_country>
+<delivery_country_name>UK - Mainland</delivery_country_name>
+<delivery_postcode>SN7 7UT</delivery_postcode>
+<delivery_telephone>07716260436</delivery_telephone>
+<email_opt_in>No</email_opt_in>
+<post_opt_in>No</post_opt_in>
+<heard_about></heard_about>
+</customer>
+<products>
+<product>
+<line>85142</line>
+<model>KE 98 DUFFEL</model>
+<reference>0002102908</reference>
+<child_product_reference>0002102908</child_product_reference>
+<parent_product_reference>00021029</parent_product_reference>
+<barcode></barcode>
+<title>Sheepskin Duffle tobacco : Magnus</title>
+<summary>Size: 3XL</summary>
+<quantity>1</quantity>
+<price_inc>639.99</price_inc>
+<price_ex>533.325</price_ex>
+<price_vat>106.665</price_vat>
+<tax_rate>20.000</tax_rate>
+<manufacturer_name>ASHWOOD</manufacturer_name>
+<attribute_summary>Size: 3XL</attribute_summary>
+<personalisation></personalisation>
+<weight>0.00</weight>
+<product_state>0</product_state>
+<amazon_item_code></amazon_item_code>
+<commodity_code></commodity_code>
+<customs_description>Mens &gt; Mens Jackets &amp; Coats</customs_description>
+<country_of_origin>UK - Mainland</country_of_origin>
+</product>
+</products>
+<amazon_order_id></amazon_order_id>
+<amazon_fulfillment_method>MFN</amazon_fulfillment_method>
+</web_order>
+<web_order>
+<order>
+<order_state>Order Dispatched</order_state>
+<order_date>2023-11-30 23:02:07</order_date>
+<dispatch_date>2023-12-04 18:06:52</dispatch_date>
+<product_total_inc>49.992</product_total_inc>
+<product_total_ex>49.992</product_total_ex>
+<shipping_total_inc>25</shipping_total_inc>
+<shipping_total_ex>25.000</shipping_total_ex>
+<shipping_vat>0.000</shipping_vat>
+<grand_total_ex>74.992</grand_total_ex>
+<grand_total_inc>74.992</grand_total_inc>
+<grand_total_vat>0</grand_total_vat>
+<discount_ex>0.000</discount_ex>
+<discount_inc>0</discount_inc>
+<discount_vat>0.000</discount_vat>
+<order_currency>GBP</order_currency>
+<order_id>71629</order_id>
+<courier_id>3</courier_id>
+<order_reference>WEB71629</order_reference>
+<order_customer_comments> </order_customer_comments>
+<order_notes></order_notes>
+<order_type>WEB</order_type>
+<fraud_status>Passed</fraud_status>
+<fraud_status_date_changed>2023-12-01 16:42:20</fraud_status_date_changed>
+<courier_name>European Delivery (3-7 Days)</courier_name>
+<inv_priority>N</inv_priority>
+<order_offer_codes_csv></order_offer_codes_csv>
+<order_applied_offers></order_applied_offers>
+</order>
+<customer>
+<customer_id>70578</customer_id>
+<email_address>oliver.benjamin.lee@gmail.com</email_address>
+<billing_title></billing_title>
+<billing_company_name></billing_company_name>
+<billing_firstname>Oliver</billing_firstname>
+<billing_lastname>Benjamin Lee</billing_lastname>
+<billing_fullname>Oliver Benjamin Lee</billing_fullname>
+<billing_address1>4-273 Vrolikstraat</billing_address1>
+<billing_address2></billing_address2>
+<billing_town>Amsterdam</billing_town>
+<billing_city></billing_city>
+<billing_county></billing_county>
+<billing_country>11</billing_country>
+<billing_country_name>Netherlands</billing_country_name>
+<billing_postcode>1091 VB</billing_postcode>
+<billing_telephone>0645226632</billing_telephone>
+<billing_mobile></billing_mobile>
+<billing_email>oliver.benjamin.lee@gmail.com</billing_email>
+<delivery_title></delivery_title>
+<delivery_company_name></delivery_company_name>
+<delivery_firstname>Oliver</delivery_firstname>
+<delivery_lastname>Benjamin Lee</delivery_lastname>
+<delivery_fullname>Oliver Benjamin Lee</delivery_fullname>
+<delivery_address1>4-273 Vrolikstraat</delivery_address1>
+<delivery_address2></delivery_address2>
+<delivery_town>Amsterdam</delivery_town>
+<delivery_city></delivery_city>
+<delivery_county></delivery_county>
+<delivery_country>11</delivery_country>
+<delivery_country_name>Netherlands</delivery_country_name>
+<delivery_postcode>1091 VB</delivery_postcode>
+<delivery_telephone>0645226632</delivery_telephone>
+<email_opt_in>No</email_opt_in>
+<post_opt_in>No</post_opt_in>
+<heard_about></heard_about>
+</customer>
+<payment>
+<payment_amount>74.99</payment_amount>
+<payment_type>Credit or Debit Card</payment_type>
+<card_holder>Oliver Benjamin Lee</card_holder>
+<auth_code></auth_code>
+<transaction_reference>act_avnimewnv6y23hlypo23flisj4</transaction_reference>
+<security_reference>public</security_reference>
+<cv2_avs>NOT CHECKED</cv2_avs>
+<notes>10000: Approved (Pay ID: pay_c23awh7eayxk5n2vfk2kxd3gy4, Action ID: act_avnimewnv6y23hlypo23flisj4) - Payment captured</notes>
+</payment>
+<products>
+<product>
+<line>85140</line>
+<model>63791</model>
+<reference>0004476000</reference>
+<child_product_reference>0004476000</child_product_reference>
+<parent_product_reference>00044760</parent_product_reference>
+<barcode></barcode>
+<title>Women&#039;s Leather Medium Saddle Shoulder Handbag Black: 63791</title>
+<summary>Size: One Size</summary>
+<quantity>1</quantity>
+<price_inc>49.992</price_inc>
+<price_ex>49.992</price_ex>
+<price_vat>0.000</price_vat>
+<tax_rate>0</tax_rate>
+<manufacturer_name>ASHWOOD</manufacturer_name>
+<attribute_summary>Size: One Size</attribute_summary>
+<personalisation></personalisation>
+<weight>0.00</weight>
+<product_state>0</product_state>
+<amazon_item_code></amazon_item_code>
+<commodity_code></commodity_code>
+<customs_description>Handbags &gt; Ashwood</customs_description>
+<country_of_origin></country_of_origin>
+</product>
+</products>
+<amazon_order_id></amazon_order_id>
+<amazon_fulfillment_method>MFN</amazon_fulfillment_method>
+</web_order>
+<web_order>
+<order>
+<order_state>Order Incomplete</order_state>
+<order_date>2023-11-30 22:52:16</order_date>
+<dispatch_date>0000-00-00 00:00:00</dispatch_date>
+<product_total_inc>14.99</product_total_inc>
+<product_total_ex>12.492</product_total_ex>
+<shipping_total_inc>4.99</shipping_total_inc>
+<shipping_total_ex>4.158</shipping_total_ex>
+<shipping_vat>0.832</shipping_vat>
+<grand_total_ex>16.65</grand_total_ex>
+<grand_total_inc>19.980</grand_total_inc>
+<grand_total_vat>3.33</grand_total_vat>
+<discount_ex>0.000</discount_ex>
+<discount_inc>0</discount_inc>
+<discount_vat>0.000</discount_vat>
+<order_currency>GBP</order_currency>
+<order_id>71628</order_id>
+<courier_id>1</courier_id>
+<order_reference>WEB71628</order_reference>
+<order_customer_comments> </order_customer_comments>
+<order_notes></order_notes>
+<order_type>WEB</order_type>
+<fraud_status>Not Checked</fraud_status>
+<fraud_status_date_changed>N/A</fraud_status_date_changed>
+<courier_name>UK Delivery (1-3 Days)</courier_name>
+<inv_priority>N</inv_priority>
+<order_offer_codes_csv></order_offer_codes_csv>
+<order_applied_offers></order_applied_offers>
+</order>
+<customer>
+<customer_id>70577</customer_id>
+<email_address>lesley1010@sky.com</email_address>
+<billing_title></billing_title>
+<billing_company_name></billing_company_name>
+<billing_firstname>Lesley</billing_firstname>
+<billing_lastname>Gardner</billing_lastname>
+<billing_fullname>Lesley Gardner</billing_fullname>
+<billing_address1>22 Trust Walk</billing_address1>
+<billing_address2></billing_address2>
+<billing_town>London</billing_town>
+<billing_city></billing_city>
+<billing_county></billing_county>
+<billing_country>1</billing_country>
+<billing_country_name>UK - Mainland</billing_country_name>
+<billing_postcode>SE21 8LB</billing_postcode>
+<billing_telephone>+447572320503</billing_telephone>
+<billing_mobile></billing_mobile>
+<billing_email>lesley1010@sky.com</billing_email>
+<delivery_title></delivery_title>
+<delivery_company_name></delivery_company_name>
+<delivery_firstname>Lesley</delivery_firstname>
+<delivery_lastname>Gardner</delivery_lastname>
+<delivery_fullname>Lesley Gardner</delivery_fullname>
+<delivery_address1>22 Trust Walk</delivery_address1>
+<delivery_address2></delivery_address2>
+<delivery_town>London</delivery_town>
+<delivery_city></delivery_city>
+<delivery_county></delivery_county>
+<delivery_country>1</delivery_country>
+<delivery_country_name>UK - Mainland</delivery_country_name>
+<delivery_postcode>SE21 8LB</delivery_postcode>
+<delivery_telephone>+447572320503</delivery_telephone>
+<email_opt_in>No</email_opt_in>
+<post_opt_in>No</post_opt_in>
+<heard_about></heard_about>
+</customer>
+<products>
+<product>
+<line>85139</line>
+<model>NC 8914</model>
+<reference>0001948405</reference>
+<child_product_reference>0001948405</child_product_reference>
+<parent_product_reference>00019484</parent_product_reference>
+<barcode></barcode>
+<title>Ladies Leather Gloves Black : NC 8914</title>
+<summary>Size: L</summary>
+<quantity>1</quantity>
+<price_inc>14.99</price_inc>
+<price_ex>12.492</price_ex>
+<price_vat>2.498</price_vat>
+<tax_rate>20.000</tax_rate>
+<manufacturer_name>ASHWOOD</manufacturer_name>
+<attribute_summary>Size: L</attribute_summary>
+<personalisation></personalisation>
+<weight>0.00</weight>
+<product_state>0</product_state>
+<amazon_item_code></amazon_item_code>
+<commodity_code></commodity_code>
+<customs_description>Ladies &gt; Accessories &gt; Gloves</customs_description>
+<country_of_origin>UK - Mainland</country_of_origin>
+</product>
+</products>
+<amazon_order_id></amazon_order_id>
+<amazon_fulfillment_method>MFN</amazon_fulfillment_method>
+</web_order>
+<web_order>
+<order>
+<order_state>Order Dispatched</order_state>
+<order_date>2023-11-30 22:49:00</order_date>
+<dispatch_date>2023-12-01 17:40:57</dispatch_date>
+<product_total_inc>24.99</product_total_inc>
+<product_total_ex>20.825</product_total_ex>
+<shipping_total_inc>4.99</shipping_total_inc>
+<shipping_total_ex>4.158</shipping_total_ex>
+<shipping_vat>0.832</shipping_vat>
+<grand_total_ex>24.983</grand_total_ex>
+<grand_total_inc>29.980</grand_total_inc>
+<grand_total_vat>4.997</grand_total_vat>
+<discount_ex>0.000</discount_ex>
+<discount_inc>0</discount_inc>
+<discount_vat>0.000</discount_vat>
+<order_currency>GBP</order_currency>
+<order_id>71627</order_id>
+<courier_id>1</courier_id>
+<order_reference>WEB71627</order_reference>
+<order_customer_comments> </order_customer_comments>
+<order_notes></order_notes>
+<order_type>WEB</order_type>
+<fraud_status>Passed</fraud_status>
+<fraud_status_date_changed>2023-12-01 09:55:28</fraud_status_date_changed>
+<courier_name>UK Delivery (1-3 Days)</courier_name>
+<inv_priority>N</inv_priority>
+<order_offer_codes_csv></order_offer_codes_csv>
+<order_applied_offers></order_applied_offers>
+</order>
+<customer>
+<customer_id>70576</customer_id>
+<email_address>jeanjohnson56@btinternet.com</email_address>
+<billing_title></billing_title>
+<billing_company_name></billing_company_name>
+<billing_firstname>Jean</billing_firstname>
+<billing_lastname>Johnson</billing_lastname>
+<billing_fullname>Jean Johnson</billing_fullname>
+<billing_address1>23 Malmers Well Road</billing_address1>
+<billing_address2></billing_address2>
+<billing_town>High Wycombe</billing_town>
+<billing_city></billing_city>
+<billing_county></billing_county>
+<billing_country>1</billing_country>
+<billing_country_name>UK - Mainland</billing_country_name>
+<billing_postcode>HP13 6PD</billing_postcode>
+<billing_telephone>07428088582</billing_telephone>
+<billing_mobile></billing_mobile>
+<billing_email>jeanjohnson56@btinternet.com</billing_email>
+<delivery_title></delivery_title>
+<delivery_company_name></delivery_company_name>
+<delivery_firstname>Jean</delivery_firstname>
+<delivery_lastname>Johnson</delivery_lastname>
+<delivery_fullname>Jean Johnson</delivery_fullname>
+<delivery_address1>23 Malmers Well Road</delivery_address1>
+<delivery_address2></delivery_address2>
+<delivery_town>High Wycombe</delivery_town>
+<delivery_city></delivery_city>
+<delivery_county></delivery_county>
+<delivery_country>1</delivery_country>
+<delivery_country_name>UK - Mainland</delivery_country_name>
+<delivery_postcode>HP13 6PD</delivery_postcode>
+<delivery_telephone>07428088582</delivery_telephone>
+<email_opt_in>No</email_opt_in>
+<post_opt_in>No</post_opt_in>
+<heard_about></heard_about>
+</customer>
+<payment>
+<payment_amount>29.98</payment_amount>
+<payment_type>Credit or Debit Card</payment_type>
+<card_holder>Jean Johnson</card_holder>
+<auth_code></auth_code>
+<transaction_reference>act_hhf4wmfcw4q2bj64zrt3drjeny</transaction_reference>
+<security_reference>public</security_reference>
+<cv2_avs>NOT CHECKED</cv2_avs>
+<notes>10000: Approved (Pay ID: pay_tgxerwyoj3oklctoijrfpg3w5q, Action ID: act_hhf4wmfcw4q2bj64zrt3drjeny) - Payment captured</notes>
+</payment>
+<products>
+<product>
+<line>85138</line>
+<model>db-803</model>
+<reference>0004488401</reference>
+<child_product_reference>0004488401</child_product_reference>
+<parent_product_reference>00044884</parent_product_reference>
+<barcode></barcode>
+<title>Women&#039;s Sheepskin Gloves Dark Green : DB-803</title>
+<summary>Size: M/L</summary>
+<quantity>1</quantity>
+<price_inc>24.99</price_inc>
+<price_ex>20.825</price_ex>
+<price_vat>4.165</price_vat>
+<tax_rate>20.000</tax_rate>
+<manufacturer_name>ASHWOOD</manufacturer_name>
+<attribute_summary>Size: M/L</attribute_summary>
+<personalisation></personalisation>
+<weight>0.00</weight>
+<product_state>0</product_state>
+<amazon_item_code></amazon_item_code>
+<commodity_code></commodity_code>
+<customs_description>Black Friday Deals 2022</customs_description>
+<country_of_origin></country_of_origin>
+</product>
+</products>
+<amazon_order_id></amazon_order_id>
+<amazon_fulfillment_method>MFN</amazon_fulfillment_method>
+</web_order>
+<web_order>
+<order>
+<order_state>Order Dispatched</order_state>
+<order_date>2023-11-30 22:40:51</order_date>
+<dispatch_date>2023-12-01 17:40:57</dispatch_date>
+<product_total_inc>114.99</product_total_inc>
+<product_total_ex>95.825</product_total_ex>
+<shipping_total_inc>4.99</shipping_total_inc>
+<shipping_total_ex>4.158</shipping_total_ex>
+<shipping_vat>0.832</shipping_vat>
+<grand_total_ex>95.825</grand_total_ex>
+<grand_total_inc>114.990</grand_total_inc>
+<grand_total_vat>19.165</grand_total_vat>
+<discount_ex>4.158</discount_ex>
+<discount_inc>4.99</discount_inc>
+<discount_vat>0.832</discount_vat>
+<order_currency>GBP</order_currency>
+<order_id>71626</order_id>
+<courier_id>1</courier_id>
+<order_reference>WEB71626</order_reference>
+<order_customer_comments> </order_customer_comments>
+<order_notes></order_notes>
+<order_type>WEB</order_type>
+<fraud_status>Passed</fraud_status>
+<fraud_status_date_changed>2023-12-01 09:55:03</fraud_status_date_changed>
+<courier_name>UK Delivery (1-3 Days)</courier_name>
+<inv_priority>N</inv_priority>
+<order_offer_codes_csv></order_offer_codes_csv>
+<order_applied_offers>Free Delivery UK when you spend £50.00</order_applied_offers>
+</order>
+<customer>
+<customer_id>70575</customer_id>
+<email_address>peter@rectory.plus.com</email_address>
+<billing_title></billing_title>
+<billing_company_name></billing_company_name>
+<billing_firstname>Peter</billing_firstname>
+<billing_lastname>Marwick</billing_lastname>
+<billing_fullname>Peter Marwick</billing_fullname>
+<billing_address1>3, Rectory Farm, </billing_address1>
+<billing_address2>Rectory Lane</billing_address2>
+<billing_town>Standish, Wigan</billing_town>
+<billing_city></billing_city>
+<billing_county>Gtr Mancs</billing_county>
+<billing_country>1</billing_country>
+<billing_country_name>UK - Mainland</billing_country_name>
+<billing_postcode>WN6 0XD</billing_postcode>
+<billing_telephone></billing_telephone>
+<billing_mobile></billing_mobile>
+<billing_email>peter@rectory.plus.com</billing_email>
+<delivery_title></delivery_title>
+<delivery_company_name></delivery_company_name>
+<delivery_firstname>Peter</delivery_firstname>
+<delivery_lastname>Marwick</delivery_lastname>
+<delivery_fullname>Peter Marwick</delivery_fullname>
+<delivery_address1>3 Rectory Farm</delivery_address1>
+<delivery_address2>Rectory Lane, Standish </delivery_address2>
+<delivery_town>Wigan</delivery_town>
+<delivery_city></delivery_city>
+<delivery_county>Gtr Mancs</delivery_county>
+<delivery_country>1</delivery_country>
+<delivery_country_name>UK - Mainland</delivery_country_name>
+<delivery_postcode>WN6 0XD</delivery_postcode>
+<delivery_telephone>07887751402</delivery_telephone>
+<email_opt_in>No</email_opt_in>
+<post_opt_in>No</post_opt_in>
+<heard_about></heard_about>
+</customer>
+<payment>
+<payment_amount>114.99</payment_amount>
+<payment_type>ApplePay</payment_type>
+<card_holder>Peter Marwick</card_holder>
+<auth_code>015846</auth_code>
+<transaction_reference>act_ey2essppekl23oxad4rnediq2i</transaction_reference>
+<security_reference>public</security_reference>
+<cv2_avs>MATCHED</cv2_avs>
+<notes>10000: Approved (Pay ID: pay_a56jfew2gtckjnjrvig4n6zfja, Action ID: act_ey2essppekl23oxad4rnediq2i) - Payment captured</notes>
+</payment>
+<products>
+<product>
+<line>85136</line>
+<model>z-74</model>
+<reference>0004597700</reference>
+<child_product_reference>0004597700</child_product_reference>
+<parent_product_reference>00045977</parent_product_reference>
+<barcode></barcode>
+<title>Ashwood Small Leather Backpack Wine: Z-74</title>
+<summary>Size: One Size</summary>
+<quantity>1</quantity>
+<price_inc>85</price_inc>
+<price_ex>70.833</price_ex>
+<price_vat>14.167</price_vat>
+<tax_rate>20.000</tax_rate>
+<manufacturer_name>ASHWOOD</manufacturer_name>
+<attribute_summary>Size: One Size</attribute_summary>
+<personalisation></personalisation>
+<weight>0.00</weight>
+<product_state>0</product_state>
+<amazon_item_code></amazon_item_code>
+<commodity_code></commodity_code>
+<customs_description>Ladies &gt; Leather Handbags</customs_description>
+<country_of_origin></country_of_origin>
+</product>
+<product>
+<line>85137</line>
+<model>MB-107</model>
+<reference>0004268702</reference>
+<child_product_reference>0004268702</child_product_reference>
+<parent_product_reference>00042687</parent_product_reference>
+<barcode></barcode>
+<title>Mens Leather Belt Brown: MB-107</title>
+<summary>Size: L/XL</summary>
+<quantity>1</quantity>
+<price_inc>29.99</price_inc>
+<price_ex>24.992</price_ex>
+<price_vat>4.998</price_vat>
+<tax_rate>20.000</tax_rate>
+<manufacturer_name>ASHWOOD</manufacturer_name>
+<attribute_summary>Size: L/XL</attribute_summary>
+<personalisation></personalisation>
+<weight>0.00</weight>
+<product_state>0</product_state>
+<amazon_item_code></amazon_item_code>
+<commodity_code></commodity_code>
+<customs_description>Mens &gt; Accessories</customs_description>
+<country_of_origin>UK - Mainland</country_of_origin>
+</product>
+</products>
+<amazon_order_id></amazon_order_id>
+<amazon_fulfillment_method>MFN</amazon_fulfillment_method>
+</web_order>
+<web_order>
+<order>
+<order_state>Order Cancelled</order_state>
+<order_date>2023-11-30 22:22:23</order_date>
+<dispatch_date>0000-00-00 00:00:00</dispatch_date>
+<product_total_inc>91.658</product_total_inc>
+<product_total_ex>91.658</product_total_ex>
+<shipping_total_inc>15</shipping_total_inc>
+<shipping_total_ex>15.000</shipping_total_ex>
+<shipping_vat>0.000</shipping_vat>
+<grand_total_ex>106.658</grand_total_ex>
+<grand_total_inc>106.658</grand_total_inc>
+<grand_total_vat>0</grand_total_vat>
+<discount_ex>0.000</discount_ex>
+<discount_inc>0</discount_inc>
+<discount_vat>0.000</discount_vat>
+<order_currency>EUR</order_currency>
+<order_id>71625</order_id>
+<courier_id>6</courier_id>
+<order_reference>WEB71625</order_reference>
+<order_customer_comments> </order_customer_comments>
+<order_notes></order_notes>
+<order_type>WEB</order_type>
+<fraud_status>Not Checked</fraud_status>
+<fraud_status_date_changed>N/A</fraud_status_date_changed>
+<courier_name>Ireland, Northern Ireland (3-7 days)</courier_name>
+<inv_priority>N</inv_priority>
+<order_offer_codes_csv></order_offer_codes_csv>
+<order_applied_offers></order_applied_offers>
+</order>
+<customer>
+<customer_id>70574</customer_id>
+<email_address>louiseberkery@gmail.com</email_address>
+<billing_title></billing_title>
+<billing_company_name></billing_company_name>
+<billing_firstname>Louise</billing_firstname>
+<billing_lastname>Berkery</billing_lastname>
+<billing_fullname>Louise Berkery</billing_fullname>
+<billing_address1>Cloverhill</billing_address1>
+<billing_address2>Knockaderry</billing_address2>
+<billing_town>Co Limerick</billing_town>
+<billing_city></billing_city>
+<billing_county>Limerick</billing_county>
+<billing_country>4</billing_country>
+<billing_country_name>Ireland</billing_country_name>
+<billing_postcode>V42 K034</billing_postcode>
+<billing_telephone>0870904566</billing_telephone>
+<billing_mobile></billing_mobile>
+<billing_email>louiseberkery@gmail.com</billing_email>
+<delivery_title></delivery_title>
+<delivery_company_name></delivery_company_name>
+<delivery_firstname>Louise</delivery_firstname>
+<delivery_lastname>Berkery</delivery_lastname>
+<delivery_fullname>Louise Berkery</delivery_fullname>
+<delivery_address1>Cloverhill</delivery_address1>
+<delivery_address2>Knockaderry</delivery_address2>
+<delivery_town>Co Limerick</delivery_town>
+<delivery_city></delivery_city>
+<delivery_county>Limerick</delivery_county>
+<delivery_country>4</delivery_country>
+<delivery_country_name>Ireland</delivery_country_name>
+<delivery_postcode>V42 K034</delivery_postcode>
+<delivery_telephone>0870904566</delivery_telephone>
+<email_opt_in>No</email_opt_in>
+<post_opt_in>No</post_opt_in>
+<heard_about></heard_about>
+</customer>
+<products>
+<product>
+<line>85135</line>
+<model>G 2131</model>
+<reference>0004155804</reference>
+<child_product_reference>0004155804</child_product_reference>
+<parent_product_reference>00041558</parent_product_reference>
+<barcode></barcode>
+<title>Leather Biker Jacket Navy : Lola</title>
+<summary>Size: 14</summary>
+<quantity>1</quantity>
+<price_inc>91.658</price_inc>
+<price_ex>91.658</price_ex>
+<price_vat>0.000</price_vat>
+<tax_rate>0</tax_rate>
+<manufacturer_name>ASHWOOD</manufacturer_name>
+<attribute_summary>Size: 14</attribute_summary>
+<personalisation></personalisation>
+<weight>0.00</weight>
+<product_state>0</product_state>
+<amazon_item_code></amazon_item_code>
+<commodity_code></commodity_code>
+<customs_description>Ladies &gt; Ladies Jackets &amp; Coats</customs_description>
+<country_of_origin>UK - Mainland</country_of_origin>
+</product>
+</products>
+<amazon_order_id></amazon_order_id>
+<amazon_fulfillment_method>MFN</amazon_fulfillment_method>
+</web_order>
+<web_order>
+<order>
+<order_state>Order Dispatched</order_state>
+<order_date>2023-11-30 22:17:44</order_date>
+<dispatch_date>2023-12-01 17:40:56</dispatch_date>
+<product_total_inc>69.99</product_total_inc>
+<product_total_ex>58.325</product_total_ex>
+<shipping_total_inc>4.99</shipping_total_inc>
+<shipping_total_ex>4.158</shipping_total_ex>
+<shipping_vat>0.832</shipping_vat>
+<grand_total_ex>58.325</grand_total_ex>
+<grand_total_inc>69.990</grand_total_inc>
+<grand_total_vat>11.665</grand_total_vat>
+<discount_ex>4.158</discount_ex>
+<discount_inc>4.99</discount_inc>
+<discount_vat>0.832</discount_vat>
+<order_currency>GBP</order_currency>
+<order_id>71624</order_id>
+<courier_id>1</courier_id>
+<order_reference>WEB71624</order_reference>
+<order_customer_comments> </order_customer_comments>
+<order_notes></order_notes>
+<order_type>WEB</order_type>
+<fraud_status>Passed</fraud_status>
+<fraud_status_date_changed>2023-12-01 09:54:33</fraud_status_date_changed>
+<courier_name>UK Delivery (1-3 Days)</courier_name>
+<inv_priority>N</inv_priority>
+<order_offer_codes_csv></order_offer_codes_csv>
+<order_applied_offers>Free Delivery UK when you spend £50.00</order_applied_offers>
+</order>
+<customer>
+<customer_id>22216</customer_id>
+<email_address>geofandsuka@live.com</email_address>
+<billing_title></billing_title>
+<billing_company_name></billing_company_name>
+<billing_firstname>Arthur</billing_firstname>
+<billing_lastname>Geoffrey Thomas</billing_lastname>
+<billing_fullname>Arthur Geoffrey Thomas</billing_fullname>
+<billing_address1>5 Caroline Row</billing_address1>
+<billing_address2>Hayle</billing_address2>
+<billing_town>Cornwall</billing_town>
+<billing_city></billing_city>
+<billing_county>Cornwall</billing_county>
+<billing_country>1</billing_country>
+<billing_country_name>UK - Mainland</billing_country_name>
+<billing_postcode>Tr27 4eq</billing_postcode>
+<billing_telephone>07598001960</billing_telephone>
+<billing_mobile></billing_mobile>
+<billing_email>geofandsuka@live.com</billing_email>
+<delivery_title></delivery_title>
+<delivery_company_name></delivery_company_name>
+<delivery_firstname>Arthur</delivery_firstname>
+<delivery_lastname>Geoffrey Thomas</delivery_lastname>
+<delivery_fullname>Arthur Geoffrey Thomas</delivery_fullname>
+<delivery_address1>5 Caroline Row</delivery_address1>
+<delivery_address2>Hayle</delivery_address2>
+<delivery_town>Cornwall</delivery_town>
+<delivery_city></delivery_city>
+<delivery_county>Cornwall</delivery_county>
+<delivery_country>1</delivery_country>
+<delivery_country_name>UK - Mainland</delivery_country_name>
+<delivery_postcode>Tr27 4eq</delivery_postcode>
+<delivery_telephone>07598001960</delivery_telephone>
+<email_opt_in>Us</email_opt_in>
+<post_opt_in>No</post_opt_in>
+<heard_about></heard_about>
+</customer>
+<payment>
+<payment_amount>69.99</payment_amount>
+<payment_type>Credit or Debit Card</payment_type>
+<card_holder>Arthur Geoffrey Thomas</card_holder>
+<auth_code></auth_code>
+<transaction_reference>act_2mwmxe3lruf2tc3eo7vmwq2f64</transaction_reference>
+<security_reference>public</security_reference>
+<cv2_avs>MATCHED</cv2_avs>
+<notes>10000: Approved (Pay ID: pay_b5cuwdhgnok2hkblcfipmv6hly, Action ID: act_2mwmxe3lruf2tc3eo7vmwq2f64) - Payment captured</notes>
+</payment>
+<products>
+<product>
+<line>85134</line>
+<model>208</model>
+<reference>0003696300</reference>
+<child_product_reference>0003696300</child_product_reference>
+<parent_product_reference>00036963</parent_product_reference>
+<barcode></barcode>
+<title>Unisex Sheepskin Trapper Hat Black :  Barin</title>
+<summary>Size: S/M</summary>
+<quantity>1</quantity>
+<price_inc>69.99</price_inc>
+<price_ex>58.325</price_ex>
+<price_vat>11.665</price_vat>
+<tax_rate>20.000</tax_rate>
+<manufacturer_name>ASHWOOD</manufacturer_name>
+<attribute_summary>Size: S/M</attribute_summary>
+<personalisation></personalisation>
+<weight>0.00</weight>
+<product_state>0</product_state>
+<amazon_item_code></amazon_item_code>
+<commodity_code></commodity_code>
+<customs_description>Mens &gt; Accessories</customs_description>
+<country_of_origin>UK - Mainland</country_of_origin>
+</product>
+</products>
+<amazon_order_id></amazon_order_id>
+<amazon_fulfillment_method>MFN</amazon_fulfillment_method>
+</web_order>
+<web_order>
+<order>
+<order_state>Order Refunded</order_state>
+<order_date>2023-11-30 22:17:10</order_date>
+<dispatch_date>0000-00-00 00:00:00</dispatch_date>
+<product_total_inc>59.142</product_total_inc>
+<product_total_ex>59.142</product_total_ex>
+<shipping_total_inc>15</shipping_total_inc>
+<shipping_total_ex>15.000</shipping_total_ex>
+<shipping_vat>0.000</shipping_vat>
+<grand_total_ex>74.142</grand_total_ex>
+<grand_total_inc>74.142</grand_total_inc>
+<grand_total_vat>0</grand_total_vat>
+<discount_ex>0.000</discount_ex>
+<discount_inc>0</discount_inc>
+<discount_vat>0.000</discount_vat>
+<order_currency>GBP</order_currency>
+<order_id>71623</order_id>
+<courier_id>6</courier_id>
+<order_reference>WEB71623</order_reference>
+<order_customer_comments> </order_customer_comments>
+<order_notes></order_notes>
+<order_type>WEB</order_type>
+<fraud_status>Not Checked</fraud_status>
+<fraud_status_date_changed>N/A</fraud_status_date_changed>
+<courier_name>Ireland, Northern Ireland (3-7 days)</courier_name>
+<inv_priority>N</inv_priority>
+<order_offer_codes_csv></order_offer_codes_csv>
+<order_applied_offers></order_applied_offers>
+</order>
+<customer>
+<customer_id>70573</customer_id>
+<email_address>paula.browne@yahoo.ie</email_address>
+<billing_title></billing_title>
+<billing_company_name></billing_company_name>
+<billing_firstname>Paula</billing_firstname>
+<billing_lastname>Browne</billing_lastname>
+<billing_fullname>Paula Browne</billing_fullname>
+<billing_address1>Crofton Park</billing_address1>
+<billing_address2></billing_address2>
+<billing_town>Ballina</billing_town>
+<billing_city></billing_city>
+<billing_county>Mayo</billing_county>
+<billing_country>4</billing_country>
+<billing_country_name>Ireland</billing_country_name>
+<billing_postcode>F26H5T3</billing_postcode>
+<billing_telephone>0863981766</billing_telephone>
+<billing_mobile></billing_mobile>
+<billing_email>paula.browne@yahoo.ie</billing_email>
+<delivery_title></delivery_title>
+<delivery_company_name></delivery_company_name>
+<delivery_firstname>Paula</delivery_firstname>
+<delivery_lastname>Browne</delivery_lastname>
+<delivery_fullname>Paula Browne</delivery_fullname>
+<delivery_address1>Crofton Park</delivery_address1>
+<delivery_address2></delivery_address2>
+<delivery_town>Ballina</delivery_town>
+<delivery_city></delivery_city>
+<delivery_county>Mayo</delivery_county>
+<delivery_country>4</delivery_country>
+<delivery_country_name>Ireland</delivery_country_name>
+<delivery_postcode>F26H5T3</delivery_postcode>
+<delivery_telephone>0863981766</delivery_telephone>
+<email_opt_in>No</email_opt_in>
+<post_opt_in>No</post_opt_in>
+<heard_about></heard_about>
+</customer>
+<payment>
+<payment_amount>74.15</payment_amount>
+<payment_type>PayPal Express</payment_type>
+<card_holder>Paula Browne</card_holder>
+<auth_code></auth_code>
+<transaction_reference>37U35771M70291034</transaction_reference>
+<security_reference></security_reference>
+<cv2_avs></cv2_avs>
+<notes>Capture ID: 37U35771M70291034 Order ID: 5EK44126M67555052 Payment was successful.</notes>
+</payment>
+<products>
+<product>
+<line>85131</line>
+<model>2080</model>
+<reference>0000072500</reference>
+<child_product_reference>0000072500</child_product_reference>
+<parent_product_reference>00000725</parent_product_reference>
+<barcode></barcode>
+<title>Luggage Leather Washbag 2080 Chestnut/vt</title>
+<summary>Size: One Size</summary>
+<quantity>1</quantity>
+<price_inc>33.325</price_inc>
+<price_ex>33.325</price_ex>
+<price_vat>0.000</price_vat>
+<tax_rate>0</tax_rate>
+<manufacturer_name>ASHWOOD</manufacturer_name>
+<attribute_summary>Size: One Size</attribute_summary>
+<personalisation></personalisation>
+<weight>0.00</weight>
+<product_state>0</product_state>
+<amazon_item_code></amazon_item_code>
+<commodity_code></commodity_code>
+<customs_description>Mens &gt; Man Bags &amp; Briefcases &gt; WashBags</customs_description>
+<country_of_origin>UK - Mainland</country_of_origin>
+</product>
+<product>
+<line>85132</line>
+<model>LEATHER CREAM</model>
+<reference>0001477500</reference>
+<child_product_reference>0001477500</child_product_reference>
+<parent_product_reference>00014775</parent_product_reference>
+<barcode></barcode>
+<title>Leather Cream Cleaning Product</title>
+<summary>Size: One Size</summary>
+<quantity>1</quantity>
+<price_inc>9.992</price_inc>
+<price_ex>9.992</price_ex>
+<price_vat>0.000</price_vat>
+<tax_rate>0</tax_rate>
+<manufacturer_name>Collonil</manufacturer_name>
+<attribute_summary>Size: One Size</attribute_summary>
+<personalisation></personalisation>
+<weight>0.00</weight>
+<product_state>0</product_state>
+<amazon_item_code></amazon_item_code>
+<commodity_code></commodity_code>
+<customs_description>Gift &amp; Accessories &gt; Cleaning Products</customs_description>
+<country_of_origin></country_of_origin>
+</product>
+<product>
+<line>85133</line>
+<model>CARBON PRO</model>
+<reference>0001477300</reference>
+<child_product_reference>0001477300</child_product_reference>
+<parent_product_reference>00014773</parent_product_reference>
+<barcode></barcode>
+<title>Carbon Pro Leather Cleaning Product</title>
+<summary>Size: One Size</summary>
+<quantity>1</quantity>
+<price_inc>15.825</price_inc>
+<price_ex>15.825</price_ex>
+<price_vat>0.000</price_vat>
+<tax_rate>0</tax_rate>
+<manufacturer_name>Collonil</manufacturer_name>
+<attribute_summary>Size: One Size</attribute_summary>
+<personalisation></personalisation>
+<weight>0.00</weight>
+<product_state>0</product_state>
+<amazon_item_code></amazon_item_code>
+<commodity_code></commodity_code>
+<customs_description>Gift &amp; Accessories &gt; Cleaning Products</customs_description>
+<country_of_origin></country_of_origin>
+</product>
+</products>
+<amazon_order_id></amazon_order_id>
+<amazon_fulfillment_method>MFN</amazon_fulfillment_method>
+</web_order>
+<web_order>
+<order>
+<order_state>Order Dispatched</order_state>
+<order_date>2023-11-30 22:00:38</order_date>
+<dispatch_date>2023-12-01 17:40:57</dispatch_date>
+<product_total_inc>159</product_total_inc>
+<product_total_ex>132.500</product_total_ex>
+<shipping_total_inc>4.99</shipping_total_inc>
+<shipping_total_ex>4.158</shipping_total_ex>
+<shipping_vat>0.832</shipping_vat>
+<grand_total_ex>132.5</grand_total_ex>
+<grand_total_inc>159.000</grand_total_inc>
+<grand_total_vat>26.5</grand_total_vat>
+<discount_ex>4.158</discount_ex>
+<discount_inc>4.99</discount_inc>
+<discount_vat>0.832</discount_vat>
+<order_currency>GBP</order_currency>
+<order_id>71622</order_id>
+<courier_id>1</courier_id>
+<order_reference>WEB71622</order_reference>
+<order_customer_comments> </order_customer_comments>
+<order_notes></order_notes>
+<order_type>WEB</order_type>
+<fraud_status>Passed</fraud_status>
+<fraud_status_date_changed>2023-12-01 09:53:56</fraud_status_date_changed>
+<courier_name>UK Delivery (1-3 Days)</courier_name>
+<inv_priority>N</inv_priority>
+<order_offer_codes_csv></order_offer_codes_csv>
+<order_applied_offers>Free Delivery UK when you spend £50.00</order_applied_offers>
+</order>
+<customer>
+<customer_id>70572</customer_id>
+<email_address>sophierogers93@hotmail.com</email_address>
+<billing_title></billing_title>
+<billing_company_name></billing_company_name>
+<billing_firstname>Sophie</billing_firstname>
+<billing_lastname>Rogers</billing_lastname>
+<billing_fullname>Sophie Rogers</billing_fullname>
+<billing_address1>106 The Hoo</billing_address1>
+<billing_address2></billing_address2>
+<billing_town>Harlow</billing_town>
+<billing_city></billing_city>
+<billing_county>Essex</billing_county>
+<billing_country>1</billing_country>
+<billing_country_name>UK - Mainland</billing_country_name>
+<billing_postcode>CM17 0HS</billing_postcode>
+<billing_telephone>07969762762</billing_telephone>
+<billing_mobile></billing_mobile>
+<billing_email>sophierogers93@hotmail.com</billing_email>
+<delivery_title></delivery_title>
+<delivery_company_name></delivery_company_name>
+<delivery_firstname>Sophie</delivery_firstname>
+<delivery_lastname>Rogers</delivery_lastname>
+<delivery_fullname>Sophie Rogers</delivery_fullname>
+<delivery_address1>106 The Hoo</delivery_address1>
+<delivery_address2></delivery_address2>
+<delivery_town>Harlow</delivery_town>
+<delivery_city></delivery_city>
+<delivery_county>Essex</delivery_county>
+<delivery_country>1</delivery_country>
+<delivery_country_name>UK - Mainland</delivery_country_name>
+<delivery_postcode>CM17 0HS</delivery_postcode>
+<delivery_telephone>07969762762</delivery_telephone>
+<email_opt_in>No</email_opt_in>
+<post_opt_in>No</post_opt_in>
+<heard_about></heard_about>
+</customer>
+<payment>
+<payment_amount>159.00</payment_amount>
+<payment_type>Credit or Debit Card</payment_type>
+<card_holder>Sophie Rogers</card_holder>
+<auth_code></auth_code>
+<transaction_reference>act_3xoptk63x4jkpp7jtyaz5caazm</transaction_reference>
+<security_reference>public</security_reference>
+<cv2_avs>NOT CHECKED</cv2_avs>
+<notes>10000: Approved (Pay ID: pay_grqa4unfpd4khe2dmuhf7nq4pa, Action ID: act_3xoptk63x4jkpp7jtyaz5caazm) - Payment captured</notes>
+</payment>
+<products>
+<product>
+<line>85130</line>
+<model>2101</model>
+<reference>0004936006</reference>
+<child_product_reference>0004936006</child_product_reference>
+<parent_product_reference>00049360</parent_product_reference>
+<barcode></barcode>
+<title>Leather Biker Jacket Nevada : Bronx</title>
+<summary>Size: XL</summary>
+<quantity>1</quantity>
+<price_inc>159</price_inc>
+<price_ex>132.500</price_ex>
+<price_vat>26.500</price_vat>
+<tax_rate>20.000</tax_rate>
+<manufacturer_name>ASHWOOD</manufacturer_name>
+<attribute_summary>Size: XL</attribute_summary>
+<personalisation></personalisation>
+<weight>0.00</weight>
+<product_state>0</product_state>
+<amazon_item_code></amazon_item_code>
+<commodity_code></commodity_code>
+<customs_description></customs_description>
+<country_of_origin></country_of_origin>
+</product>
+</products>
+<amazon_order_id></amazon_order_id>
+<amazon_fulfillment_method>MFN</amazon_fulfillment_method>
+</web_order>
+<web_order>
+<order>
+<order_state>Order Incomplete</order_state>
+<order_date>2023-11-30 21:46:51</order_date>
+<dispatch_date>0000-00-00 00:00:00</dispatch_date>
+<product_total_inc>132.5</product_total_inc>
+<product_total_ex>132.500</product_total_ex>
+<shipping_total_inc>15</shipping_total_inc>
+<shipping_total_ex>15.000</shipping_total_ex>
+<shipping_vat>0.000</shipping_vat>
+<grand_total_ex>132.5</grand_total_ex>
+<grand_total_inc>132.500</grand_total_inc>
+<grand_total_vat>0</grand_total_vat>
+<discount_ex>15.000</discount_ex>
+<discount_inc>15</discount_inc>
+<discount_vat>0.000</discount_vat>
+<order_currency>GBP</order_currency>
+<order_id>71620</order_id>
+<courier_id>6</courier_id>
+<order_reference>WEB71620</order_reference>
+<order_customer_comments> </order_customer_comments>
+<order_notes></order_notes>
+<order_type>WEB</order_type>
+<fraud_status>Not Checked</fraud_status>
+<fraud_status_date_changed>N/A</fraud_status_date_changed>
+<courier_name>Ireland, Northern Ireland (3-7 days)</courier_name>
+<inv_priority>N</inv_priority>
+<order_offer_codes_csv></order_offer_codes_csv>
+<order_applied_offers>Free DELIVERY TO IRELAND  when you spend £150.00</order_applied_offers>
+</order>
+<customer>
+<customer_id>70570</customer_id>
+<email_address>joaniefallon4@icloud.com</email_address>
+<billing_title></billing_title>
+<billing_company_name></billing_company_name>
+<billing_firstname>Joan</billing_firstname>
+<billing_lastname>Fallon</billing_lastname>
+<billing_fullname>Joan Fallon</billing_fullname>
+<billing_address1>Coolaleena</billing_address1>
+<billing_address2>Glasson</billing_address2>
+<billing_town>ATHLONE</billing_town>
+<billing_city></billing_city>
+<billing_county>Westmeath</billing_county>
+<billing_country>4</billing_country>
+<billing_country_name>Ireland</billing_country_name>
+<billing_postcode>N37YY30</billing_postcode>
+<billing_telephone>0857228790</billing_telephone>
+<billing_mobile></billing_mobile>
+<billing_email>joaniefallon4@icloud.com</billing_email>
+<delivery_title></delivery_title>
+<delivery_company_name></delivery_company_name>
+<delivery_firstname>Joan</delivery_firstname>
+<delivery_lastname>Fallon</delivery_lastname>
+<delivery_fullname>Joan Fallon</delivery_fullname>
+<delivery_address1>Coolaleena</delivery_address1>
+<delivery_address2>Glasson</delivery_address2>
+<delivery_town>ATHLONE</delivery_town>
+<delivery_city></delivery_city>
+<delivery_county>Westmeath</delivery_county>
+<delivery_country>4</delivery_country>
+<delivery_country_name>Ireland</delivery_country_name>
+<delivery_postcode>N37YY30</delivery_postcode>
+<delivery_telephone>0857228790</delivery_telephone>
+<email_opt_in>Us</email_opt_in>
+<post_opt_in>No</post_opt_in>
+<heard_about></heard_about>
+</customer>
+<products>
+<product>
+<line>85128</line>
+<model>2719</model>
+<reference>0003512105</reference>
+<child_product_reference>0003512105</child_product_reference>
+<parent_product_reference>00035121</parent_product_reference>
+<barcode></barcode>
+<title>Leather Biker Jacket Black: Spartan</title>
+<summary>Size: L</summary>
+<quantity>1</quantity>
+<price_inc>132.5</price_inc>
+<price_ex>132.500</price_ex>
+<price_vat>0.000</price_vat>
+<tax_rate>0</tax_rate>
+<manufacturer_name>ASHWOOD</manufacturer_name>
+<attribute_summary>Size: L</attribute_summary>
+<personalisation></personalisation>
+<weight>0.00</weight>
+<product_state>0</product_state>
+<amazon_item_code></amazon_item_code>
+<commodity_code></commodity_code>
+<customs_description>Mens &gt; Leather Jackets &gt; Biker Styles</customs_description>
+<country_of_origin>UK - Mainland</country_of_origin>
+</product>
+</products>
+<amazon_order_id></amazon_order_id>
+<amazon_fulfillment_method>MFN</amazon_fulfillment_method>
+</web_order>
+<web_order>
+<order>
+<order_state>Order Dispatched</order_state>
+<order_date>2023-11-30 21:37:34</order_date>
+<dispatch_date>2023-12-06 17:41:52</dispatch_date>
+<product_total_inc>29.99</product_total_inc>
+<product_total_ex>24.992</product_total_ex>
+<shipping_total_inc>4.99</shipping_total_inc>
+<shipping_total_ex>4.158</shipping_total_ex>
+<shipping_vat>0.832</shipping_vat>
+<grand_total_ex>29.15</grand_total_ex>
+<grand_total_inc>34.980</grand_total_inc>
+<grand_total_vat>5.83</grand_total_vat>
+<discount_ex>0.000</discount_ex>
+<discount_inc>0</discount_inc>
+<discount_vat>0.000</discount_vat>
+<order_currency>GBP</order_currency>
+<order_id>71619</order_id>
+<courier_id>1</courier_id>
+<order_reference>WEB71619</order_reference>
+<order_customer_comments> </order_customer_comments>
+<order_notes></order_notes>
+<order_type>WEB</order_type>
+<fraud_status>Passed</fraud_status>
+<fraud_status_date_changed>2023-12-01 09:53:14</fraud_status_date_changed>
+<courier_name>UK Delivery (1-3 Days)</courier_name>
+<inv_priority>N</inv_priority>
+<order_offer_codes_csv></order_offer_codes_csv>
+<order_applied_offers></order_applied_offers>
+</order>
+<customer>
+<customer_id>70569</customer_id>
+<email_address>clarelodge73@gmail.com</email_address>
+<billing_title></billing_title>
+<billing_company_name></billing_company_name>
+<billing_firstname>clare</billing_firstname>
+<billing_lastname>lodge</billing_lastname>
+<billing_fullname>clare lodge</billing_fullname>
+<billing_address1>9</billing_address1>
+<billing_address2>Oak Ave</billing_address2>
+<billing_town>Cheadle Hulme</billing_town>
+<billing_city></billing_city>
+<billing_county></billing_county>
+<billing_country>1</billing_country>
+<billing_country_name>UK - Mainland</billing_country_name>
+<billing_postcode>SK8 5DR</billing_postcode>
+<billing_telephone>07884256278</billing_telephone>
+<billing_mobile></billing_mobile>
+<billing_email>clarelodge73@gmail.com</billing_email>
+<delivery_title></delivery_title>
+<delivery_company_name></delivery_company_name>
+<delivery_firstname>clare</delivery_firstname>
+<delivery_lastname>lodge</delivery_lastname>
+<delivery_fullname>clare lodge</delivery_fullname>
+<delivery_address1>9</delivery_address1>
+<delivery_address2>Oak Ave</delivery_address2>
+<delivery_town>Cheadle Hulme</delivery_town>
+<delivery_city></delivery_city>
+<delivery_county></delivery_county>
+<delivery_country>1</delivery_country>
+<delivery_country_name>UK - Mainland</delivery_country_name>
+<delivery_postcode>SK8 5DR</delivery_postcode>
+<delivery_telephone>07884256278</delivery_telephone>
+<email_opt_in>No</email_opt_in>
+<post_opt_in>No</post_opt_in>
+<heard_about></heard_about>
+</customer>
+<payment>
+<payment_amount>34.98</payment_amount>
+<payment_type>PayPal Express</payment_type>
+<card_holder>clare lodge</card_holder>
+<auth_code></auth_code>
+<transaction_reference>7J445817FJ399925A</transaction_reference>
+<security_reference></security_reference>
+<cv2_avs></cv2_avs>
+<notes>Capture ID: 7J445817FJ399925A Order ID: 9PS30268036806914 Payment was successful.</notes>
+</payment>
+<products>
+<product>
+<line>85127</line>
+<model>p734</model>
+<reference>0004517001</reference>
+<child_product_reference>0004517001</child_product_reference>
+<parent_product_reference>00045170</parent_product_reference>
+<barcode></barcode>
+<title>Sheepskin Fingerless Patch Mittens Taupe: P734</title>
+<summary>Size: M/L</summary>
+<quantity>1</quantity>
+<price_inc>29.99</price_inc>
+<price_ex>24.992</price_ex>
+<price_vat>4.998</price_vat>
+<tax_rate>20.000</tax_rate>
+<manufacturer_name>ASHWOOD</manufacturer_name>
+<attribute_summary>Size: M/L</attribute_summary>
+<personalisation></personalisation>
+<weight>0.00</weight>
+<product_state>0</product_state>
+<amazon_item_code></amazon_item_code>
+<commodity_code></commodity_code>
+<customs_description>Gift &amp; Accessories &gt; Ladies Gloves</customs_description>
+<country_of_origin></country_of_origin>
+</product>
+</products>
+<amazon_order_id></amazon_order_id>
+<amazon_fulfillment_method>MFN</amazon_fulfillment_method>
+</web_order>
+<web_order>
+<order>
+<order_state>Order Dispatched</order_state>
+<order_date>2023-11-30 21:23:07</order_date>
+<dispatch_date>2023-12-01 17:40:57</dispatch_date>
+<product_total_inc>55</product_total_inc>
+<product_total_ex>45.833</product_total_ex>
+<shipping_total_inc>4.99</shipping_total_inc>
+<shipping_total_ex>4.158</shipping_total_ex>
+<shipping_vat>0.832</shipping_vat>
+<grand_total_ex>45.833</grand_total_ex>
+<grand_total_inc>55.000</grand_total_inc>
+<grand_total_vat>9.167</grand_total_vat>
+<discount_ex>4.158</discount_ex>
+<discount_inc>4.99</discount_inc>
+<discount_vat>0.832</discount_vat>
+<order_currency>GBP</order_currency>
+<order_id>71618</order_id>
+<courier_id>1</courier_id>
+<order_reference>WEB71618</order_reference>
+<order_customer_comments> </order_customer_comments>
+<order_notes></order_notes>
+<order_type>WEB</order_type>
+<fraud_status>Passed</fraud_status>
+<fraud_status_date_changed>2023-12-01 09:52:47</fraud_status_date_changed>
+<courier_name>UK Delivery (1-3 Days)</courier_name>
+<inv_priority>N</inv_priority>
+<order_offer_codes_csv></order_offer_codes_csv>
+<order_applied_offers>Free Delivery UK when you spend £50.00</order_applied_offers>
+</order>
+<customer>
+<customer_id>70568</customer_id>
+<email_address>zach-stu@outlook.com</email_address>
+<billing_title></billing_title>
+<billing_company_name></billing_company_name>
+<billing_firstname>Zachary</billing_firstname>
+<billing_lastname>parker</billing_lastname>
+<billing_fullname>Zachary parker</billing_fullname>
+<billing_address1>The Tree House, Tickenham Hill</billing_address1>
+<billing_address2>Tickenham</billing_address2>
+<billing_town>Clevedon</billing_town>
+<billing_city></billing_city>
+<billing_county>Somerset</billing_county>
+<billing_country>1</billing_country>
+<billing_country_name>UK - Mainland</billing_country_name>
+<billing_postcode>BS21 6SH</billing_postcode>
+<billing_telephone>07484750263</billing_telephone>
+<billing_mobile></billing_mobile>
+<billing_email>zach-stu@outlook.com</billing_email>
+<delivery_title></delivery_title>
+<delivery_company_name></delivery_company_name>
+<delivery_firstname>Zach</delivery_firstname>
+<delivery_lastname>Parker</delivery_lastname>
+<delivery_fullname>Zach Parker</delivery_fullname>
+<delivery_address1>Tickenham Hill</delivery_address1>
+<delivery_address2>The Tree House</delivery_address2>
+<delivery_town>Clevedon</delivery_town>
+<delivery_city></delivery_city>
+<delivery_county>England</delivery_county>
+<delivery_country>1</delivery_country>
+<delivery_country_name>UK - Mainland</delivery_country_name>
+<delivery_postcode>BS21 6SH</delivery_postcode>
+<delivery_telephone>07484750263</delivery_telephone>
+<email_opt_in>No</email_opt_in>
+<post_opt_in>No</post_opt_in>
+<heard_about></heard_about>
+</customer>
+<payment>
+<payment_amount>55.00</payment_amount>
+<payment_type>ApplePay</payment_type>
+<card_holder>Zachary parker</card_holder>
+<auth_code>030592</auth_code>
+<transaction_reference>act_pmbuwxxpmfu2joxrzuismpfg5e</transaction_reference>
+<security_reference>public</security_reference>
+<cv2_avs>NOT CHECKED</cv2_avs>
+<notes>10000: Approved (Pay ID: pay_t3g27warb25kde5a2zl6p7b4r4, Action ID: act_pmbuwxxpmfu2joxrzuismpfg5e) - Payment captured</notes>
+</payment>
+<products>
+<product>
+<line>85126</line>
+<model>PADDY</model>
+<reference>0004029300</reference>
+<child_product_reference>0004029300</child_product_reference>
+<parent_product_reference>00040293</parent_product_reference>
+<barcode></barcode>
+<title>Tablet Friendly Medium Vintage Leather Body Bag Tan : Paddy</title>
+<summary>Size: One Size</summary>
+<quantity>1</quantity>
+<price_inc>55</price_inc>
+<price_ex>45.833</price_ex>
+<price_vat>9.167</price_vat>
+<tax_rate>20.000</tax_rate>
+<manufacturer_name>ASHWOOD</manufacturer_name>
+<attribute_summary>Size: One Size</attribute_summary>
+<personalisation></personalisation>
+<weight>0.00</weight>
+<product_state>0</product_state>
+<amazon_item_code></amazon_item_code>
+<commodity_code></commodity_code>
+<customs_description>Mens &gt; Man Bags &amp; Briefcases &gt; Flight Bags</customs_description>
+<country_of_origin>UK - Mainland</country_of_origin>
+</product>
+</products>
+<amazon_order_id></amazon_order_id>
+<amazon_fulfillment_method>MFN</amazon_fulfillment_method>
+</web_order>
+<web_order>
+<order>
+<order_state>Order Dispatched</order_state>
+<order_date>2023-11-30 21:10:17</order_date>
+<dispatch_date>2023-12-01 17:40:56</dispatch_date>
+<product_total_inc>14.99</product_total_inc>
+<product_total_ex>12.492</product_total_ex>
+<shipping_total_inc>4.99</shipping_total_inc>
+<shipping_total_ex>4.158</shipping_total_ex>
+<shipping_vat>0.832</shipping_vat>
+<grand_total_ex>16.65</grand_total_ex>
+<grand_total_inc>19.980</grand_total_inc>
+<grand_total_vat>3.33</grand_total_vat>
+<discount_ex>0.000</discount_ex>
+<discount_inc>0</discount_inc>
+<discount_vat>0.000</discount_vat>
+<order_currency>GBP</order_currency>
+<order_id>71617</order_id>
+<courier_id>1</courier_id>
+<order_reference>WEB71617</order_reference>
+<order_customer_comments> </order_customer_comments>
+<order_notes></order_notes>
+<order_type>WEB</order_type>
+<fraud_status>Passed</fraud_status>
+<fraud_status_date_changed>2023-12-01 09:52:22</fraud_status_date_changed>
+<courier_name>UK Delivery (1-3 Days)</courier_name>
+<inv_priority>N</inv_priority>
+<order_offer_codes_csv></order_offer_codes_csv>
+<order_applied_offers></order_applied_offers>
+</order>
+<customer>
+<customer_id>70567</customer_id>
+<email_address>suzanneanddali@gmail.com</email_address>
+<billing_title></billing_title>
+<billing_company_name></billing_company_name>
+<billing_firstname>Suzanne</billing_firstname>
+<billing_lastname> Ashton</billing_lastname>
+<billing_fullname>Suzanne  Ashton</billing_fullname>
+<billing_address1>45 Littlebridge Meadows</billing_address1>
+<billing_address2>Bridgerule</billing_address2>
+<billing_town>Holsworthy</billing_town>
+<billing_city></billing_city>
+<billing_county></billing_county>
+<billing_country>1</billing_country>
+<billing_country_name>UK - Mainland</billing_country_name>
+<billing_postcode>EX22 7DU</billing_postcode>
+<billing_telephone>07833697433</billing_telephone>
+<billing_mobile></billing_mobile>
+<billing_email>suzanneanddali@gmail.com</billing_email>
+<delivery_title></delivery_title>
+<delivery_company_name></delivery_company_name>
+<delivery_firstname>Suzanne </delivery_firstname>
+<delivery_lastname>Ashton </delivery_lastname>
+<delivery_fullname>Suzanne  Ashton </delivery_fullname>
+<delivery_address1>45 Littlebridge Meadows </delivery_address1>
+<delivery_address2>Bridgerule</delivery_address2>
+<delivery_town>Holsworthy </delivery_town>
+<delivery_city></delivery_city>
+<delivery_county>Devon</delivery_county>
+<delivery_country>1</delivery_country>
+<delivery_country_name>UK - Mainland</delivery_country_name>
+<delivery_postcode>EX22 7DU</delivery_postcode>
+<delivery_telephone>07833697433</delivery_telephone>
+<email_opt_in>No</email_opt_in>
+<post_opt_in>No</post_opt_in>
+<heard_about></heard_about>
+</customer>
+<payment>
+<payment_amount>19.98</payment_amount>
+<payment_type>ApplePay</payment_type>
+<card_holder>Suzanne  Ashton</card_holder>
+<auth_code>030197</auth_code>
+<transaction_reference>act_gxa443o6bau2fnn5dwu2d7dgna</transaction_reference>
+<security_reference>public</security_reference>
+<cv2_avs>NOT CHECKED</cv2_avs>
+<notes>10000: Approved (Pay ID: pay_4ux5g4swgo6kpfxoj3bo4jyp24, Action ID: act_gxa443o6bau2fnn5dwu2d7dgna) - Payment captured</notes>
+</payment>
+<products>
+<product>
+<line>85125</line>
+<model>711 C</model>
+<reference>0002078000</reference>
+<child_product_reference>0002078000</child_product_reference>
+<parent_product_reference>00020780</parent_product_reference>
+<barcode></barcode>
+<title>Men&#039;s Leather Gloves Black : 711 C </title>
+<summary>Size: S/M</summary>
+<quantity>1</quantity>
+<price_inc>14.99</price_inc>
+<price_ex>12.492</price_ex>
+<price_vat>2.498</price_vat>
+<tax_rate>20.000</tax_rate>
+<manufacturer_name>ASHWOOD</manufacturer_name>
+<attribute_summary>Size: S/M</attribute_summary>
+<personalisation></personalisation>
+<weight>0.00</weight>
+<product_state>0</product_state>
+<amazon_item_code></amazon_item_code>
+<commodity_code></commodity_code>
+<customs_description>Mens &gt; Accessories</customs_description>
+<country_of_origin>UK - Mainland</country_of_origin>
+</product>
+</products>
+<amazon_order_id></amazon_order_id>
+<amazon_fulfillment_method>MFN</amazon_fulfillment_method>
+</web_order>
+<web_order>
+<order>
+<order_state>Order Dispatched</order_state>
+<order_date>2023-11-30 20:51:41</order_date>
+<dispatch_date>2023-12-01 17:40:57</dispatch_date>
+<product_total_inc>34.99</product_total_inc>
+<product_total_ex>29.158</product_total_ex>
+<shipping_total_inc>4.99</shipping_total_inc>
+<shipping_total_ex>4.158</shipping_total_ex>
+<shipping_vat>0.832</shipping_vat>
+<grand_total_ex>33.316</grand_total_ex>
+<grand_total_inc>39.980</grand_total_inc>
+<grand_total_vat>6.664</grand_total_vat>
+<discount_ex>0.000</discount_ex>
+<discount_inc>0</discount_inc>
+<discount_vat>0.000</discount_vat>
+<order_currency>GBP</order_currency>
+<order_id>71616</order_id>
+<courier_id>1</courier_id>
+<order_reference>WEB71616</order_reference>
+<order_customer_comments> </order_customer_comments>
+<order_notes></order_notes>
+<order_type>WEB</order_type>
+<fraud_status>Passed</fraud_status>
+<fraud_status_date_changed>2023-12-01 09:52:00</fraud_status_date_changed>
+<courier_name>UK Delivery (1-3 Days)</courier_name>
+<inv_priority>N</inv_priority>
+<order_offer_codes_csv></order_offer_codes_csv>
+<order_applied_offers></order_applied_offers>
+</order>
+<customer>
+<customer_id>70566</customer_id>
+<email_address>smithynic75@gmail.com</email_address>
+<billing_title></billing_title>
+<billing_company_name></billing_company_name>
+<billing_firstname>Nicola</billing_firstname>
+<billing_lastname>Smith</billing_lastname>
+<billing_fullname>Nicola Smith</billing_fullname>
+<billing_address1>33</billing_address1>
+<billing_address2>Croft close</billing_address2>
+<billing_town>Barnsley</billing_town>
+<billing_city></billing_city>
+<billing_county></billing_county>
+<billing_country>1</billing_country>
+<billing_country_name>UK - Mainland</billing_country_name>
+<billing_postcode>S756fn</billing_postcode>
+<billing_telephone></billing_telephone>
+<billing_mobile></billing_mobile>
+<billing_email>smithynic75@gmail.com</billing_email>
+<delivery_title></delivery_title>
+<delivery_company_name></delivery_company_name>
+<delivery_firstname>Nicola</delivery_firstname>
+<delivery_lastname>Cunliffe</delivery_lastname>
+<delivery_fullname>Nicola Cunliffe</delivery_fullname>
+<delivery_address1>33</delivery_address1>
+<delivery_address2>Croft close</delivery_address2>
+<delivery_town>Barnsley</delivery_town>
+<delivery_city></delivery_city>
+<delivery_county></delivery_county>
+<delivery_country>1</delivery_country>
+<delivery_country_name>UK - Mainland</delivery_country_name>
+<delivery_postcode>S756fn</delivery_postcode>
+<delivery_telephone></delivery_telephone>
+<email_opt_in>No</email_opt_in>
+<post_opt_in>No</post_opt_in>
+<heard_about></heard_about>
+</customer>
+<payment>
+<payment_amount>39.98</payment_amount>
+<payment_type>PayPal Express</payment_type>
+<card_holder>Nicola Smith</card_holder>
+<auth_code></auth_code>
+<transaction_reference>5PR873086G7607110</transaction_reference>
+<security_reference></security_reference>
+<cv2_avs></cv2_avs>
+<notes>Capture ID: 5PR873086G7607110 Order ID: 80J46163VL6227330 Payment was successful.</notes>
+</payment>
+<products>
+<product>
+<line>85124</line>
+<model>s1</model>
+<reference>0004522900</reference>
+<child_product_reference>0004522900</child_product_reference>
+<parent_product_reference>00045229</parent_product_reference>
+<barcode></barcode>
+<title>14 Card RFID Protected Large Leather Purse Black: S1</title>
+<summary>Size: One Size</summary>
+<quantity>1</quantity>
+<price_inc>34.99</price_inc>
+<price_ex>29.158</price_ex>
+<price_vat>5.832</price_vat>
+<tax_rate>20.000</tax_rate>
+<manufacturer_name>ASHWOOD</manufacturer_name>
+<attribute_summary>Size: One Size</attribute_summary>
+<personalisation></personalisation>
+<weight>0.00</weight>
+<product_state>0</product_state>
+<amazon_item_code></amazon_item_code>
+<commodity_code></commodity_code>
+<customs_description>Gift &amp; Accessories &gt; Purses</customs_description>
+<country_of_origin></country_of_origin>
+</product>
+</products>
+<amazon_order_id></amazon_order_id>
+<amazon_fulfillment_method>MFN</amazon_fulfillment_method>
+</web_order>
+<web_order>
+<order>
+<order_state>Order Dispatched</order_state>
+<order_date>2023-11-30 20:49:41</order_date>
+<dispatch_date>2023-12-01 17:40:57</dispatch_date>
+<product_total_inc>50</product_total_inc>
+<product_total_ex>41.667</product_total_ex>
+<shipping_total_inc>4.99</shipping_total_inc>
+<shipping_total_ex>4.158</shipping_total_ex>
+<shipping_vat>0.832</shipping_vat>
+<grand_total_ex>41.667</grand_total_ex>
+<grand_total_inc>50.000</grand_total_inc>
+<grand_total_vat>8.333</grand_total_vat>
+<discount_ex>4.158</discount_ex>
+<discount_inc>4.99</discount_inc>
+<discount_vat>0.832</discount_vat>
+<order_currency>GBP</order_currency>
+<order_id>71615</order_id>
+<courier_id>1</courier_id>
+<order_reference>WEB71615</order_reference>
+<order_customer_comments> </order_customer_comments>
+<order_notes></order_notes>
+<order_type>WEB</order_type>
+<fraud_status>Passed</fraud_status>
+<fraud_status_date_changed>2023-12-01 09:51:36</fraud_status_date_changed>
+<courier_name>UK Delivery (1-3 Days)</courier_name>
+<inv_priority>N</inv_priority>
+<order_offer_codes_csv></order_offer_codes_csv>
+<order_applied_offers>Free Delivery UK when you spend £50.00</order_applied_offers>
+</order>
+<customer>
+<customer_id>70565</customer_id>
+<email_address>martapermed@gmail.com</email_address>
+<billing_title></billing_title>
+<billing_company_name></billing_company_name>
+<billing_firstname>Marta</billing_firstname>
+<billing_lastname>Pérez</billing_lastname>
+<billing_fullname>Marta Pérez</billing_fullname>
+<billing_address1>80 Heworth Road</billing_address1>
+<billing_address2></billing_address2>
+<billing_town>York</billing_town>
+<billing_city></billing_city>
+<billing_county>North Yorkshire</billing_county>
+<billing_country>1</billing_country>
+<billing_country_name>UK - Mainland</billing_country_name>
+<billing_postcode>YO31 0AD</billing_postcode>
+<billing_telephone>692666076</billing_telephone>
+<billing_mobile></billing_mobile>
+<billing_email>martapermed@gmail.com</billing_email>
+<delivery_title></delivery_title>
+<delivery_company_name></delivery_company_name>
+<delivery_firstname>Marta</delivery_firstname>
+<delivery_lastname>Perez</delivery_lastname>
+<delivery_fullname>Marta Perez</delivery_fullname>
+<delivery_address1>80, Heworth Road </delivery_address1>
+<delivery_address2></delivery_address2>
+<delivery_town>York</delivery_town>
+<delivery_city></delivery_city>
+<delivery_county>North Yorkshire </delivery_county>
+<delivery_country>1</delivery_country>
+<delivery_country_name>UK - Mainland</delivery_country_name>
+<delivery_postcode>YO31 0AD</delivery_postcode>
+<delivery_telephone>+34692666076</delivery_telephone>
+<email_opt_in>No</email_opt_in>
+<post_opt_in>No</post_opt_in>
+<heard_about></heard_about>
+</customer>
+<payment>
+<payment_amount>50.00</payment_amount>
+<payment_type>ApplePay</payment_type>
+<card_holder>Marta Perez</card_holder>
+<auth_code>783073</auth_code>
+<transaction_reference>act_sehmqiry6x423phndlxjctlkcq</transaction_reference>
+<security_reference>public</security_reference>
+<cv2_avs>NOT CHECKED</cv2_avs>
+<notes>10000: Approved (Pay ID: pay_2l5xfgrx6ai2rdqcuuwbfay73q, Action ID: act_sehmqiry6x423phndlxjctlkcq) - Payment captured</notes>
+</payment>
+<products>
+<product>
+<line>85123</line>
+<model>RUDY</model>
+<reference>0003847700</reference>
+<child_product_reference>0003847700</child_product_reference>
+<parent_product_reference>00038477</parent_product_reference>
+<barcode></barcode>
+<title>Leather Wash Bag Brandy : Rudy  </title>
+<summary>Size: One Size</summary>
+<quantity>1</quantity>
+<price_inc>50</price_inc>
+<price_ex>41.667</price_ex>
+<price_vat>8.333</price_vat>
+<tax_rate>20.000</tax_rate>
+<manufacturer_name>ASHWOOD</manufacturer_name>
+<attribute_summary>Size: One Size</attribute_summary>
+<personalisation></personalisation>
+<weight>0.00</weight>
+<product_state>0</product_state>
+<amazon_item_code></amazon_item_code>
+<commodity_code></commodity_code>
+<customs_description>Mens &gt; Man Bags &amp; Briefcases &gt; WashBags</customs_description>
+<country_of_origin>UK - Mainland</country_of_origin>
+</product>
+</products>
+<amazon_order_id></amazon_order_id>
+<amazon_fulfillment_method>MFN</amazon_fulfillment_method>
+</web_order>
+<web_order>
+<order>
+<order_state>Order Dispatched</order_state>
+<order_date>2023-11-30 20:43:10</order_date>
+<dispatch_date>2023-12-01 17:40:57</dispatch_date>
+<product_total_inc>45</product_total_inc>
+<product_total_ex>37.500</product_total_ex>
+<shipping_total_inc>4.99</shipping_total_inc>
+<shipping_total_ex>4.158</shipping_total_ex>
+<shipping_vat>0.832</shipping_vat>
+<grand_total_ex>41.658</grand_total_ex>
+<grand_total_inc>49.990</grand_total_inc>
+<grand_total_vat>8.332</grand_total_vat>
+<discount_ex>0.000</discount_ex>
+<discount_inc>0</discount_inc>
+<discount_vat>0.000</discount_vat>
+<order_currency>GBP</order_currency>
+<order_id>71614</order_id>
+<courier_id>1</courier_id>
+<order_reference>WEB71614</order_reference>
+<order_customer_comments> </order_customer_comments>
+<order_notes></order_notes>
+<order_type>WEB</order_type>
+<fraud_status>Passed</fraud_status>
+<fraud_status_date_changed>2023-12-01 09:51:14</fraud_status_date_changed>
+<courier_name>UK Delivery (1-3 Days)</courier_name>
+<inv_priority>N</inv_priority>
+<order_offer_codes_csv></order_offer_codes_csv>
+<order_applied_offers></order_applied_offers>
+</order>
+<customer>
+<customer_id>70564</customer_id>
+<email_address>matthias.rittmeier@live.com</email_address>
+<billing_title></billing_title>
+<billing_company_name></billing_company_name>
+<billing_firstname>Charlotte</billing_firstname>
+<billing_lastname>Kilford</billing_lastname>
+<billing_fullname>Charlotte Kilford</billing_fullname>
+<billing_address1>Kenmore, Upper Northam Drive</billing_address1>
+<billing_address2>Hedge End</billing_address2>
+<billing_town>Southampton</billing_town>
+<billing_city></billing_city>
+<billing_county>Hampshire</billing_county>
+<billing_country>1</billing_country>
+<billing_country_name>UK - Mainland</billing_country_name>
+<billing_postcode>SO30 4BG</billing_postcode>
+<billing_telephone>+41762882393</billing_telephone>
+<billing_mobile></billing_mobile>
+<billing_email>matthias.rittmeier@live.com</billing_email>
+<delivery_title></delivery_title>
+<delivery_company_name></delivery_company_name>
+<delivery_firstname>Charlotte</delivery_firstname>
+<delivery_lastname>Kilford</delivery_lastname>
+<delivery_fullname>Charlotte Kilford</delivery_fullname>
+<delivery_address1>Kenmore, Upper Northam Drive</delivery_address1>
+<delivery_address2>Hedge End</delivery_address2>
+<delivery_town>Southampton</delivery_town>
+<delivery_city></delivery_city>
+<delivery_county>Hampshire</delivery_county>
+<delivery_country>1</delivery_country>
+<delivery_country_name>UK - Mainland</delivery_country_name>
+<delivery_postcode>SO30 4BG</delivery_postcode>
+<delivery_telephone>+41762882393</delivery_telephone>
+<email_opt_in>No</email_opt_in>
+<post_opt_in>No</post_opt_in>
+<heard_about></heard_about>
+</customer>
+<payment>
+<payment_amount>49.99</payment_amount>
+<payment_type>Credit or Debit Card</payment_type>
+<card_holder>Charlotte Kilford</card_holder>
+<auth_code></auth_code>
+<transaction_reference>act_abnqhtuoc7fkbg5txlsnhnofrm</transaction_reference>
+<security_reference>public</security_reference>
+<cv2_avs>NOT CHECKED</cv2_avs>
+<notes>10000: Approved (Pay ID: pay_f6rietlfnl2kxauti4qc6xhukm, Action ID: act_abnqhtuoc7fkbg5txlsnhnofrm) - Payment captured</notes>
+</payment>
+<products>
+<product>
+<line>85122</line>
+<model>t-80</model>
+<reference>0004824600</reference>
+<child_product_reference>0004824600</child_product_reference>
+<parent_product_reference>00048246</parent_product_reference>
+<barcode></barcode>
+<title>Ashwood Ladies Leather Phonebag/Purse Honey: T-80</title>
+<summary>Size: One Size</summary>
+<quantity>1</quantity>
+<price_inc>45</price_inc>
+<price_ex>37.500</price_ex>
+<price_vat>7.500</price_vat>
+<tax_rate>20.000</tax_rate>
+<manufacturer_name>ASHWOOD</manufacturer_name>
+<attribute_summary>Size: One Size</attribute_summary>
+<personalisation></personalisation>
+<weight>0.00</weight>
+<product_state>0</product_state>
+<amazon_item_code></amazon_item_code>
+<commodity_code></commodity_code>
+<customs_description></customs_description>
+<country_of_origin></country_of_origin>
+</product>
+</products>
+<amazon_order_id></amazon_order_id>
+<amazon_fulfillment_method>MFN</amazon_fulfillment_method>
+</web_order>
+<web_order>
+<order>
+<order_state>Order Dispatched</order_state>
+<order_date>2023-11-30 20:38:09</order_date>
+<dispatch_date>2023-12-01 17:40:56</dispatch_date>
+<product_total_inc>48.74</product_total_inc>
+<product_total_ex>40.617</product_total_ex>
+<shipping_total_inc>4.99</shipping_total_inc>
+<shipping_total_ex>4.158</shipping_total_ex>
+<shipping_vat>0.832</shipping_vat>
+<grand_total_ex>44.775</grand_total_ex>
+<grand_total_inc>53.730</grand_total_inc>
+<grand_total_vat>8.955</grand_total_vat>
+<discount_ex>0.000</discount_ex>
+<discount_inc>0</discount_inc>
+<discount_vat>0.000</discount_vat>
+<order_currency>GBP</order_currency>
+<order_id>71613</order_id>
+<courier_id>1</courier_id>
+<order_reference>WEB71613</order_reference>
+<order_customer_comments> </order_customer_comments>
+<order_notes></order_notes>
+<order_type>WEB</order_type>
+<fraud_status>Passed</fraud_status>
+<fraud_status_date_changed>2023-12-01 09:50:53</fraud_status_date_changed>
+<courier_name>UK Delivery (1-3 Days)</courier_name>
+<inv_priority>N</inv_priority>
+<order_offer_codes_csv></order_offer_codes_csv>
+<order_applied_offers></order_applied_offers>
+</order>
+<customer>
+<customer_id>70563</customer_id>
+<email_address>gordonsingleton@btinternet.com</email_address>
+<billing_title></billing_title>
+<billing_company_name></billing_company_name>
+<billing_firstname>Gordon</billing_firstname>
+<billing_lastname>Singleton</billing_lastname>
+<billing_fullname>Gordon Singleton</billing_fullname>
+<billing_address1>1 Riverside Drive Clun</billing_address1>
+<billing_address2></billing_address2>
+<billing_town>CRAVEN ARMS</billing_town>
+<billing_city></billing_city>
+<billing_county></billing_county>
+<billing_country>1</billing_country>
+<billing_country_name>UK - Mainland</billing_country_name>
+<billing_postcode>SY7 8LL</billing_postcode>
+<billing_telephone></billing_telephone>
+<billing_mobile></billing_mobile>
+<billing_email>gordonsingleton@btinternet.com</billing_email>
+<delivery_title></delivery_title>
+<delivery_company_name></delivery_company_name>
+<delivery_firstname>Gordon</delivery_firstname>
+<delivery_lastname>Singleton</delivery_lastname>
+<delivery_fullname>Gordon Singleton</delivery_fullname>
+<delivery_address1>1 Riverside Drive Clun</delivery_address1>
+<delivery_address2></delivery_address2>
+<delivery_town>CRAVEN ARMS</delivery_town>
+<delivery_city></delivery_city>
+<delivery_county></delivery_county>
+<delivery_country>1</delivery_country>
+<delivery_country_name>UK - Mainland</delivery_country_name>
+<delivery_postcode>SY7 8LL</delivery_postcode>
+<delivery_telephone></delivery_telephone>
+<email_opt_in>No</email_opt_in>
+<post_opt_in>No</post_opt_in>
+<heard_about></heard_about>
+</customer>
+<payment>
+<payment_amount>53.73</payment_amount>
+<payment_type>PayPal Express</payment_type>
+<card_holder>Gordon Singleton</card_holder>
+<auth_code></auth_code>
+<transaction_reference>5UP71791F36983647</transaction_reference>
+<security_reference></security_reference>
+<cv2_avs></cv2_avs>
+<notes>Capture ID: 5UP71791F36983647 Order ID: 5BJ3837553577233H Payment was successful.</notes>
+</payment>
+<products>
+<product>
+<line>85121</line>
+<model>MENS MOCCASSINS</model>
+<reference>0003937404</reference>
+<child_product_reference>0003937404</child_product_reference>
+<parent_product_reference>00039374</parent_product_reference>
+<barcode></barcode>
+<title>Fenland Classic Mens Suede Sheepskin Moccasin Slippers Navy/navy</title>
+<summary>Size: 11/12</summary>
+<quantity>1</quantity>
+<price_inc>48.74</price_inc>
+<price_ex>40.617</price_ex>
+<price_vat>8.123</price_vat>
+<tax_rate>20.000</tax_rate>
+<manufacturer_name>Fenland</manufacturer_name>
+<attribute_summary>Size: 11/12</attribute_summary>
+<personalisation></personalisation>
+<weight>0.00</weight>
+<product_state>0</product_state>
+<amazon_item_code></amazon_item_code>
+<commodity_code></commodity_code>
+<customs_description>Mens &gt; Accessories</customs_description>
+<country_of_origin></country_of_origin>
+</product>
+</products>
+<amazon_order_id></amazon_order_id>
+<amazon_fulfillment_method>MFN</amazon_fulfillment_method>
+</web_order>
+<web_order>
+<order>
+<order_state>Order Refunded</order_state>
+<order_date>2023-11-30 20:19:38</order_date>
+<dispatch_date>2023-12-01 17:40:57</dispatch_date>
+<product_total_inc>75</product_total_inc>
+<product_total_ex>62.500</product_total_ex>
+<shipping_total_inc>4.99</shipping_total_inc>
+<shipping_total_ex>4.158</shipping_total_ex>
+<shipping_vat>0.832</shipping_vat>
+<grand_total_ex>62.5</grand_total_ex>
+<grand_total_inc>75.000</grand_total_inc>
+<grand_total_vat>12.5</grand_total_vat>
+<discount_ex>4.158</discount_ex>
+<discount_inc>4.99</discount_inc>
+<discount_vat>0.832</discount_vat>
+<order_currency>GBP</order_currency>
+<order_id>71612</order_id>
+<courier_id>1</courier_id>
+<order_reference>WEB71612</order_reference>
+<order_customer_comments> </order_customer_comments>
+<order_notes></order_notes>
+<order_type>WEB</order_type>
+<fraud_status>Passed</fraud_status>
+<fraud_status_date_changed>2023-12-01 09:50:31</fraud_status_date_changed>
+<courier_name>UK Delivery (1-3 Days)</courier_name>
+<inv_priority>N</inv_priority>
+<order_offer_codes_csv></order_offer_codes_csv>
+<order_applied_offers>Free Delivery UK when you spend £50.00</order_applied_offers>
+</order>
+<customer>
+<customer_id>70561</customer_id>
+<email_address>carter.jacqueline.a@gmail.com</email_address>
+<billing_title></billing_title>
+<billing_company_name></billing_company_name>
+<billing_firstname>Jacqueline</billing_firstname>
+<billing_lastname>Kennedy-Lorraine</billing_lastname>
+<billing_fullname>Jacqueline Kennedy-Lorraine</billing_fullname>
+<billing_address1>2 Higher Village</billing_address1>
+<billing_address2>Pyworthy</billing_address2>
+<billing_town>Holsworthy</billing_town>
+<billing_city></billing_city>
+<billing_county>Devon</billing_county>
+<billing_country>1</billing_country>
+<billing_country_name>UK - Mainland</billing_country_name>
+<billing_postcode>EX22 6ST</billing_postcode>
+<billing_telephone>07369687177</billing_telephone>
+<billing_mobile></billing_mobile>
+<billing_email>carter.jacqueline.a@gmail.com</billing_email>
+<delivery_title></delivery_title>
+<delivery_company_name></delivery_company_name>
+<delivery_firstname>Jacqueline</delivery_firstname>
+<delivery_lastname>Kennedy-Lorraine</delivery_lastname>
+<delivery_fullname>Jacqueline Kennedy-Lorraine</delivery_fullname>
+<delivery_address1>2 Higher Village</delivery_address1>
+<delivery_address2>Pyworthy</delivery_address2>
+<delivery_town>Holsworthy</delivery_town>
+<delivery_city></delivery_city>
+<delivery_county>Devon</delivery_county>
+<delivery_country>1</delivery_country>
+<delivery_country_name>UK - Mainland</delivery_country_name>
+<delivery_postcode>EX22 6ST</delivery_postcode>
+<delivery_telephone>07369687177</delivery_telephone>
+<email_opt_in>No</email_opt_in>
+<post_opt_in>No</post_opt_in>
+<heard_about></heard_about>
+</customer>
+<payment>
+<payment_amount>75.00</payment_amount>
+<payment_type>Credit or Debit Card</payment_type>
+<card_holder>Jacqueline Kennedy-Lorraine</card_holder>
+<auth_code></auth_code>
+<transaction_reference>act_mhz64iwojuu2rncnru23waxxiy</transaction_reference>
+<security_reference>public</security_reference>
+<cv2_avs>MATCHED</cv2_avs>
+<notes>10000: Approved (Pay ID: pay_2vwipwfupaz2tjknmby2liyibe, Action ID: act_mhz64iwojuu2rncnru23waxxiy) - Payment captured</notes>
+</payment>
+<products>
+<product>
+<line>85120</line>
+<model>1665 BAG</model>
+<reference>0003180800</reference>
+<child_product_reference>0003180800</child_product_reference>
+<parent_product_reference>00031808</parent_product_reference>
+<barcode></barcode>
+<title>Oily Hunter Large Travel Flight Bag Tan: 1665</title>
+<summary>Size: One Size</summary>
+<quantity>1</quantity>
+<price_inc>75</price_inc>
+<price_ex>62.500</price_ex>
+<price_vat>12.500</price_vat>
+<tax_rate>20.000</tax_rate>
+<manufacturer_name>ASHWOOD</manufacturer_name>
+<attribute_summary>Size: One Size</attribute_summary>
+<personalisation></personalisation>
+<weight>0.00</weight>
+<product_state>0</product_state>
+<amazon_item_code></amazon_item_code>
+<commodity_code></commodity_code>
+<customs_description>Mens &gt; Man Bags &amp; Briefcases &gt; Laptop Messenger Bags</customs_description>
+<country_of_origin>UK - Mainland</country_of_origin>
+</product>
+</products>
+<amazon_order_id></amazon_order_id>
+<amazon_fulfillment_method>MFN</amazon_fulfillment_method>
+</web_order>
+<web_order>
+<order>
+<order_state>Order Incomplete</order_state>
+<order_date>2023-11-30 20:16:24</order_date>
+<dispatch_date>0000-00-00 00:00:00</dispatch_date>
+<product_total_inc>159</product_total_inc>
+<product_total_ex>132.500</product_total_ex>
+<shipping_total_inc>4.99</shipping_total_inc>
+<shipping_total_ex>4.158</shipping_total_ex>
+<shipping_vat>0.832</shipping_vat>
+<grand_total_ex>132.5</grand_total_ex>
+<grand_total_inc>159.000</grand_total_inc>
+<grand_total_vat>26.5</grand_total_vat>
+<discount_ex>4.158</discount_ex>
+<discount_inc>4.99</discount_inc>
+<discount_vat>0.832</discount_vat>
+<order_currency>GBP</order_currency>
+<order_id>71611</order_id>
+<courier_id>1</courier_id>
+<order_reference>WEB71611</order_reference>
+<order_customer_comments> </order_customer_comments>
+<order_notes></order_notes>
+<order_type>WEB</order_type>
+<fraud_status>Not Checked</fraud_status>
+<fraud_status_date_changed>N/A</fraud_status_date_changed>
+<courier_name>UK Delivery (1-3 Days)</courier_name>
+<inv_priority>N</inv_priority>
+<order_offer_codes_csv></order_offer_codes_csv>
+<order_applied_offers>Free Delivery UK when you spend £50.00</order_applied_offers>
+</order>
+<customer>
+<customer_id>70559</customer_id>
+<email_address>gershony1post@yahoo.com</email_address>
+<billing_title></billing_title>
+<billing_company_name></billing_company_name>
+<billing_firstname>Gregory</billing_firstname>
+<billing_lastname>Brainin</billing_lastname>
+<billing_fullname>Gregory Brainin</billing_fullname>
+<billing_address1>Ibis Hotel</billing_address1>
+<billing_address2>47 Lillie Road</billing_address2>
+<billing_town>London</billing_town>
+<billing_city></billing_city>
+<billing_county></billing_county>
+<billing_country>1</billing_country>
+<billing_country_name>UK - Mainland</billing_country_name>
+<billing_postcode>SW6 1UD</billing_postcode>
+<billing_telephone>+972545243647</billing_telephone>
+<billing_mobile></billing_mobile>
+<billing_email>gershony1post@yahoo.com</billing_email>
+<delivery_title></delivery_title>
+<delivery_company_name></delivery_company_name>
+<delivery_firstname>Gregory</delivery_firstname>
+<delivery_lastname>Brainin</delivery_lastname>
+<delivery_fullname>Gregory Brainin</delivery_fullname>
+<delivery_address1>Ibis Hotel</delivery_address1>
+<delivery_address2>47 Lillie Road</delivery_address2>
+<delivery_town>London</delivery_town>
+<delivery_city></delivery_city>
+<delivery_county></delivery_county>
+<delivery_country>1</delivery_country>
+<delivery_country_name>UK - Mainland</delivery_country_name>
+<delivery_postcode>SW6 1UD</delivery_postcode>
+<delivery_telephone>+972545243647</delivery_telephone>
+<email_opt_in>No</email_opt_in>
+<post_opt_in>No</post_opt_in>
+<heard_about></heard_about>
+</customer>
+<products>
+<product>
+<line>85119</line>
+<model>2101</model>
+<reference>0004936005</reference>
+<child_product_reference>0004936005</child_product_reference>
+<parent_product_reference>00049360</parent_product_reference>
+<barcode></barcode>
+<title>Leather Biker Jacket Nevada : Bronx</title>
+<summary>Size: L</summary>
+<quantity>1</quantity>
+<price_inc>159</price_inc>
+<price_ex>132.500</price_ex>
+<price_vat>26.500</price_vat>
+<tax_rate>20.000</tax_rate>
+<manufacturer_name>ASHWOOD</manufacturer_name>
+<attribute_summary>Size: L</attribute_summary>
+<personalisation></personalisation>
+<weight>0.00</weight>
+<product_state>0</product_state>
+<amazon_item_code></amazon_item_code>
+<commodity_code></commodity_code>
+<customs_description></customs_description>
+<country_of_origin></country_of_origin>
+</product>
+</products>
+<amazon_order_id></amazon_order_id>
+<amazon_fulfillment_method>MFN</amazon_fulfillment_method>
+</web_order>
+<web_order>
+<order>
+<order_state>Order Dispatched</order_state>
+<order_date>2023-11-30 20:15:08</order_date>
+<dispatch_date>2023-12-01 17:40:57</dispatch_date>
+<product_total_inc>129</product_total_inc>
+<product_total_ex>107.500</product_total_ex>
+<shipping_total_inc>15</shipping_total_inc>
+<shipping_total_ex>15.000</shipping_total_ex>
+<shipping_vat>0.000</shipping_vat>
+<grand_total_ex>122.5</grand_total_ex>
+<grand_total_inc>144.000</grand_total_inc>
+<grand_total_vat>21.5</grand_total_vat>
+<discount_ex>0.000</discount_ex>
+<discount_inc>0</discount_inc>
+<discount_vat>0.000</discount_vat>
+<order_currency>GBP</order_currency>
+<order_id>71610</order_id>
+<courier_id>6</courier_id>
+<order_reference>WEB71610</order_reference>
+<order_customer_comments> </order_customer_comments>
+<order_notes></order_notes>
+<order_type>WEB</order_type>
+<fraud_status>Passed</fraud_status>
+<fraud_status_date_changed>2023-12-01 09:50:05</fraud_status_date_changed>
+<courier_name>Ireland, Northern Ireland (3-7 days)</courier_name>
+<inv_priority>N</inv_priority>
+<order_offer_codes_csv></order_offer_codes_csv>
+<order_applied_offers></order_applied_offers>
+</order>
+<customer>
+<customer_id>70560</customer_id>
+<email_address>jasblack1@hotmail.com</email_address>
+<billing_title></billing_title>
+<billing_company_name></billing_company_name>
+<billing_firstname>Julie-Ann</billing_firstname>
+<billing_lastname>Patterson</billing_lastname>
+<billing_fullname>Julie-Ann Patterson</billing_fullname>
+<billing_address1>Chapel Road</billing_address1>
+<billing_address2></billing_address2>
+<billing_town>Castlefinn</billing_town>
+<billing_city></billing_city>
+<billing_county>Donegal</billing_county>
+<billing_country>4</billing_country>
+<billing_country_name>Ireland</billing_country_name>
+<billing_postcode></billing_postcode>
+<billing_telephone></billing_telephone>
+<billing_mobile></billing_mobile>
+<billing_email>jasblack1@hotmail.com</billing_email>
+<delivery_title></delivery_title>
+<delivery_company_name></delivery_company_name>
+<delivery_firstname>Julie Ann</delivery_firstname>
+<delivery_lastname>Patterson</delivery_lastname>
+<delivery_fullname>Julie Ann Patterson</delivery_fullname>
+<delivery_address1>24 Bayswater</delivery_address1>
+<delivery_address2>Caw</delivery_address2>
+<delivery_town>Londonderry</delivery_town>
+<delivery_city></delivery_city>
+<delivery_county>Londonderry</delivery_county>
+<delivery_country>3</delivery_country>
+<delivery_country_name>UK - Northern Ireland</delivery_country_name>
+<delivery_postcode>BT47 6JL</delivery_postcode>
+<delivery_telephone>+447885104545</delivery_telephone>
+<email_opt_in>No</email_opt_in>
+<post_opt_in>No</post_opt_in>
+<heard_about></heard_about>
+</customer>
+<payment>
+<payment_amount>144.00</payment_amount>
+<payment_type>ApplePay</payment_type>
+<card_holder>Julie-Ann Patterson</card_holder>
+<auth_code>948300</auth_code>
+<transaction_reference>act_tiycm7cvpkgk3d544renrbhjxa</transaction_reference>
+<security_reference>public</security_reference>
+<cv2_avs>NOT CHECKED</cv2_avs>
+<notes>10000: Approved (Pay ID: pay_3ku66n22v2p25oxonr2irfjimq, Action ID: act_tiycm7cvpkgk3d544renrbhjxa) - Payment captured</notes>
+</payment>
+<products>
+<product>
+<line>85118</line>
+<model>KI-007</model>
+<reference>0004209500</reference>
+<child_product_reference>0004209500</child_product_reference>
+<parent_product_reference>00042095</parent_product_reference>
+<barcode></barcode>
+<title>Ashwood Leather Marseille Stool Brown: KI-007</title>
+<summary>Size: One Size</summary>
+<quantity>1</quantity>
+<price_inc>129</price_inc>
+<price_ex>107.500</price_ex>
+<price_vat>21.500</price_vat>
+<tax_rate>20.000</tax_rate>
+<manufacturer_name>ASHWOOD</manufacturer_name>
+<attribute_summary>Size: One Size</attribute_summary>
+<personalisation></personalisation>
+<weight>0.00</weight>
+<product_state>0</product_state>
+<amazon_item_code></amazon_item_code>
+<commodity_code></commodity_code>
+<customs_description>Home &amp; Living &gt; Leather Stools</customs_description>
+<country_of_origin>UK - Mainland</country_of_origin>
+</product>
+</products>
+<amazon_order_id></amazon_order_id>
+<amazon_fulfillment_method>MFN</amazon_fulfillment_method>
+</web_order>
+<web_order>
+<order>
+<order_state>Order Dispatched</order_state>
+<order_date>2023-11-30 20:10:46</order_date>
+<dispatch_date>2023-12-01 17:40:57</dispatch_date>
+<product_total_inc>39.99</product_total_inc>
+<product_total_ex>33.325</product_total_ex>
+<shipping_total_inc>4.99</shipping_total_inc>
+<shipping_total_ex>4.158</shipping_total_ex>
+<shipping_vat>0.832</shipping_vat>
+<grand_total_ex>37.483</grand_total_ex>
+<grand_total_inc>44.980</grand_total_inc>
+<grand_total_vat>7.497</grand_total_vat>
+<discount_ex>0.000</discount_ex>
+<discount_inc>0</discount_inc>
+<discount_vat>0.000</discount_vat>
+<order_currency>GBP</order_currency>
+<order_id>71609</order_id>
+<courier_id>1</courier_id>
+<order_reference>WEB71609</order_reference>
+<order_customer_comments> </order_customer_comments>
+<order_notes></order_notes>
+<order_type>WEB</order_type>
+<fraud_status>Passed</fraud_status>
+<fraud_status_date_changed>2023-12-01 09:42:00</fraud_status_date_changed>
+<courier_name>UK Delivery (1-3 Days)</courier_name>
+<inv_priority>N</inv_priority>
+<order_offer_codes_csv></order_offer_codes_csv>
+<order_applied_offers></order_applied_offers>
+</order>
+<customer>
+<customer_id>70558</customer_id>
+<email_address>nicole.e.bradley@hotmail.co.uk</email_address>
+<billing_title></billing_title>
+<billing_company_name></billing_company_name>
+<billing_firstname>Nicole</billing_firstname>
+<billing_lastname>Sutherby</billing_lastname>
+<billing_fullname>Nicole Sutherby</billing_fullname>
+<billing_address1>30 Bembridge Drive</billing_address1>
+<billing_address2></billing_address2>
+<billing_town>Nottingham</billing_town>
+<billing_city></billing_city>
+<billing_county>Nottinghamshire</billing_county>
+<billing_country>1</billing_country>
+<billing_country_name>UK - Mainland</billing_country_name>
+<billing_postcode>NG5 5TR</billing_postcode>
+<billing_telephone>07780156433</billing_telephone>
+<billing_mobile></billing_mobile>
+<billing_email>nicole.e.bradley@hotmail.co.uk</billing_email>
+<delivery_title></delivery_title>
+<delivery_company_name></delivery_company_name>
+<delivery_firstname>Nicole</delivery_firstname>
+<delivery_lastname>Sutherby</delivery_lastname>
+<delivery_fullname>Nicole Sutherby</delivery_fullname>
+<delivery_address1>30 Bembridge Drive</delivery_address1>
+<delivery_address2></delivery_address2>
+<delivery_town>Nottingham</delivery_town>
+<delivery_city></delivery_city>
+<delivery_county>Nottinghamshire</delivery_county>
+<delivery_country>1</delivery_country>
+<delivery_country_name>UK - Mainland</delivery_country_name>
+<delivery_postcode>NG5 5TR</delivery_postcode>
+<delivery_telephone>07780156433</delivery_telephone>
+<email_opt_in>No</email_opt_in>
+<post_opt_in>No</post_opt_in>
+<heard_about></heard_about>
+</customer>
+<payment>
+<payment_amount>44.98</payment_amount>
+<payment_type>Credit or Debit Card</payment_type>
+<card_holder>Nicole Sutherby</card_holder>
+<auth_code></auth_code>
+<transaction_reference>act_4qzpocyevhxkzmszfhvpf2cs2q</transaction_reference>
+<security_reference>public</security_reference>
+<cv2_avs>NOT MATCHED</cv2_avs>
+<notes>10000: Approved (Pay ID: pay_lvuquhncf5tkjiccjgvo4xocly, Action ID: act_4qzpocyevhxkzmszfhvpf2cs2q) - Payment captured</notes>
+</payment>
+<products>
+<product>
+<line>85117</line>
+<model>s2</model>
+<reference>0004523600</reference>
+<child_product_reference>0004523600</child_product_reference>
+<parent_product_reference>00045236</parent_product_reference>
+<barcode></barcode>
+<title>14 Card RFID Protected XL Leather Purse Denim Blue: S2</title>
+<summary>Size: One Size</summary>
+<quantity>1</quantity>
+<price_inc>39.99</price_inc>
+<price_ex>33.325</price_ex>
+<price_vat>6.665</price_vat>
+<tax_rate>20.000</tax_rate>
+<manufacturer_name>ASHWOOD</manufacturer_name>
+<attribute_summary>Size: One Size</attribute_summary>
+<personalisation></personalisation>
+<weight>0.00</weight>
+<product_state>0</product_state>
+<amazon_item_code></amazon_item_code>
+<commodity_code></commodity_code>
+<customs_description>Gift &amp; Accessories &gt; Purses</customs_description>
+<country_of_origin></country_of_origin>
+</product>
+</products>
+<amazon_order_id></amazon_order_id>
+<amazon_fulfillment_method>MFN</amazon_fulfillment_method>
+</web_order>
+<web_order>
+<order>
+<order_state>Order Dispatched</order_state>
+<order_date>2023-11-30 20:07:59</order_date>
+<dispatch_date>2023-12-01 17:40:56</dispatch_date>
+<product_total_inc>322.99</product_total_inc>
+<product_total_ex>269.158</product_total_ex>
+<shipping_total_inc>4.99</shipping_total_inc>
+<shipping_total_ex>4.158</shipping_total_ex>
+<shipping_vat>0.832</shipping_vat>
+<grand_total_ex>269.158</grand_total_ex>
+<grand_total_inc>322.990</grand_total_inc>
+<grand_total_vat>53.832</grand_total_vat>
+<discount_ex>4.158</discount_ex>
+<discount_inc>4.99</discount_inc>
+<discount_vat>0.832</discount_vat>
+<order_currency>GBP</order_currency>
+<order_id>71570</order_id>
+<courier_id>1</courier_id>
+<order_reference>WEB71570</order_reference>
+<order_customer_comments> </order_customer_comments>
+<order_notes></order_notes>
+<order_type>WEB</order_type>
+<fraud_status>Passed</fraud_status>
+<fraud_status_date_changed>2023-12-01 09:41:30</fraud_status_date_changed>
+<courier_name>UK Delivery (1-3 Days)</courier_name>
+<inv_priority>N</inv_priority>
+<order_offer_codes_csv></order_offer_codes_csv>
+<order_applied_offers>Free Delivery UK when you spend £50.00</order_applied_offers>
+</order>
+<customer>
+<customer_id>55522</customer_id>
+<email_address>phil.morgan.oz@icloud.com</email_address>
+<billing_title></billing_title>
+<billing_company_name></billing_company_name>
+<billing_firstname>philip</billing_firstname>
+<billing_lastname>morgan</billing_lastname>
+<billing_fullname>philip morgan</billing_fullname>
+<billing_address1>21 Carreg Erw</billing_address1>
+<billing_address2>Birchgrove</billing_address2>
+<billing_town>Swansea</billing_town>
+<billing_city></billing_city>
+<billing_county></billing_county>
+<billing_country>1</billing_country>
+<billing_country_name>UK - Mainland</billing_country_name>
+<billing_postcode>SA7 0HJ</billing_postcode>
+<billing_telephone></billing_telephone>
+<billing_mobile></billing_mobile>
+<billing_email>phil.morgan.oz@icloud.com</billing_email>
+<delivery_title></delivery_title>
+<delivery_company_name></delivery_company_name>
+<delivery_firstname>Eleanor</delivery_firstname>
+<delivery_lastname>Williams</delivery_lastname>
+<delivery_fullname>Eleanor Williams</delivery_fullname>
+<delivery_address1>21 Carreg Erw</delivery_address1>
+<delivery_address2></delivery_address2>
+<delivery_town>Swansea</delivery_town>
+<delivery_city></delivery_city>
+<delivery_county>Wales</delivery_county>
+<delivery_country>1</delivery_country>
+<delivery_country_name>UK - Mainland</delivery_country_name>
+<delivery_postcode>SA7 0HJ</delivery_postcode>
+<delivery_telephone>01792794356</delivery_telephone>
+<email_opt_in>No</email_opt_in>
+<post_opt_in>No</post_opt_in>
+<heard_about></heard_about>
+</customer>
+<payment>
+<payment_amount>299.00</payment_amount>
+<payment_type>e-wallet</payment_type>
+<card_holder></card_holder>
+<auth_code></auth_code>
+<transaction_reference></transaction_reference>
+<security_reference></security_reference>
+<cv2_avs></cv2_avs>
+<notes>e-wallet payment</notes>
+</payment>
+<products>
+<product>
+<line>85113</line>
+<model>ESTIMO</model>
+<reference>0003777903</reference>
+<child_product_reference>0003777903</child_product_reference>
+<parent_product_reference>00037779</parent_product_reference>
+<barcode></barcode>
+<title>Twin Zip Fastening Leather Jacket  Cognac : Ciara</title>
+<summary>Size: 12</summary>
+<quantity>1</quantity>
+<price_inc>149</price_inc>
+<price_ex>124.167</price_ex>
+<price_vat>24.833</price_vat>
+<tax_rate>20.000</tax_rate>
+<manufacturer_name>ASHWOOD</manufacturer_name>
+<attribute_summary>Size: 12</attribute_summary>
+<personalisation></personalisation>
+<weight>0.00</weight>
+<product_state>0</product_state>
+<amazon_item_code></amazon_item_code>
+<commodity_code></commodity_code>
+<customs_description>January Sale 2021</customs_description>
+<country_of_origin>UK - Mainland</country_of_origin>
+</product>
+<product>
+<line>85114</line>
+<model>TK 6</model>
+<reference>0004047003</reference>
+<child_product_reference>0004047003</child_product_reference>
+<parent_product_reference>00040470</parent_product_reference>
+<barcode></barcode>
+<title>Ladies Classic Leather Biker Jacket Black: Roisin</title>
+<summary>Size: 12</summary>
+<quantity>1</quantity>
+<price_inc>99</price_inc>
+<price_ex>82.500</price_ex>
+<price_vat>16.500</price_vat>
+<tax_rate>20.000</tax_rate>
+<manufacturer_name>ASHWOOD</manufacturer_name>
+<attribute_summary>Size: 12</attribute_summary>
+<personalisation></personalisation>
+<weight>0.00</weight>
+<product_state>0</product_state>
+<amazon_item_code></amazon_item_code>
+<commodity_code></commodity_code>
+<customs_description>Ladies &gt; Ladies Jackets &amp; Coats</customs_description>
+<country_of_origin>UK - Mainland</country_of_origin>
+</product>
+<product>
+<line>85115</line>
+<model>20-146</model>
+<reference>0004118900</reference>
+<child_product_reference>0004118900</child_product_reference>
+<parent_product_reference>00041189</parent_product_reference>
+<barcode></barcode>
+<title>Vegetable Tanned Leather Small Cross Body Bag Navy: 20-146</title>
+<summary>Size: One Size</summary>
+<quantity>1</quantity>
+<price_inc>35</price_inc>
+<price_ex>29.167</price_ex>
+<price_vat>5.833</price_vat>
+<tax_rate>20.000</tax_rate>
+<manufacturer_name>ASHWOOD</manufacturer_name>
+<attribute_summary>Size: One Size</attribute_summary>
+<personalisation></personalisation>
+<weight>0.00</weight>
+<product_state>0</product_state>
+<amazon_item_code></amazon_item_code>
+<commodity_code></commodity_code>
+<customs_description>Ladies &gt; Handbags</customs_description>
+<country_of_origin>UK - Mainland</country_of_origin>
+</product>
+<product>
+<line>85116</line>
+<model>AJ-630</model>
+<reference>0004058100</reference>
+<child_product_reference>0004058100</child_product_reference>
+<parent_product_reference>00040581</parent_product_reference>
+<barcode></barcode>
+<title>Mini Leather Shoulder Bag Tan: AJ-630</title>
+<summary>Size: One Size</summary>
+<quantity>1</quantity>
+<price_inc>39.99</price_inc>
+<price_ex>33.325</price_ex>
+<price_vat>6.665</price_vat>
+<tax_rate>20.000</tax_rate>
+<manufacturer_name>ASHWOOD</manufacturer_name>
+<attribute_summary>Size: One Size</attribute_summary>
+<personalisation></personalisation>
+<weight>0.00</weight>
+<product_state>0</product_state>
+<amazon_item_code></amazon_item_code>
+<commodity_code></commodity_code>
+<customs_description>January Sale 2021</customs_description>
+<country_of_origin>UK - Mainland</country_of_origin>
+</product>
+</products>
+<amazon_order_id></amazon_order_id>
+<amazon_fulfillment_method>MFN</amazon_fulfillment_method>
+</web_order>
+<web_order>
+<order>
+<order_state>Order Dispatched</order_state>
+<order_date>2023-11-30 19:30:26</order_date>
+<dispatch_date>2023-12-01 17:40:57</dispatch_date>
+<product_total_inc>29.99</product_total_inc>
+<product_total_ex>24.992</product_total_ex>
+<shipping_total_inc>4.99</shipping_total_inc>
+<shipping_total_ex>4.158</shipping_total_ex>
+<shipping_vat>0.832</shipping_vat>
+<grand_total_ex>29.15</grand_total_ex>
+<grand_total_inc>34.980</grand_total_inc>
+<grand_total_vat>5.83</grand_total_vat>
+<discount_ex>0.000</discount_ex>
+<discount_inc>0</discount_inc>
+<discount_vat>0.000</discount_vat>
+<order_currency>GBP</order_currency>
+<order_id>71608</order_id>
+<courier_id>1</courier_id>
+<order_reference>WEB71608</order_reference>
+<order_customer_comments> </order_customer_comments>
+<order_notes></order_notes>
+<order_type>WEB</order_type>
+<fraud_status>Passed</fraud_status>
+<fraud_status_date_changed>2023-12-01 09:41:02</fraud_status_date_changed>
+<courier_name>UK Delivery (1-3 Days)</courier_name>
+<inv_priority>N</inv_priority>
+<order_offer_codes_csv></order_offer_codes_csv>
+<order_applied_offers></order_applied_offers>
+</order>
+<customer>
+<customer_id>70556</customer_id>
+<email_address>lindasedge23@gmail.com</email_address>
+<billing_title></billing_title>
+<billing_company_name></billing_company_name>
+<billing_firstname>Linda</billing_firstname>
+<billing_lastname>Sedgewick</billing_lastname>
+<billing_fullname>Linda Sedgewick</billing_fullname>
+<billing_address1>Flat 5, Aldborough Court</billing_address1>
+<billing_address2>21 Douglas Avenue</billing_address2>
+<billing_town>EXMOUTH</billing_town>
+<billing_city></billing_city>
+<billing_county>Devon</billing_county>
+<billing_country>1</billing_country>
+<billing_country_name>UK - Mainland</billing_country_name>
+<billing_postcode>EX8 2HA</billing_postcode>
+<billing_telephone>07703134342</billing_telephone>
+<billing_mobile></billing_mobile>
+<billing_email>lindasedge23@gmail.com</billing_email>
+<delivery_title></delivery_title>
+<delivery_company_name></delivery_company_name>
+<delivery_firstname>Linda</delivery_firstname>
+<delivery_lastname>Sedgewick</delivery_lastname>
+<delivery_fullname>Linda Sedgewick</delivery_fullname>
+<delivery_address1>Flat 5, Aldborough Court</delivery_address1>
+<delivery_address2>21 Douglas Avenue</delivery_address2>
+<delivery_town>EXMOUTH</delivery_town>
+<delivery_city></delivery_city>
+<delivery_county>Devon</delivery_county>
+<delivery_country>1</delivery_country>
+<delivery_country_name>UK - Mainland</delivery_country_name>
+<delivery_postcode>EX8 2HA</delivery_postcode>
+<delivery_telephone>07703134342</delivery_telephone>
+<email_opt_in>Us</email_opt_in>
+<post_opt_in>No</post_opt_in>
+<heard_about></heard_about>
+</customer>
+<payment>
+<payment_amount>34.98</payment_amount>
+<payment_type>Credit or Debit Card</payment_type>
+<card_holder>Linda Sedgewick</card_holder>
+<auth_code></auth_code>
+<transaction_reference>act_bkp4ihvoa4p25aax6iply4l6hq</transaction_reference>
+<security_reference>public</security_reference>
+<cv2_avs>NOT CHECKED</cv2_avs>
+<notes>10000: Approved (Pay ID: pay_64yna5mp5ra2hpakwb5rvznf5u, Action ID: act_bkp4ihvoa4p25aax6iply4l6hq) - Payment captured</notes>
+</payment>
+<products>
+<product>
+<line>85112</line>
+<model>s3</model>
+<reference>0004524300</reference>
+<child_product_reference>0004524300</child_product_reference>
+<parent_product_reference>00045243</parent_product_reference>
+<barcode></barcode>
+<title>Women&#039;s Medium Leather Wallet Purse Mandarin: S3</title>
+<summary>Size: One Size</summary>
+<quantity>1</quantity>
+<price_inc>29.99</price_inc>
+<price_ex>24.992</price_ex>
+<price_vat>4.998</price_vat>
+<tax_rate>20.000</tax_rate>
+<manufacturer_name>ASHWOOD</manufacturer_name>
+<attribute_summary>Size: One Size</attribute_summary>
+<personalisation></personalisation>
+<weight>0.00</weight>
+<product_state>0</product_state>
+<amazon_item_code></amazon_item_code>
+<commodity_code></commodity_code>
+<customs_description>Gift &amp; Accessories &gt; Purses</customs_description>
+<country_of_origin></country_of_origin>
+</product>
+</products>
+<amazon_order_id></amazon_order_id>
+<amazon_fulfillment_method>MFN</amazon_fulfillment_method>
+</web_order>
+<web_order>
+<order>
+<order_state>Order Dispatched</order_state>
+<order_date>2023-11-30 19:11:32</order_date>
+<dispatch_date>2023-12-01 17:40:56</dispatch_date>
+<product_total_inc>24.99</product_total_inc>
+<product_total_ex>20.825</product_total_ex>
+<shipping_total_inc>4.99</shipping_total_inc>
+<shipping_total_ex>4.158</shipping_total_ex>
+<shipping_vat>0.832</shipping_vat>
+<grand_total_ex>24.983</grand_total_ex>
+<grand_total_inc>29.980</grand_total_inc>
+<grand_total_vat>4.997</grand_total_vat>
+<discount_ex>0.000</discount_ex>
+<discount_inc>0</discount_inc>
+<discount_vat>0.000</discount_vat>
+<order_currency>GBP</order_currency>
+<order_id>71607</order_id>
+<courier_id>1</courier_id>
+<order_reference>WEB71607</order_reference>
+<order_customer_comments> </order_customer_comments>
+<order_notes></order_notes>
+<order_type>WEB</order_type>
+<fraud_status>Passed</fraud_status>
+<fraud_status_date_changed>2023-12-01 09:40:36</fraud_status_date_changed>
+<courier_name>UK Delivery (1-3 Days)</courier_name>
+<inv_priority>N</inv_priority>
+<order_offer_codes_csv></order_offer_codes_csv>
+<order_applied_offers></order_applied_offers>
+</order>
+<customer>
+<customer_id>70555</customer_id>
+<email_address>sue.vecsey@btinternet.com</email_address>
+<billing_title></billing_title>
+<billing_company_name></billing_company_name>
+<billing_firstname>Sue</billing_firstname>
+<billing_lastname>Vecsey</billing_lastname>
+<billing_fullname>Sue Vecsey</billing_fullname>
+<billing_address1>52 Marlborough Avenue</billing_address1>
+<billing_address2></billing_address2>
+<billing_town>Newcastle upon Tyne</billing_town>
+<billing_city></billing_city>
+<billing_county>Tyne and Wear</billing_county>
+<billing_country>1</billing_country>
+<billing_country_name>UK - Mainland</billing_country_name>
+<billing_postcode>NE3 2HU</billing_postcode>
+<billing_telephone>07776333896</billing_telephone>
+<billing_mobile></billing_mobile>
+<billing_email>sue.vecsey@btinternet.com</billing_email>
+<delivery_title></delivery_title>
+<delivery_company_name></delivery_company_name>
+<delivery_firstname>Sue</delivery_firstname>
+<delivery_lastname>Vecsey</delivery_lastname>
+<delivery_fullname>Sue Vecsey</delivery_fullname>
+<delivery_address1>52 Marlborough Avenue</delivery_address1>
+<delivery_address2></delivery_address2>
+<delivery_town>Newcastle upon Tyne</delivery_town>
+<delivery_city></delivery_city>
+<delivery_county>Tyne and Wear</delivery_county>
+<delivery_country>1</delivery_country>
+<delivery_country_name>UK - Mainland</delivery_country_name>
+<delivery_postcode>NE3 2HU</delivery_postcode>
+<delivery_telephone>07776333896</delivery_telephone>
+<email_opt_in>No</email_opt_in>
+<post_opt_in>No</post_opt_in>
+<heard_about></heard_about>
+</customer>
+<payment>
+<payment_amount>29.98</payment_amount>
+<payment_type>Credit or Debit Card</payment_type>
+<card_holder>Sue Vecsey</card_holder>
+<auth_code></auth_code>
+<transaction_reference>act_66mpraltr6r2xn4kvawdg6vi5y</transaction_reference>
+<security_reference>public</security_reference>
+<cv2_avs>MATCHED</cv2_avs>
+<notes>10000: Approved (Pay ID: pay_cn33nfso5iokbpedoiptubwmhy, Action ID: act_66mpraltr6r2xn4kvawdg6vi5y) - Payment captured</notes>
+</payment>
+<products>
+<product>
+<line>85111</line>
+<model>db-705</model>
+<reference>0004492302</reference>
+<child_product_reference>0004492302</child_product_reference>
+<parent_product_reference>00044923</parent_product_reference>
+<barcode></barcode>
+<title>Mens Leather Sheepskin Gloves Nap Green: DB-705</title>
+<summary>Size: L/XL</summary>
+<quantity>1</quantity>
+<price_inc>24.99</price_inc>
+<price_ex>20.825</price_ex>
+<price_vat>4.165</price_vat>
+<tax_rate>20.000</tax_rate>
+<manufacturer_name>ASHWOOD</manufacturer_name>
+<attribute_summary>Size: L/XL</attribute_summary>
+<personalisation></personalisation>
+<weight>0.00</weight>
+<product_state>0</product_state>
+<amazon_item_code></amazon_item_code>
+<commodity_code></commodity_code>
+<customs_description>Gift &amp; Accessories &gt; Mens Gloves</customs_description>
+<country_of_origin></country_of_origin>
+</product>
+</products>
+<amazon_order_id></amazon_order_id>
+<amazon_fulfillment_method>MFN</amazon_fulfillment_method>
+</web_order>
+</web_orders>
