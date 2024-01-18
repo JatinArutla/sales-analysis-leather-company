@@ -272,11 +272,12 @@ if(len(d) > 1):
     if ((stand_options == 'Category-wise sales') & (filters_check == True)):
         df = orig_df[(orig_df['order_state'] == 'Order Dispatched') | (orig_df['order_state'] == 'Order Refunded')]
         df['date'] = pd.to_datetime(df['date'])
-        l = [[2, 2021], [3, 2021], [1, 2022], [2, 2022], [3, 2022], [1, 2023], [2, 2023], [3, 2023], [4, 2021], [5, 2021], [6, 2021], [4, 2022], [5, 2022], [6, 2022], [4, 2023], [5, 2023], [6, 2023], [7, 2021], [8, 2021], [9, 2021], [7, 2022], [8, 2022], [9, 2022], [7, 2023], [8, 2023], [9, 2023], [10, 2021], [11, 2021], [12, 2021], [10, 2022], [11, 2022], [12, 2022], [10, 2023], [11, 2023], [12, 2023]]
+        l = [[2, 2021], [3, 2021], [1, 2022], [2, 2022], [3, 2022], [1, 2023], [2, 2023], [3, 2023], [4, 2021], [5, 2021], [6, 2021], [4, 2022], [5, 2022], [6, 2022],
+             [4, 2023], [5, 2023], [6, 2023], [7, 2021], [8, 2021], [9, 2021], [7, 2022], [8, 2022], [9, 2022], [7, 2023], [8, 2023], [9, 2023], [10, 2021], [11, 2021],
+             [12, 2021], [10, 2022], [11, 2022], [12, 2022], [10, 2023], [11, 2023], [12, 2023]]
         temp_df = df[(df['date'].dt.month == 1) & (df['date'].dt.year == 2021)].groupby('customs_description')['Units'].sum().reset_index().sort_values(by='Units', ascending=False).rename(columns={'Units': f'1-2021'})
         for i in l:
             temp_df = pd.merge(temp_df, df[(df['date'].dt.month == i[0]) & (df['date'].dt.year == i[1])].groupby('customs_description')['Units'].sum().reset_index().rename(columns={'Units': f'{i[0]}-{i[1]}'}), on='customs_description', how='outer')
-
         temp_df.replace({np.NaN: 0}, inplace=True)
 
         temp_df['Mean-Jan'] = temp_df[['1-2021', '1-2022', '1-2023']].mean(axis=1).round()
@@ -295,9 +296,9 @@ if(len(d) > 1):
         m = temp_df.select_dtypes(np.number)
         temp_df[m.columns]= m.round().astype('Int64')
 
-        st.dataframe(temp_df.sort_values(by='Mean-Jan', ascending=False).reset_index(drop=True)[['customs_description', 'Mean-Jan', 'Mean-Feb', 'Mean-Mar', 'Mean-Apr', 'Mean-May', 'Mean-Jun',
-                                                                                 'Mean-Jul', 'Mean-Aug', 'Mean-Sep', 'Mean-Oct', 'Mean-Nov', 'Mean-Dec']])
-    
+        st.dataframe(temp_df.sort_values(by='Mean-Jan', ascending=False).reset_index(drop=True)[['customs_description', 'Mean-Jan', 'Mean-Feb', 'Mean-Mar', 'Mean-Apr', 'Mean-May',
+                                                                                                 'Mean-Jun', 'Mean-Jul', 'Mean-Aug', 'Mean-Sep', 'Mean-Oct', 'Mean-Nov', 'Mean-Dec']])
+
     else:
         df['Revenue (£)'] = df['Revenue (£)'].astype(float)
         refunded_df = df[df['order_state'] == 'Order Refunded']
