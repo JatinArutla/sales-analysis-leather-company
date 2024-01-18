@@ -143,7 +143,7 @@ stock_df['Size'] = temp_stock_df['Size']
 
 orig_df = pd.read_csv('unduplicated_orders.csv')
 orig_df['date'] = pd.to_datetime(orig_df['date'])
-df.drop_duplicates(inplace=True)
+orig_df.drop_duplicates(inplace=True)
 orig_df.rename(columns={'quantity': 'Units', 'reference': 'SKU Reference', 'title': 'Product Name', 'price_inc': 'Revenue (£)', 'attribute_summary': 'Size'}, inplace=True)
 
 today = datetime.datetime.now()
@@ -162,6 +162,8 @@ d = st.date_input(
 )
 
 d2 = ()
+
+stand_options = 'None selected'
 
 if(len(d) > 1):
     df = df[(df['date'] >= pd.to_datetime(d[0])) & (df['date'] <= pd.to_datetime(d[1]))]
@@ -253,6 +255,11 @@ if(len(d) > 1):
             key=102,
         )
 
+        stand_arr = ['None selected', 'Category-wise sales']
+        stand_options = st.selectbox('Standalone reports', options=stand_arr)
+        if (stand_options == 'None selected'):
+            df = df
+
         if (df['Revenue (£)'].min() < df['Revenue (£)'].max()):
             price_range = st.slider(
             'Select a range of product prices',
@@ -261,222 +268,202 @@ if(len(d) > 1):
                 df = df[(df['Revenue (£)'] >= price_range[0]) & (df['Revenue (£)'] <= price_range[1])]
             else:
                 df = df[df['Revenue (£)'] == price_range[0]]
+    
+    if ((stand_options == 'Category-wise sales') & (filters_check == True)):
+        df = orig_df[(orig_df['order_state'] == 'Order Dispatched') | (orig_df['order_state'] == 'Order Refunded')]
+        df['date'] = pd.to_datetime(df['date'])
+        l = [[2, 2021], [3, 2021], [1, 2022], [2, 2022], [3, 2022], [1, 2023], [2, 2023], [3, 2023], [4, 2021], [5, 2021], [6, 2021], [4, 2022], [5, 2022], [6, 2022], [4, 2023], [5, 2023], [6, 2023], [7, 2021], [8, 2021], [9, 2021], [7, 2022], [8, 2022], [9, 2022], [7, 2023], [8, 2023], [9, 2023], [10, 2021], [11, 2021], [12, 2021], [10, 2022], [11, 2022], [12, 2022], [10, 2023], [11, 2023], [12, 2023]]
+        temp_df = df[(df['date'].dt.month == 1) & (df['date'].dt.year == 2021)].groupby('customs_description')['Units'].sum().reset_index().sort_values(by='Units', ascending=False).rename(columns={'Units': f'1-2021'})
+        for i in l:
+            temp_df = pd.merge(temp_df, df[(df['date'].dt.month == i[0]) & (df['date'].dt.year == i[1])].groupby('customs_description')['Units'].sum().reset_index().rename(columns={'Units': f'{i[0]}-{i[1]}'}), on='customs_description', how='outer')
 
-    df['Revenue (£)'] = df['Revenue (£)'].astype(float)
-    refunded_df = df[df['order_state'] == 'Order Refunded']
-    dispatched_df = df[(df['order_state'] == 'Order Dispatched') | (df['order_state'] == 'Order Refunded')]
-    refunded_df.rename(columns={'Units': 'Units Refunded', 'Revenue (£)': 'Total Refund (£)'}, inplace=True)
+        temp_df.replace({np.NaN: 0}, inplace=True)
 
-    if (len(d2) == 2):
-        orig_df['Product Name'] = orig_df['Product Name'].apply(str)
-        orig_df['Product Name'] = orig_df['Product Name'].str.strip()
-        orig_df['model'] = orig_df['model'].apply(str)
-        orig_df['model'] = orig_df['model'].str.strip()
-        orig_df['SKU Reference'] = orig_df['SKU Reference'].apply(str)
-        orig_df['SKU Reference'] = orig_df['SKU Reference'].str.strip()
+        temp_df['Mean-Jan'] = temp_df[['1-2021', '1-2022', '1-2023']].mean(axis=1).round()
+        temp_df['Mean-Feb'] = temp_df[['2-2021', '2-2022', '2-2023']].mean(axis=1).round()
+        temp_df['Mean-Mar'] = temp_df[['3-2021', '3-2022', '3-2023']].mean(axis=1).round()
+        temp_df['Mean-Apr'] = temp_df[['4-2021', '4-2022', '4-2023']].mean(axis=1).round()
+        temp_df['Mean-May'] = temp_df[['5-2021', '5-2022', '5-2023']].mean(axis=1).round()
+        temp_df['Mean-Jun'] = temp_df[['6-2021', '6-2022', '6-2023']].mean(axis=1).round()
+        temp_df['Mean-Jul'] = temp_df[['7-2021', '7-2022', '7-2023']].mean(axis=1).round()
+        temp_df['Mean-Aug'] = temp_df[['8-2021', '8-2022', '8-2023']].mean(axis=1).round()
+        temp_df['Mean-Sep'] = temp_df[['9-2021', '9-2022', '9-2023']].mean(axis=1).round()
+        temp_df['Mean-Oct'] = temp_df[['10-2021', '10-2022', '10-2023']].mean(axis=1).round()
+        temp_df['Mean-Nov'] = temp_df[['11-2021', '11-2022', '11-2023']].mean(axis=1).round()
+        temp_df['Mean-Dec'] = temp_df[['12-2021', '12-2022', '12-2023']].mean(axis=1).round()
 
-        df2 = orig_df[(orig_df['date'] >= pd.to_datetime(d2[0])) & (orig_df['date'] <= pd.to_datetime(d2[1]))].drop(['Unnamed: 0'], axis=1)
+        m = temp_df.select_dtypes(np.number)
+        temp_df[m.columns]= m.round().astype('Int64')
 
-        if (options != ''):
-            df2 = df2[(df2 == options).any(axis=1)]
+        st.dataframe(temp_df.sort_values(by='Mean-Jan', ascending=False).reset_index(drop=True)[['customs_description', 'Mean-Jan', 'Mean-Feb', 'Mean-Mar', 'Mean-Apr', 'Mean-May', 'Mean-Jun',
+                                                                                 'Mean-Jul', 'Mean-Aug', 'Mean-Sep', 'Mean-Oct', 'Mean-Nov', 'Mean-Dec']])
+    
+    else:
+        df['Revenue (£)'] = df['Revenue (£)'].astype(float)
+        refunded_df = df[df['order_state'] == 'Order Refunded']
+        dispatched_df = df[(df['order_state'] == 'Order Dispatched') | (df['order_state'] == 'Order Refunded')]
+        refunded_df.rename(columns={'Units': 'Units Refunded', 'Revenue (£)': 'Total Refund (£)'}, inplace=True)
 
-        if (brand_options == 'All brands'):
-            df2 = df2
-        else:
-            df2 = df2[df2['manufacturer_name'] == brand_options]
+        if (len(d2) == 2):
+            orig_df['Product Name'] = orig_df['Product Name'].apply(str)
+            orig_df['Product Name'] = orig_df['Product Name'].str.strip()
+            orig_df['model'] = orig_df['model'].apply(str)
+            orig_df['model'] = orig_df['model'].str.strip()
+            orig_df['SKU Reference'] = orig_df['SKU Reference'].apply(str)
+            orig_df['SKU Reference'] = orig_df['SKU Reference'].str.strip()
 
-        if (category_options == 'All categories'):
-            df2 = df2
-        else:
-            df2 = df2[df2['Category'] == category_options]
+            df2 = orig_df[(orig_df['date'] >= pd.to_datetime(d2[0])) & (orig_df['date'] <= pd.to_datetime(d2[1]))].drop(['Unnamed: 0'], axis=1)
 
-        if (sub_category_options == 'All sub categories'):
-            df2 = df2
-        else:
-            df2 = df2[df2['customs_description'] == sub_category_options]
+            if (options != ''):
+                df2 = df2[(df2 == options).any(axis=1)]
 
-        if (colour_options == 'All colours'):
-            df2 = df2
-        else:
-            df2 = df2[df2['colour'] == colour_options]
-
-        if (size_options == 'All sizes'):
-            df2 = df2
-        else:
-            df2 = df2[df2['Size'] == size_options]
-
-        if (df2['Revenue (£)'].min() < df2['Revenue (£)'].max()):
-            if(price_range[0] < price_range[1]):
-                df2 = df2[(df2['Revenue (£)'] >= price_range[0]) & (df2['Revenue (£)'] <= price_range[1])]
+            if (brand_options == 'All brands'):
+                df2 = df2
             else:
-                df2 = df2[df2['Revenue (£)'] == price_range[0]]
-        
-        df2['Revenue (£)'] = df2['Revenue (£)'].astype(float)
-        refunded_df2 = df2[df2['order_state'] == 'Order Refunded']
-        refunded_df2.rename(columns={'Units': 'Units Refunded', 'Revenue (£)': 'Total Refund (£)'}, inplace=True)
-        dispatched_df2 = df2[(df2['order_state'] == 'Order Dispatched') | (df2['order_state'] == 'Order Refunded')]
+                df2 = df2[df2['manufacturer_name'] == brand_options]
 
+            if (category_options == 'All categories'):
+                df2 = df2
+            else:
+                df2 = df2[df2['Category'] == category_options]
 
-    if(d2 == ()):
-        c1, c2, c3, c4 = st.columns(4)
+            if (sub_category_options == 'All sub categories'):
+                df2 = df2
+            else:
+                df2 = df2[df2['customs_description'] == sub_category_options]
 
-        c1 = c1.container(border=True)
-        c1.markdown(f'<p class="small-font">Total Revenue</p>', unsafe_allow_html=True)
-        c1.markdown(f'<p class="big-font">£<strong>{(np.round(dispatched_df["Revenue (£)"].sum(), 2)):,}</strong></p>', unsafe_allow_html=True)
+            if (colour_options == 'All colours'):
+                df2 = df2
+            else:
+                df2 = df2[df2['colour'] == colour_options]
 
-        c2 = c2.container(border=True)
-        c2.markdown(f'<p class="small-font">Units Sold</p>', unsafe_allow_html=True)
-        c2.markdown(f'<p class="big-font"><strong>{(dispatched_df["Units"].sum()):,}</strong></p>', unsafe_allow_html=True)
+            if (size_options == 'All sizes'):
+                df2 = df2
+            else:
+                df2 = df2[df2['Size'] == size_options]
 
-        c3 = c3.container(border=True)
-        c3.markdown(f'<p class="small-font">Total Refund</p>', unsafe_allow_html=True)
-        c3.markdown(f'<p class="big-font">£<strong>{(np.round(refunded_df["Total Refund (£)"].sum(), 2)):,}</strong></p>', unsafe_allow_html=True)
-
-        c4 = c4.container(border=True)
-        c4.markdown(f'<p class="small-font">Units Refunded</p>', unsafe_allow_html=True)
-        c4.markdown(f'<p class="big-font"><strong>{(refunded_df["Units Refunded"].sum()):,}</strong></p>', unsafe_allow_html=True)
-
-
-    if (len(d2) == 2):
-        c1, c2, c3, c4 = st.columns(4)
-
-        p1 = percentage_change(np.round(dispatched_df['Revenue (£)'].sum(), 2), np.round(dispatched_df2['Revenue (£)'].sum(), 2))
-        c1 = c1.container(border=True)
-        c1.markdown(f'<p class="small-font">Total Revenue</p>', unsafe_allow_html=True)
-        if p1 > 0:
-            c1.markdown(f'<p class="big-font">£<strong>{(np.round(dispatched_df["Revenue (£)"].sum(), 2)):,}</strong><span style="color: green;"> (+{p1}%)</span></p>', unsafe_allow_html=True)
-        elif p1 == 0:
-            c1.markdown(f'<p class="big-font">£<strong>{(np.round(dispatched_df["Revenue (£)"].sum(), 2)):,}</strong><span style="color: black;"> (0%)</span></p>', unsafe_allow_html=True)
-        else:
-            c1.markdown(f'<p class="big-font">£<strong>{(np.round(dispatched_df["Revenue (£)"].sum(), 2)):,}</strong><span style="color: red;"> ({p1}%)</span></p>', unsafe_allow_html=True)
-
-        p2 = percentage_change(dispatched_df['Units'].sum(), dispatched_df2['Units'].sum())
-        c2 = c2.container(border=True)
-        c2.markdown(f'<p class="small-font">Units Sold</p>', unsafe_allow_html=True)
-        if p2 > 0:
-            c2.markdown(f'<p class="big-font"><strong>{(dispatched_df["Units"].sum()):,}</strong><span style="color: green;"> (+{p2}%)</span></p>', unsafe_allow_html=True)
-        elif p2 == 0:
-            c2.markdown(f'<p class="big-font"><strong>{(dispatched_df["Units"].sum()):,}</strong><span style="color: black;"> (0%)</span></p>', unsafe_allow_html=True)
-        else:
-            c2.markdown(f'<p class="big-font"><strong>{(dispatched_df["Units"].sum()):,}</strong><span style="color: red;"> ({p2}%)</span></p>', unsafe_allow_html=True)
-
-        p3 = percentage_change((np.round(refunded_df['Total Refund (£)'].sum(), 2)), (np.round(refunded_df2['Total Refund (£)'].sum(), 2)))
-        c3 = c3.container(border=True)
-        c3.markdown(f'<p class="small-font">Total Refund</p>', unsafe_allow_html=True)
-        if p3 > 0:
-            c3.markdown(f'<p class="big-font">£<strong>{(np.round(refunded_df["Total Refund (£)"].sum(), 2)):,}</strong><span style="color: green;"> (+{p3}%)</span></p>', unsafe_allow_html=True)
-        elif p3 == 0:
-            c3.markdown(f'<p class="big-font">£<strong>{(np.round(refunded_df["Total Refund (£)"].sum(), 2)):,}</strong><span style="color: black;"> (0%)</span></p>', unsafe_allow_html=True)
-        else:
-            c3.markdown(f'<p class="big-font">£<strong>{(np.round(refunded_df["Total Refund (£)"].sum(), 2)):,}</strong><span style="color: red;"> ({p3}%)</span></p>', unsafe_allow_html=True)
-
-        p4 = percentage_change(refunded_df['Units Refunded'].sum(), refunded_df2['Units Refunded'].sum())
-        c4 = c4.container(border=True)
-        c4.markdown(f'<p class="small-font">Units Refunded</p>', unsafe_allow_html=True)
-        if p4 > 0:
-            c4.markdown(f'<p class="big-font"><strong>{(refunded_df["Units Refunded"].sum()):,}</strong><span style="color: green;"> (+{p4}%)</span></p>', unsafe_allow_html=True)
-        elif p4 == 0:
-            c4.markdown(f'<p class="big-font"><strong>{(refunded_df["Units Refunded"].sum()):,}</strong><span style="color: black;"> (0%)</span></p>', unsafe_allow_html=True)
-        else:
-            c4.markdown(f'<p class="big-font"><strong>{(refunded_df["Units Refunded"].sum()):,}</strong><span style="color: red;"> ({p4}%)</span></p>', unsafe_allow_html=True)
-
-    dispatched_one_cat_df = dispatched_df.groupby('F_Cat')['Units'].sum().reset_index().sort_values(by=['Units'], ascending=False).reset_index(drop=True)
-    dispatched_rev_one_cat_df = dispatched_df.groupby('F_Cat')['Revenue (£)'].sum().reset_index().sort_values(by=['Revenue (£)'], ascending=False).reset_index(drop=True)
-    dispatched_rev_one_cat_df['Revenue (£)'] = np.round(dispatched_rev_one_cat_df['Revenue (£)'], 0)
-    dispatched_one_cat_df = pd.merge(dispatched_one_cat_df, dispatched_rev_one_cat_df, how="outer", on="F_Cat")
-    refunded_one_cat_df = refunded_df.groupby('F_Cat')['Units Refunded'].sum().reset_index().sort_values(by=['Units Refunded'], ascending=False).reset_index(drop=True)
-    refunded_rev_one_cat_df = refunded_df.groupby('F_Cat')['Total Refund (£)'].sum().reset_index().sort_values(by=['Total Refund (£)'], ascending=False).reset_index(drop=True)
-    refunded_rev_one_cat_df['Total Refund (£)'] = np.round(refunded_rev_one_cat_df['Total Refund (£)'], 0)
-    refunded_one_cat_df = pd.merge(refunded_one_cat_df, refunded_rev_one_cat_df, how="outer", on="F_Cat")
-    dispatched_one_cat_df = pd.merge(dispatched_one_cat_df, refunded_one_cat_df, how="outer", on="F_Cat")
-    dispatched_one_cat_df.replace(np.NaN, 0, inplace=True)
-    selection = dataframe_with_selections(dispatched_one_cat_df, 1)
-
-    if (selection['selected_rows_indices'] != []):
-        selected_prod = dispatched_one_cat_df.loc[selection['selected_rows_indices'][0]]['F_Cat']
-        dispatched_df = dispatched_df[dispatched_df['F_Cat'] == selected_prod]
-        refunded_df = refunded_df[refunded_df['F_Cat'] == selected_prod]
-
-        dispatched_two_cat_df = dispatched_df.groupby('S_Cat')['Units'].sum().reset_index().sort_values(by=['Units'], ascending=False).reset_index(drop=True)
-        dispatched_rev_two_cat_df = dispatched_df.groupby('S_Cat')['Revenue (£)'].sum().reset_index().sort_values(by=['Revenue (£)'], ascending=False).reset_index(drop=True)
-        refunded_two_cat_df = refunded_df.groupby('S_Cat')['Units Refunded'].sum().reset_index().sort_values(by=['Units Refunded'], ascending=False).reset_index(drop=True)
-        refunded_rev_two_cat_df = refunded_df.groupby('S_Cat')['Total Refund (£)'].sum().reset_index().sort_values(by=['Total Refund (£)'], ascending=False).reset_index(drop=True)
-        
-        if(len(dispatched_two_cat_df) != 0):
-            dispatched_rev_two_cat_df['Revenue (£)'] = np.round(dispatched_rev_two_cat_df['Revenue (£)'], 0)
-            dispatched_two_cat_df = pd.merge(dispatched_two_cat_df, dispatched_rev_two_cat_df, how="outer", on="S_Cat")
-            refunded_rev_two_cat_df['Total Refund (£)'] = np.round(refunded_rev_two_cat_df['Total Refund (£)'], 0)
-            refunded_two_cat_df = pd.merge(refunded_two_cat_df, refunded_rev_two_cat_df, how="outer", on="S_Cat")
-            dispatched_two_cat_df = pd.merge(dispatched_two_cat_df, refunded_two_cat_df, how="outer", on="S_Cat")
-            dispatched_two_cat_df.replace(np.NaN, 0, inplace=True)
-
-            selection2 = dataframe_with_selections(dispatched_two_cat_df, 2)
-
-            if(selection2['selected_rows_indices'] != []):
-                selected_prod = dispatched_two_cat_df.loc[selection2['selected_rows_indices'][0]]['S_Cat']
-                dispatched_df = dispatched_df[dispatched_df['S_Cat'] == selected_prod]
-                refunded_df = refunded_df[refunded_df['S_Cat'] == selected_prod]
-                three_cat_df = dispatched_df.groupby('T_Cat')['Units'].sum().reset_index().sort_values(by=['Units'], ascending=False).reset_index(drop=True)
-
-                if(len(three_cat_df) == 0):
-                    dispatched_product_three_cat_df = product_condense_dataframe(dispatched_df, refunded_df)
-
-                    product_stock_df = stock_df.groupby('Product Name')['Stock'].sum()
-                    dispatched_product_three_cat_df = pd.merge(dispatched_product_three_cat_df, product_stock_df, how="outer", on="Product Name")
-                    
-                    selection4 = dataframe_with_selections(dispatched_product_three_cat_df, 4)
-                    if(selection4['selected_rows_indices'] != []):
-                        selected_prod = dispatched_product_three_cat_df.loc[selection4['selected_rows_indices'][0]]['Product Name']
-                        
-                        dispatched_df = dispatched_df[dispatched_df['Product Name'] == selected_prod]
-                        refunded_df = refunded_df[refunded_df['Product Name'] == selected_prod]
-                        stock_df = stock_df[stock_df['Product Name'] == selected_prod]
-
-                        dispatched_sku_three_cat_df = sku_condense_dataframe(dispatched_df, refunded_df)
-
-                        sku_stock_df = stock_df.groupby('Size')['Stock'].sum()
-                        dispatched_sku_three_cat_df = pd.merge(dispatched_sku_three_cat_df, sku_stock_df, how="outer", on="Size")
-
-                        table_column, graph_column = st.columns([0.4, 0.6])
-                        table_column.markdown(f'<p class="big-font"><strong>{selected_prod}</strong></p>', unsafe_allow_html=True)
-                        table_column.dataframe(dispatched_sku_three_cat_df, use_container_width=True)
-                        if(len(dispatched_sku_three_cat_df) > 1):
-                            columns_list = dispatched_sku_three_cat_df.columns
-                            total_df = pd.DataFrame(columns=columns_list)
-                            total_df.loc['Total'] = dispatched_sku_three_cat_df.select_dtypes(np.number).sum()
-                            table_column.dataframe(total_df, use_container_width=True)
-                            sku_summary(dispatched_sku_three_cat_df)
-
-                        chart, line = graph_condense(dispatched_df)
-                        graph_column.altair_chart(line, use_container_width=True)
-
+            if (df2['Revenue (£)'].min() < df2['Revenue (£)'].max()):
+                if(price_range[0] < price_range[1]):
+                    df2 = df2[(df2['Revenue (£)'] >= price_range[0]) & (df2['Revenue (£)'] <= price_range[1])]
                 else:
-                    dispatched_three_cat_df = dispatched_df.groupby('T_Cat')['Units'].sum().reset_index().sort_values(by=['Units'], ascending=False).reset_index(drop=True)
-                    dispatched_rev_three_cat_df = dispatched_df.groupby('T_Cat')['Revenue (£)'].sum().reset_index().sort_values(by=['Revenue (£)'], ascending=False).reset_index(drop=True)
-                    refunded_three_cat_df = refunded_df.groupby('T_Cat')['Units Refunded'].sum().reset_index().sort_values(by=['Units Refunded'], ascending=False).reset_index(drop=True)
-                    refunded_rev_three_cat_df = refunded_df.groupby('T_Cat')['Total Refund (£)'].sum().reset_index().sort_values(by=['Total Refund (£)'], ascending=False).reset_index(drop=True)
-                    
-                    dispatched_rev_three_cat_df['Revenue (£)'] = np.round(dispatched_rev_three_cat_df['Revenue (£)'], 0)
-                    dispatched_three_cat_df = pd.merge(dispatched_three_cat_df, dispatched_rev_three_cat_df, how="outer", on="T_Cat")
-                    refunded_rev_three_cat_df['Total Refund (£)'] = np.round(refunded_rev_three_cat_df['Total Refund (£)'], 0)
-                    refunded_three_cat_df = pd.merge(refunded_three_cat_df, refunded_rev_three_cat_df, how="outer", on="T_Cat")
-                    dispatched_three_cat_df = pd.merge(dispatched_three_cat_df, refunded_three_cat_df, how="outer", on="T_Cat")
-                    dispatched_three_cat_df.replace(np.NaN, 0, inplace=True)
-                    selection3 = dataframe_with_selections(dispatched_three_cat_df, 3)
+                    df2 = df2[df2['Revenue (£)'] == price_range[0]]
+            
+            df2['Revenue (£)'] = df2['Revenue (£)'].astype(float)
+            refunded_df2 = df2[df2['order_state'] == 'Order Refunded']
+            refunded_df2.rename(columns={'Units': 'Units Refunded', 'Revenue (£)': 'Total Refund (£)'}, inplace=True)
+            dispatched_df2 = df2[(df2['order_state'] == 'Order Dispatched') | (df2['order_state'] == 'Order Refunded')]
 
-                    if(selection3['selected_rows_indices'] != []):
-                        selected_prod = dispatched_three_cat_df.loc[selection3['selected_rows_indices'][0]]['T_Cat']
-                        dispatched_df = dispatched_df[dispatched_df['T_Cat'] == selected_prod]
-                        refunded_df = refunded_df[refunded_df['T_Cat'] == selected_prod]
 
+        if(d2 == ()):
+            c1, c2, c3, c4 = st.columns(4)
+
+            c1 = c1.container(border=True)
+            c1.markdown(f'<p class="small-font">Total Revenue</p>', unsafe_allow_html=True)
+            c1.markdown(f'<p class="big-font">£<strong>{(np.round(dispatched_df["Revenue (£)"].sum(), 2)):,}</strong></p>', unsafe_allow_html=True)
+
+            c2 = c2.container(border=True)
+            c2.markdown(f'<p class="small-font">Units Sold</p>', unsafe_allow_html=True)
+            c2.markdown(f'<p class="big-font"><strong>{(dispatched_df["Units"].sum()):,}</strong></p>', unsafe_allow_html=True)
+
+            c3 = c3.container(border=True)
+            c3.markdown(f'<p class="small-font">Total Refund</p>', unsafe_allow_html=True)
+            c3.markdown(f'<p class="big-font">£<strong>{(np.round(refunded_df["Total Refund (£)"].sum(), 2)):,}</strong></p>', unsafe_allow_html=True)
+
+            c4 = c4.container(border=True)
+            c4.markdown(f'<p class="small-font">Units Refunded</p>', unsafe_allow_html=True)
+            c4.markdown(f'<p class="big-font"><strong>{(refunded_df["Units Refunded"].sum()):,}</strong></p>', unsafe_allow_html=True)
+
+
+        if (len(d2) == 2):
+            c1, c2, c3, c4 = st.columns(4)
+
+            p1 = percentage_change(np.round(dispatched_df['Revenue (£)'].sum(), 2), np.round(dispatched_df2['Revenue (£)'].sum(), 2))
+            c1 = c1.container(border=True)
+            c1.markdown(f'<p class="small-font">Total Revenue</p>', unsafe_allow_html=True)
+            if p1 > 0:
+                c1.markdown(f'<p class="big-font">£<strong>{(np.round(dispatched_df["Revenue (£)"].sum(), 2)):,}</strong><span style="color: green;"> (+{p1}%)</span></p>', unsafe_allow_html=True)
+            elif p1 == 0:
+                c1.markdown(f'<p class="big-font">£<strong>{(np.round(dispatched_df["Revenue (£)"].sum(), 2)):,}</strong><span style="color: black;"> (0%)</span></p>', unsafe_allow_html=True)
+            else:
+                c1.markdown(f'<p class="big-font">£<strong>{(np.round(dispatched_df["Revenue (£)"].sum(), 2)):,}</strong><span style="color: red;"> ({p1}%)</span></p>', unsafe_allow_html=True)
+
+            p2 = percentage_change(dispatched_df['Units'].sum(), dispatched_df2['Units'].sum())
+            c2 = c2.container(border=True)
+            c2.markdown(f'<p class="small-font">Units Sold</p>', unsafe_allow_html=True)
+            if p2 > 0:
+                c2.markdown(f'<p class="big-font"><strong>{(dispatched_df["Units"].sum()):,}</strong><span style="color: green;"> (+{p2}%)</span></p>', unsafe_allow_html=True)
+            elif p2 == 0:
+                c2.markdown(f'<p class="big-font"><strong>{(dispatched_df["Units"].sum()):,}</strong><span style="color: black;"> (0%)</span></p>', unsafe_allow_html=True)
+            else:
+                c2.markdown(f'<p class="big-font"><strong>{(dispatched_df["Units"].sum()):,}</strong><span style="color: red;"> ({p2}%)</span></p>', unsafe_allow_html=True)
+
+            p3 = percentage_change((np.round(refunded_df['Total Refund (£)'].sum(), 2)), (np.round(refunded_df2['Total Refund (£)'].sum(), 2)))
+            c3 = c3.container(border=True)
+            c3.markdown(f'<p class="small-font">Total Refund</p>', unsafe_allow_html=True)
+            if p3 > 0:
+                c3.markdown(f'<p class="big-font">£<strong>{(np.round(refunded_df["Total Refund (£)"].sum(), 2)):,}</strong><span style="color: green;"> (+{p3}%)</span></p>', unsafe_allow_html=True)
+            elif p3 == 0:
+                c3.markdown(f'<p class="big-font">£<strong>{(np.round(refunded_df["Total Refund (£)"].sum(), 2)):,}</strong><span style="color: black;"> (0%)</span></p>', unsafe_allow_html=True)
+            else:
+                c3.markdown(f'<p class="big-font">£<strong>{(np.round(refunded_df["Total Refund (£)"].sum(), 2)):,}</strong><span style="color: red;"> ({p3}%)</span></p>', unsafe_allow_html=True)
+
+            p4 = percentage_change(refunded_df['Units Refunded'].sum(), refunded_df2['Units Refunded'].sum())
+            c4 = c4.container(border=True)
+            c4.markdown(f'<p class="small-font">Units Refunded</p>', unsafe_allow_html=True)
+            if p4 > 0:
+                c4.markdown(f'<p class="big-font"><strong>{(refunded_df["Units Refunded"].sum()):,}</strong><span style="color: green;"> (+{p4}%)</span></p>', unsafe_allow_html=True)
+            elif p4 == 0:
+                c4.markdown(f'<p class="big-font"><strong>{(refunded_df["Units Refunded"].sum()):,}</strong><span style="color: black;"> (0%)</span></p>', unsafe_allow_html=True)
+            else:
+                c4.markdown(f'<p class="big-font"><strong>{(refunded_df["Units Refunded"].sum()):,}</strong><span style="color: red;"> ({p4}%)</span></p>', unsafe_allow_html=True)
+
+        dispatched_one_cat_df = dispatched_df.groupby('F_Cat')['Units'].sum().reset_index().sort_values(by=['Units'], ascending=False).reset_index(drop=True)
+        dispatched_rev_one_cat_df = dispatched_df.groupby('F_Cat')['Revenue (£)'].sum().reset_index().sort_values(by=['Revenue (£)'], ascending=False).reset_index(drop=True)
+        dispatched_rev_one_cat_df['Revenue (£)'] = np.round(dispatched_rev_one_cat_df['Revenue (£)'], 0)
+        dispatched_one_cat_df = pd.merge(dispatched_one_cat_df, dispatched_rev_one_cat_df, how="outer", on="F_Cat")
+        refunded_one_cat_df = refunded_df.groupby('F_Cat')['Units Refunded'].sum().reset_index().sort_values(by=['Units Refunded'], ascending=False).reset_index(drop=True)
+        refunded_rev_one_cat_df = refunded_df.groupby('F_Cat')['Total Refund (£)'].sum().reset_index().sort_values(by=['Total Refund (£)'], ascending=False).reset_index(drop=True)
+        refunded_rev_one_cat_df['Total Refund (£)'] = np.round(refunded_rev_one_cat_df['Total Refund (£)'], 0)
+        refunded_one_cat_df = pd.merge(refunded_one_cat_df, refunded_rev_one_cat_df, how="outer", on="F_Cat")
+        dispatched_one_cat_df = pd.merge(dispatched_one_cat_df, refunded_one_cat_df, how="outer", on="F_Cat")
+        dispatched_one_cat_df.replace(np.NaN, 0, inplace=True)
+        selection = dataframe_with_selections(dispatched_one_cat_df, 1)
+
+        if (selection['selected_rows_indices'] != []):
+            selected_prod = dispatched_one_cat_df.loc[selection['selected_rows_indices'][0]]['F_Cat']
+            dispatched_df = dispatched_df[dispatched_df['F_Cat'] == selected_prod]
+            refunded_df = refunded_df[refunded_df['F_Cat'] == selected_prod]
+
+            dispatched_two_cat_df = dispatched_df.groupby('S_Cat')['Units'].sum().reset_index().sort_values(by=['Units'], ascending=False).reset_index(drop=True)
+            dispatched_rev_two_cat_df = dispatched_df.groupby('S_Cat')['Revenue (£)'].sum().reset_index().sort_values(by=['Revenue (£)'], ascending=False).reset_index(drop=True)
+            refunded_two_cat_df = refunded_df.groupby('S_Cat')['Units Refunded'].sum().reset_index().sort_values(by=['Units Refunded'], ascending=False).reset_index(drop=True)
+            refunded_rev_two_cat_df = refunded_df.groupby('S_Cat')['Total Refund (£)'].sum().reset_index().sort_values(by=['Total Refund (£)'], ascending=False).reset_index(drop=True)
+            
+            if(len(dispatched_two_cat_df) != 0):
+                dispatched_rev_two_cat_df['Revenue (£)'] = np.round(dispatched_rev_two_cat_df['Revenue (£)'], 0)
+                dispatched_two_cat_df = pd.merge(dispatched_two_cat_df, dispatched_rev_two_cat_df, how="outer", on="S_Cat")
+                refunded_rev_two_cat_df['Total Refund (£)'] = np.round(refunded_rev_two_cat_df['Total Refund (£)'], 0)
+                refunded_two_cat_df = pd.merge(refunded_two_cat_df, refunded_rev_two_cat_df, how="outer", on="S_Cat")
+                dispatched_two_cat_df = pd.merge(dispatched_two_cat_df, refunded_two_cat_df, how="outer", on="S_Cat")
+                dispatched_two_cat_df.replace(np.NaN, 0, inplace=True)
+
+                selection2 = dataframe_with_selections(dispatched_two_cat_df, 2)
+
+                if(selection2['selected_rows_indices'] != []):
+                    selected_prod = dispatched_two_cat_df.loc[selection2['selected_rows_indices'][0]]['S_Cat']
+                    dispatched_df = dispatched_df[dispatched_df['S_Cat'] == selected_prod]
+                    refunded_df = refunded_df[refunded_df['S_Cat'] == selected_prod]
+                    three_cat_df = dispatched_df.groupby('T_Cat')['Units'].sum().reset_index().sort_values(by=['Units'], ascending=False).reset_index(drop=True)
+
+                    if(len(three_cat_df) == 0):
                         dispatched_product_three_cat_df = product_condense_dataframe(dispatched_df, refunded_df)
 
                         product_stock_df = stock_df.groupby('Product Name')['Stock'].sum()
                         dispatched_product_three_cat_df = pd.merge(dispatched_product_three_cat_df, product_stock_df, how="outer", on="Product Name")
-
-                        selection5 = dataframe_with_selections(dispatched_product_three_cat_df, 5)
-                        if(selection5['selected_rows_indices'] != []):
-                            selected_prod = dispatched_product_three_cat_df.loc[selection5['selected_rows_indices'][0]]['Product Name']
+                        
+                        selection4 = dataframe_with_selections(dispatched_product_three_cat_df, 4)
+                        if(selection4['selected_rows_indices'] != []):
+                            selected_prod = dispatched_product_three_cat_df.loc[selection4['selected_rows_indices'][0]]['Product Name']
                             
                             dispatched_df = dispatched_df[dispatched_df['Product Name'] == selected_prod]
                             refunded_df = refunded_df[refunded_df['Product Name'] == selected_prod]
@@ -490,7 +477,7 @@ if(len(d) > 1):
                             table_column, graph_column = st.columns([0.4, 0.6])
                             table_column.markdown(f'<p class="big-font"><strong>{selected_prod}</strong></p>', unsafe_allow_html=True)
                             table_column.dataframe(dispatched_sku_three_cat_df, use_container_width=True)
-                            if (len(dispatched_sku_three_cat_df) > 1):
+                            if(len(dispatched_sku_three_cat_df) > 1):
                                 columns_list = dispatched_sku_three_cat_df.columns
                                 total_df = pd.DataFrame(columns=columns_list)
                                 total_df.loc['Total'] = dispatched_sku_three_cat_df.select_dtypes(np.number).sum()
@@ -500,34 +487,84 @@ if(len(d) > 1):
                             chart, line = graph_condense(dispatched_df)
                             graph_column.altair_chart(line, use_container_width=True)
 
-        else:
-            dispatched_product_two_cat_df = product_condense_dataframe(dispatched_df, refunded_df)
+                    else:
+                        dispatched_three_cat_df = dispatched_df.groupby('T_Cat')['Units'].sum().reset_index().sort_values(by=['Units'], ascending=False).reset_index(drop=True)
+                        dispatched_rev_three_cat_df = dispatched_df.groupby('T_Cat')['Revenue (£)'].sum().reset_index().sort_values(by=['Revenue (£)'], ascending=False).reset_index(drop=True)
+                        refunded_three_cat_df = refunded_df.groupby('T_Cat')['Units Refunded'].sum().reset_index().sort_values(by=['Units Refunded'], ascending=False).reset_index(drop=True)
+                        refunded_rev_three_cat_df = refunded_df.groupby('T_Cat')['Total Refund (£)'].sum().reset_index().sort_values(by=['Total Refund (£)'], ascending=False).reset_index(drop=True)
+                        
+                        dispatched_rev_three_cat_df['Revenue (£)'] = np.round(dispatched_rev_three_cat_df['Revenue (£)'], 0)
+                        dispatched_three_cat_df = pd.merge(dispatched_three_cat_df, dispatched_rev_three_cat_df, how="outer", on="T_Cat")
+                        refunded_rev_three_cat_df['Total Refund (£)'] = np.round(refunded_rev_three_cat_df['Total Refund (£)'], 0)
+                        refunded_three_cat_df = pd.merge(refunded_three_cat_df, refunded_rev_three_cat_df, how="outer", on="T_Cat")
+                        dispatched_three_cat_df = pd.merge(dispatched_three_cat_df, refunded_three_cat_df, how="outer", on="T_Cat")
+                        dispatched_three_cat_df.replace(np.NaN, 0, inplace=True)
+                        selection3 = dataframe_with_selections(dispatched_three_cat_df, 3)
 
-            product_stock_df = stock_df.groupby('Product Name')['Stock'].sum()
-            dispatched_product_two_cat_df = pd.merge(dispatched_product_two_cat_df, product_stock_df, how="outer", on="Product Name")
+                        if(selection3['selected_rows_indices'] != []):
+                            selected_prod = dispatched_three_cat_df.loc[selection3['selected_rows_indices'][0]]['T_Cat']
+                            dispatched_df = dispatched_df[dispatched_df['T_Cat'] == selected_prod]
+                            refunded_df = refunded_df[refunded_df['T_Cat'] == selected_prod]
 
-            selection4 = dataframe_with_selections(dispatched_product_two_cat_df, 4)
-            if(selection4['selected_rows_indices'] != []):
-                selected_prod = dispatched_product_two_cat_df.loc[selection4['selected_rows_indices'][0]]['Product Name']
+                            dispatched_product_three_cat_df = product_condense_dataframe(dispatched_df, refunded_df)
 
-                dispatched_df = dispatched_df[dispatched_df['Product Name'] == selected_prod]
-                refunded_df = refunded_df[refunded_df['Product Name'] == selected_prod]
-                stock_df = stock_df[stock_df['Product Name'] == selected_prod]
+                            product_stock_df = stock_df.groupby('Product Name')['Stock'].sum()
+                            dispatched_product_three_cat_df = pd.merge(dispatched_product_three_cat_df, product_stock_df, how="outer", on="Product Name")
 
-                dispatched_sku_two_cat_df = sku_condense_dataframe(dispatched_df, refunded_df)
+                            selection5 = dataframe_with_selections(dispatched_product_three_cat_df, 5)
+                            if(selection5['selected_rows_indices'] != []):
+                                selected_prod = dispatched_product_three_cat_df.loc[selection5['selected_rows_indices'][0]]['Product Name']
+                                
+                                dispatched_df = dispatched_df[dispatched_df['Product Name'] == selected_prod]
+                                refunded_df = refunded_df[refunded_df['Product Name'] == selected_prod]
+                                stock_df = stock_df[stock_df['Product Name'] == selected_prod]
 
-                product_stock_df = stock_df.groupby('Size')['Stock'].sum()
-                dispatched_sku_two_cat_df = pd.merge(dispatched_sku_two_cat_df, product_stock_df, how="outer", on="Size")
+                                dispatched_sku_three_cat_df = sku_condense_dataframe(dispatched_df, refunded_df)
 
-                table_column, graph_column = st.columns([0.4, 0.6])
-                table_column.markdown(f'<p class="big-font"><strong>{selected_prod}</strong></p>', unsafe_allow_html=True)
-                table_column.dataframe(dispatched_sku_two_cat_df, use_container_width=True)
-                if (len(dispatched_sku_two_cat_df) > 1):
-                    columns_list = dispatched_sku_two_cat_df.columns
-                    total_df = pd.DataFrame(columns=columns_list)
-                    total_df.loc['Total'] = dispatched_sku_two_cat_df.select_dtypes(np.number).sum()
-                    table_column.dataframe(total_df, use_container_width=True)
-                    sku_summary(dispatched_sku_two_cat_df)
+                                sku_stock_df = stock_df.groupby('Size')['Stock'].sum()
+                                dispatched_sku_three_cat_df = pd.merge(dispatched_sku_three_cat_df, sku_stock_df, how="outer", on="Size")
 
-                chart, line = graph_condense(dispatched_df)
-                graph_column.altair_chart(line, use_container_width=True)
+                                table_column, graph_column = st.columns([0.4, 0.6])
+                                table_column.markdown(f'<p class="big-font"><strong>{selected_prod}</strong></p>', unsafe_allow_html=True)
+                                table_column.dataframe(dispatched_sku_three_cat_df, use_container_width=True)
+                                if (len(dispatched_sku_three_cat_df) > 1):
+                                    columns_list = dispatched_sku_three_cat_df.columns
+                                    total_df = pd.DataFrame(columns=columns_list)
+                                    total_df.loc['Total'] = dispatched_sku_three_cat_df.select_dtypes(np.number).sum()
+                                    table_column.dataframe(total_df, use_container_width=True)
+                                    sku_summary(dispatched_sku_three_cat_df)
+
+                                chart, line = graph_condense(dispatched_df)
+                                graph_column.altair_chart(line, use_container_width=True)
+
+            else:
+                dispatched_product_two_cat_df = product_condense_dataframe(dispatched_df, refunded_df)
+
+                product_stock_df = stock_df.groupby('Product Name')['Stock'].sum()
+                dispatched_product_two_cat_df = pd.merge(dispatched_product_two_cat_df, product_stock_df, how="outer", on="Product Name")
+
+                selection4 = dataframe_with_selections(dispatched_product_two_cat_df, 4)
+                if(selection4['selected_rows_indices'] != []):
+                    selected_prod = dispatched_product_two_cat_df.loc[selection4['selected_rows_indices'][0]]['Product Name']
+
+                    dispatched_df = dispatched_df[dispatched_df['Product Name'] == selected_prod]
+                    refunded_df = refunded_df[refunded_df['Product Name'] == selected_prod]
+                    stock_df = stock_df[stock_df['Product Name'] == selected_prod]
+
+                    dispatched_sku_two_cat_df = sku_condense_dataframe(dispatched_df, refunded_df)
+
+                    product_stock_df = stock_df.groupby('Size')['Stock'].sum()
+                    dispatched_sku_two_cat_df = pd.merge(dispatched_sku_two_cat_df, product_stock_df, how="outer", on="Size")
+
+                    table_column, graph_column = st.columns([0.4, 0.6])
+                    table_column.markdown(f'<p class="big-font"><strong>{selected_prod}</strong></p>', unsafe_allow_html=True)
+                    table_column.dataframe(dispatched_sku_two_cat_df, use_container_width=True)
+                    if (len(dispatched_sku_two_cat_df) > 1):
+                        columns_list = dispatched_sku_two_cat_df.columns
+                        total_df = pd.DataFrame(columns=columns_list)
+                        total_df.loc['Total'] = dispatched_sku_two_cat_df.select_dtypes(np.number).sum()
+                        table_column.dataframe(total_df, use_container_width=True)
+                        sku_summary(dispatched_sku_two_cat_df)
+
+                    chart, line = graph_condense(dispatched_df)
+                    graph_column.altair_chart(line, use_container_width=True)
