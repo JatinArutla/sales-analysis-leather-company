@@ -255,7 +255,7 @@ if(len(d) > 1):
             key=102,
         )
 
-        stand_arr = ['None selected', 'Category-wise sales']
+        stand_arr = ['None selected', 'Category-wise sales for 2021, 2022 and 2023']
         stand_options = st.selectbox('Standalone reports', options=stand_arr)
         if (stand_options == 'None selected'):
             df = df
@@ -269,7 +269,7 @@ if(len(d) > 1):
             else:
                 df = df[df['Revenue (£)'] == price_range[0]]
     
-    if ((stand_options == 'Category-wise sales') & (filters_check == True)):
+    if ((stand_options == 'Category-wise sales for 2021, 2022 and 2023') & (filters_check == True)):
         df = orig_df[(orig_df['order_state'] == 'Order Dispatched') | (orig_df['order_state'] == 'Order Refunded')]
         df['date'] = pd.to_datetime(df['date'])
         l = [[2, 2021], [3, 2021], [1, 2022], [2, 2022], [3, 2022], [1, 2023], [2, 2023], [3, 2023], [4, 2021], [5, 2021], [6, 2021], [4, 2022], [5, 2022], [6, 2022],
@@ -296,8 +296,8 @@ if(len(d) > 1):
         m = temp_df.select_dtypes(np.number)
         temp_df[m.columns]= m.round().astype('Int64')
 
-        st.dataframe(temp_df.sort_values(by='Mean-Jan', ascending=False).reset_index(drop=True)[['customs_description', 'Mean-Jan', 'Mean-Feb', 'Mean-Mar', 'Mean-Apr', 'Mean-May',
-                                                                                                 'Mean-Jun', 'Mean-Jul', 'Mean-Aug', 'Mean-Sep', 'Mean-Oct', 'Mean-Nov', 'Mean-Dec']])
+        st.dataframe(temp_df.sort_values(by='Mean-Jan', ascending=False).reset_index(drop=True)[['customs_description', 'Mean-Jan', 'Mean-Feb', 'Mean-Mar', 'Mean-Apr', 'Mean-May', 'Mean-Jun',
+                                                                                                 'Mean-Jul', 'Mean-Aug', 'Mean-Sep', 'Mean-Oct', 'Mean-Nov', 'Mean-Dec']], use_container_width=True)
 
     else:
         df['Revenue (£)'] = df['Revenue (£)'].astype(float)
