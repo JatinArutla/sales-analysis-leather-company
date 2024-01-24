@@ -295,9 +295,9 @@ if(len(d) > 1):
 
         m = temp_df.select_dtypes(np.number)
         temp_df[m.columns]= m.round().astype('Int64')
-
-        st.dataframe(temp_df.sort_values(by='Mean-Jan', ascending=False).reset_index(drop=True)[['customs_description', 'Mean-Jan', 'Mean-Feb', 'Mean-Mar', 'Mean-Apr', 'Mean-May', 'Mean-Jun',
-                                                                                                 'Mean-Jul', 'Mean-Aug', 'Mean-Sep', 'Mean-Oct', 'Mean-Nov', 'Mean-Dec']], use_container_width=True)
+        temp_df = temp_df.sort_values(by='Mean-Jan', ascending=False).reset_index(drop=True)[['customs_description', 'Mean-Jan', 'Mean-Feb', 'Mean-Mar', 'Mean-Apr', 'Mean-May', 'Mean-Jun',
+                                                                                                 'Mean-Jul', 'Mean-Aug', 'Mean-Sep', 'Mean-Oct', 'Mean-Nov', 'Mean-Dec']]
+        st.dataframe(temp_df, use_container_width=True)
 
     if ((stand_options == 'Monthly categorical forecast') & (filters_check == True)):
         mon_forecast_df = pd.read_csv('Monthly category forecast.csv')
