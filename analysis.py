@@ -314,6 +314,9 @@ if(len(d) > 1):
         disp_ads_df = ads_df.groupby('Campaign')[['Interactions', 'Clicks', 'Costs']].sum().reset_index()
         disp_ads_df['Costs'] = disp_ads_df['Costs'].astype(int)
         disp_ads_df['Clicks'] = disp_ads_df['Clicks'].replace(np.NaN, 0)
+        disp_ads_df['Clicks per pound'] = disp_ads_df['Clicks'] / disp_ads_df['Costs']
+        disp_ads_df['Clicks per pound'] = disp_ads_df['Clicks per pound'].round(2)
+        disp_ads_df.rename(columns={'Costs': 'Costs (£)'}, inplace=True)
         disp_ads_df.sort_values(by='Interactions', ascending=False, inplace=True)
         disp_ads_df.reset_index(drop=True, inplace=True)
         campaign_selection = dataframe_with_selections(disp_ads_df, 11)
