@@ -322,8 +322,8 @@ if(len(d) > 1):
             graph_df = ads_df[ads_df['Campaign'] == selected_campaign]
             graph_df.rename(columns={'date': 'Date'}, inplace=True)
             graph_df['Date'] = pd.to_datetime(graph_df['Date'])
-            graph_df['Costs'] = graph_df['Costs'].astype(float)
-            graph_df['Interactions'] = graph_df['Interactions'].astype(float)
+            graph_df['Costs'] = graph_df['Costs'].astype(int)
+            graph_df['Interactions'] = graph_df['Interactions'].astype(int)
 
             graph_df = graph_df[['Date', 'Interactions', 'Costs']]
             data = graph_df.melt('Date')
