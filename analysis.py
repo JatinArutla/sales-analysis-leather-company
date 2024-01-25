@@ -255,7 +255,7 @@ if(len(d) > 1):
             key=102,
         )
 
-        stand_arr = ['None selected', 'Categorical sales for 2021, 2022 and 2023', 'Monthly categorical forecast']
+        stand_arr = ['None selected', 'Categorical sales for 2021, 2022 and 2023', 'Monthly categorical forecast', 'Google ads analysis']
         stand_options = st.selectbox('Standalone reports', options=stand_arr)
         if (stand_options == 'None selected'):
             df = df
@@ -307,6 +307,38 @@ if(len(d) > 1):
         total_df.loc['Total'] = mon_forecast_df.select_dtypes(np.number).sum()
         total_df['Month'] = 'Total'
         st.dataframe(total_df, hide_index=True, use_container_width=True)
+
+    if ((stand_options == 'Google ads analysis') & (filters_check == True)):
+        ads_df = pd.read_csv('GoogleAdsCosts.csv', parse_dates=['date'])
+        ads_df = ads_df[(ads_df['date'] >= pd.to_datetime(d[0])) & (ads_df['date'] <= pd.to_datetime(d[1]))]
+        disp_ads_df = ads_df.groupby('Campaign')[['Interactions', 'Costs']].sum().reset_index()
+        disp_ads_df.sort_values(by='Interactions', ascending=False, inplace=True)
+        disp_ads_df.reset_index(drop=True, inplace=True)
+        campaign_selection = dataframe_with_selections(disp_ads_df, 11)
+        
+        if(campaign_selection['selected_rows_indices'] != []):
+            selected_campaign = disp_ads_df.loc[campaign_selection['selected_rows_indices'][0]]['Campaign']
+            
+            graph_df = ads_df[ads_df['Campaign'] == selected_campaign]
+            graph_df.rename(columns={'date': 'Date'}, inplace=True)
+            graph_df['Date'] = pd.to_datetime(graph_df['Date'])
+            graph_df['Costs'] = graph_df['Costs'].astype(float)
+            graph_df['Interactions'] = graph_df['Interactions'].astype(float)
+
+            graph_df = graph_df[['Date', 'Interactions', 'Costs']]
+            data = graph_df.melt('Date')
+            line = alt.Chart(data).mark_line().encode(
+                x='Date',
+                y='value',
+                color='variable'
+            ).properties(width=100, height=600)
+
+            # line1 = alt.Chart(graph_df, title=f'{selected_campaign} performance from {d[0].strftime("%d %b %Y")} to {d[1].strftime("%d %b %Y")}').mark_line().encode(x='Date', y='Interactions').interactive()
+            # line2 = alt.Chart(graph_df, title=f'{selected_campaign} performance from {d[0].strftime("%d %b %Y")} to {d[1].strftime("%d %b %Y")}').mark_line().encode(x='Date', y='Costs').interactive()
+            # line = alt.layer(line1, line2).resolve_scale(color='independent')
+
+            st.altair_chart(line, use_container_width=True)
+
     
     else:
         df['Revenue (£)'] = df['Revenue (£)'].astype(float)
