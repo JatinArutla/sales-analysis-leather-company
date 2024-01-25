@@ -311,8 +311,9 @@ if(len(d) > 1):
     if ((stand_options == 'Google ads analysis') & (filters_check == True)):
         ads_df = pd.read_csv('GoogleAdsCosts.csv', parse_dates=['date'])
         ads_df = ads_df[(ads_df['date'] >= pd.to_datetime(d[0])) & (ads_df['date'] <= pd.to_datetime(d[1]))]
-        disp_ads_df = ads_df.groupby('Campaign')[['Interactions', 'Costs']].sum().reset_index()
+        disp_ads_df = ads_df.groupby('Campaign')[['Interactions', 'Clicks', 'Costs']].sum().reset_index()
         disp_ads_df['Costs'] = disp_ads_df['Costs'].astype(int)
+        disp_ads_df['Clicks'] = disp_ads_df['Clicks'].replace(np.NaN, 0)
         disp_ads_df.sort_values(by='Interactions', ascending=False, inplace=True)
         disp_ads_df.reset_index(drop=True, inplace=True)
         campaign_selection = dataframe_with_selections(disp_ads_df, 11)
@@ -323,10 +324,11 @@ if(len(d) > 1):
             graph_df = ads_df[ads_df['Campaign'] == selected_campaign]
             graph_df.rename(columns={'date': 'Date'}, inplace=True)
             graph_df['Date'] = pd.to_datetime(graph_df['Date'])
+            graph_df['Clicks'] = graph_df['Clicks'].replace(np.NaN, 0)
             graph_df['Costs'] = graph_df['Costs'].astype(int)
             graph_df['Interactions'] = graph_df['Interactions'].astype(int)
 
-            graph_df = graph_df[['Date', 'Interactions', 'Costs']]
+            graph_df = graph_df[['Date', 'Interactions', 'Clicks', 'Costs']]
             data = graph_df.melt('Date')
             line = alt.Chart(data).mark_line().encode(
                 x='Date',
