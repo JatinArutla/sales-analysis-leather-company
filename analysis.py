@@ -340,6 +340,7 @@ if(len(d) > 1):
             # line2 = alt.Chart(graph_df, title=f'{selected_campaign} performance from {d[0].strftime("%d %b %Y")} to {d[1].strftime("%d %b %Y")}').mark_line().encode(x='Date', y='Costs').interactive()
             # line = alt.layer(line1, line2).resolve_scale(color='independent')
 
+            st.write(f'{selected_campaign} Campaign Performance from {d[0].strftime("%d %b %Y")} to {d[1].strftime("%d %b %Y")}')
             st.altair_chart(line, use_container_width=True)
 
     
