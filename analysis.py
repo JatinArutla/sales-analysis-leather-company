@@ -331,7 +331,7 @@ if(len(d) > 1):
                 x='Date',
                 y='value',
                 color='variable'
-            ).properties(width=100, height=600)
+            ).interactive().properties(width=100, height=600)
 
             # line1 = alt.Chart(graph_df, title=f'{selected_campaign} performance from {d[0].strftime("%d %b %Y")} to {d[1].strftime("%d %b %Y")}').mark_line().encode(x='Date', y='Interactions').interactive()
             # line2 = alt.Chart(graph_df, title=f'{selected_campaign} performance from {d[0].strftime("%d %b %Y")} to {d[1].strftime("%d %b %Y")}').mark_line().encode(x='Date', y='Costs').interactive()
