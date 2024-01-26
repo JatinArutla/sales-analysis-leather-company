@@ -523,7 +523,7 @@ if(len(d) > 1):
                             sku_stock_df = stock_df.groupby('Size')['Stock'].sum()
                             dispatched_sku_three_cat_df = pd.merge(dispatched_sku_three_cat_df, sku_stock_df, how="outer", on="Size")
 
-                            table_column, graph_column = st.columns([0.4, 0.6])
+                            table_column, graph_column = st.columns([0.5, 0.5])
                             table_column.markdown(f'<p class="big-font"><strong>{selected_prod}</strong></p>', unsafe_allow_html=True)
                             table_column.dataframe(dispatched_sku_three_cat_df, use_container_width=True)
                             if(len(dispatched_sku_three_cat_df) > 1):
