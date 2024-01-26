@@ -299,7 +299,7 @@ if(len(d) > 1):
                                                                                                  'Mean-Jul', 'Mean-Aug', 'Mean-Sep', 'Mean-Oct', 'Mean-Nov', 'Mean-Dec']]
         st.dataframe(temp_df, use_container_width=True)
 
-    if ((stand_options == 'Monthly categorical forecast') & (filters_check == True)):
+    elif ((stand_options == 'Monthly categorical forecast') & (filters_check == True)):
         mon_forecast_df = pd.read_csv('Monthly category forecast.csv')
         st.dataframe(mon_forecast_df, hide_index=True, use_container_width=True)
         columns_list = mon_forecast_df.columns
@@ -308,7 +308,7 @@ if(len(d) > 1):
         total_df['Month'] = 'Total'
         st.dataframe(total_df, hide_index=True, use_container_width=True)
 
-    if ((stand_options == 'Google ads analysis') & (filters_check == True)):
+    elif ((stand_options == 'Google ads analysis') & (filters_check == True)):
         ads_df = pd.read_csv('GoogleAdsCosts.csv', parse_dates=['date'])
         ads_df = ads_df[(ads_df['date'] >= pd.to_datetime(d[0])) & (ads_df['date'] <= pd.to_datetime(d[1]))]
         disp_ads_df = ads_df.groupby('Campaign')[['Interactions', 'Clicks', 'Costs']].sum().reset_index()
@@ -347,7 +347,7 @@ if(len(d) > 1):
             st.altair_chart(line, use_container_width=True)
 
     
-    else:
+    elif stand_options == 'None selected':
         df['Revenue (£)'] = df['Revenue (£)'].astype(float)
         refunded_df = df[df['order_state'] == 'Order Refunded']
         dispatched_df = df[(df['order_state'] == 'Order Dispatched') | (df['order_state'] == 'Order Refunded')]
