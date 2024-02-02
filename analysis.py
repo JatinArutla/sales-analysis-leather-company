@@ -97,9 +97,12 @@ def graph_condense(dispatched_df):
     line = alt.Chart(graph_df, title=f'{selected_prod} Units Sold from {d[0].strftime("%d %b %Y")} to {d[1].strftime("%d %b %Y")}').mark_line().encode(x='Date', y='Units').interactive()
     return chart, line
 
-def sku_summary(df):
+def sku_summary(df, d, d2):
     t1, t2, t3 = df['Units'].idxmax(), df['Units Refunded'].idxmax(), df['Units'].idxmin()
-    table_column.markdown(f"<p class='small-font'><strong>{d[0].strftime('%d %b %Y')} to {d[1].strftime('%d %b %Y')}</strong></p>", unsafe_allow_html=True)
+    if(len(d2) <= 1):
+        table_column.markdown(f"<p class='small-font'><strong>{d[0].strftime('%d %b %Y')} to {d[1].strftime('%d %b %Y')}</strong></p>", unsafe_allow_html=True)
+    elif(len(d2) > 1):
+        table_column.markdown(f"<p class='small-font'><strong>{d[0].strftime('%d %b %Y')} to {d[1].strftime('%d %b %Y')} and {d2[0].strftime('%d %b %Y')} to {d2[1].strftime('%d %b %Y')}</strong></p>", unsafe_allow_html=True)
     if(df.iloc[t1]['Units'].astype(int) != 1):
         table_column.markdown(f'<p class="small-font"><strong>Best Seller:</strong> {df.iloc[t1]["Units"].astype(int)} units of size: {df.iloc[t1]["Size"]} with a revenue of £{(df.iloc[t1]["Revenue (£)"].astype(int)):,}</p>', unsafe_allow_html=True)
     else:
@@ -361,7 +364,7 @@ if(len(d) > 1):
             orig_df['SKU Reference'] = orig_df['SKU Reference'].apply(str)
             orig_df['SKU Reference'] = orig_df['SKU Reference'].str.strip()
 
-            df2 = orig_df[(orig_df['date'] >= pd.to_datetime(d2[0])) & (orig_df['date'] <= pd.to_datetime(d2[1]))].drop(['Unnamed: 0'], axis=1)
+            df2 = orig_df[(orig_df['date'] >= pd.to_datetime(d2[0])) & (orig_df['date'] <= pd.to_datetime(d2[1]))]
 
             if (options != ''):
                 df2 = df2[(df2 == options).any(axis=1)]
@@ -402,6 +405,12 @@ if(len(d) > 1):
             refunded_df2.rename(columns={'Units': 'Units Refunded', 'Revenue (£)': 'Total Refund (£)'}, inplace=True)
             dispatched_df2 = df2[(df2['order_state'] == 'Order Dispatched') | (df2['order_state'] == 'Order Refunded')]
 
+            dispatched_df_temp = dispatched_df.copy(deep=False)
+            refunded_df_temp = refunded_df.copy(deep=False)
+
+            dispatched_df = pd.concat([dispatched_df, dispatched_df2], ignore_index=True)
+            refunded_df = pd.concat([refunded_df, refunded_df2], ignore_index=True)
+
 
         if(d2 == ()):
             c1, c2, c3, c4 = st.columns(4)
@@ -426,7 +435,7 @@ if(len(d) > 1):
         if (len(d2) == 2):
             c1, c2, c3, c4 = st.columns(4)
 
-            p1 = percentage_change(np.round(dispatched_df['Revenue (£)'].sum(), 2), np.round(dispatched_df2['Revenue (£)'].sum(), 2))
+            p1 = percentage_change(np.round(dispatched_df_temp['Revenue (£)'].sum(), 2), np.round(dispatched_df2['Revenue (£)'].sum(), 2))
             c1 = c1.container(border=True)
             c1.markdown(f'<p class="small-font">Total Revenue</p>', unsafe_allow_html=True)
             if p1 > 0:
@@ -436,7 +445,7 @@ if(len(d) > 1):
             else:
                 c1.markdown(f'<p class="big-font">£<strong>{(np.round(dispatched_df["Revenue (£)"].sum(), 2)):,}</strong><span style="color: red;"> ({p1}%)</span></p>', unsafe_allow_html=True)
 
-            p2 = percentage_change(dispatched_df['Units'].sum(), dispatched_df2['Units'].sum())
+            p2 = percentage_change(dispatched_df_temp['Units'].sum(), dispatched_df2['Units'].sum())
             c2 = c2.container(border=True)
             c2.markdown(f'<p class="small-font">Units Sold</p>', unsafe_allow_html=True)
             if p2 > 0:
@@ -446,25 +455,25 @@ if(len(d) > 1):
             else:
                 c2.markdown(f'<p class="big-font"><strong>{(dispatched_df["Units"].sum()):,}</strong><span style="color: red;"> ({p2}%)</span></p>', unsafe_allow_html=True)
 
-            p3 = percentage_change((np.round(refunded_df['Total Refund (£)'].sum(), 2)), (np.round(refunded_df2['Total Refund (£)'].sum(), 2)))
+            p3 = percentage_change((np.round(refunded_df_temp['Total Refund (£)'].sum(), 2)), (np.round(refunded_df2['Total Refund (£)'].sum(), 2)))
             c3 = c3.container(border=True)
             c3.markdown(f'<p class="small-font">Total Refund</p>', unsafe_allow_html=True)
             if p3 > 0:
-                c3.markdown(f'<p class="big-font">£<strong>{(np.round(refunded_df["Total Refund (£)"].sum(), 2)):,}</strong><span style="color: green;"> (+{p3}%)</span></p>', unsafe_allow_html=True)
+                c3.markdown(f'<p class="big-font">£<strong>{(np.round(refunded_df["Total Refund (£)"].sum(), 2)):,}</strong><span style="color: red;"> (+{p3}%)</span></p>', unsafe_allow_html=True)
             elif p3 == 0:
                 c3.markdown(f'<p class="big-font">£<strong>{(np.round(refunded_df["Total Refund (£)"].sum(), 2)):,}</strong><span style="color: black;"> (0%)</span></p>', unsafe_allow_html=True)
             else:
-                c3.markdown(f'<p class="big-font">£<strong>{(np.round(refunded_df["Total Refund (£)"].sum(), 2)):,}</strong><span style="color: red;"> ({p3}%)</span></p>', unsafe_allow_html=True)
+                c3.markdown(f'<p class="big-font">£<strong>{(np.round(refunded_df["Total Refund (£)"].sum(), 2)):,}</strong><span style="color: green;"> ({p3}%)</span></p>', unsafe_allow_html=True)
 
-            p4 = percentage_change(refunded_df['Units Refunded'].sum(), refunded_df2['Units Refunded'].sum())
+            p4 = percentage_change(refunded_df_temp['Units Refunded'].sum(), refunded_df2['Units Refunded'].sum())
             c4 = c4.container(border=True)
             c4.markdown(f'<p class="small-font">Units Refunded</p>', unsafe_allow_html=True)
             if p4 > 0:
-                c4.markdown(f'<p class="big-font"><strong>{(refunded_df["Units Refunded"].sum()):,}</strong><span style="color: green;"> (+{p4}%)</span></p>', unsafe_allow_html=True)
+                c4.markdown(f'<p class="big-font"><strong>{(refunded_df["Units Refunded"].sum()):,}</strong><span style="color: red;"> (+{p4}%)</span></p>', unsafe_allow_html=True)
             elif p4 == 0:
                 c4.markdown(f'<p class="big-font"><strong>{(refunded_df["Units Refunded"].sum()):,}</strong><span style="color: black;"> (0%)</span></p>', unsafe_allow_html=True)
             else:
-                c4.markdown(f'<p class="big-font"><strong>{(refunded_df["Units Refunded"].sum()):,}</strong><span style="color: red;"> ({p4}%)</span></p>', unsafe_allow_html=True)
+                c4.markdown(f'<p class="big-font"><strong>{(refunded_df["Units Refunded"].sum()):,}</strong><span style="color: green;"> ({p4}%)</span></p>', unsafe_allow_html=True)
 
         dispatched_one_cat_df = dispatched_df.groupby('F_Cat')['Units'].sum().reset_index().sort_values(by=['Units'], ascending=False).reset_index(drop=True)
         dispatched_rev_one_cat_df = dispatched_df.groupby('F_Cat')['Revenue (£)'].sum().reset_index().sort_values(by=['Revenue (£)'], ascending=False).reset_index(drop=True)
@@ -531,7 +540,7 @@ if(len(d) > 1):
                                 total_df = pd.DataFrame(columns=columns_list)
                                 total_df.loc['Total'] = dispatched_sku_three_cat_df.select_dtypes(np.number).sum()
                                 table_column.dataframe(total_df, use_container_width=True)
-                                sku_summary(dispatched_sku_three_cat_df)
+                                sku_summary(dispatched_sku_three_cat_df, d, d2)
 
                             chart, line = graph_condense(dispatched_df)
                             graph_column.altair_chart(line, use_container_width=True)
@@ -581,7 +590,7 @@ if(len(d) > 1):
                                     total_df = pd.DataFrame(columns=columns_list)
                                     total_df.loc['Total'] = dispatched_sku_three_cat_df.select_dtypes(np.number).sum()
                                     table_column.dataframe(total_df, use_container_width=True)
-                                    sku_summary(dispatched_sku_three_cat_df)
+                                    sku_summary(dispatched_sku_three_cat_df, d, d2)
 
                                 chart, line = graph_condense(dispatched_df)
                                 graph_column.altair_chart(line, use_container_width=True)
@@ -613,7 +622,7 @@ if(len(d) > 1):
                         total_df = pd.DataFrame(columns=columns_list)
                         total_df.loc['Total'] = dispatched_sku_two_cat_df.select_dtypes(np.number).sum()
                         table_column.dataframe(total_df, use_container_width=True)
-                        sku_summary(dispatched_sku_two_cat_df)
+                        sku_summary(dispatched_sku_two_cat_df, d, d2)
 
                     chart, line = graph_condense(dispatched_df)
                     graph_column.altair_chart(line, use_container_width=True)
