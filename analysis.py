@@ -94,7 +94,7 @@ def graph_condense(dispatched_df):
     graph_df['Date'] = temp['Date']
     graph_df['Date'] = pd.to_datetime(graph_df['Date'])
     chart = alt.Chart(graph_df).mark_point(filled=True).encode(x='Date', y='Units')
-    line = alt.Chart(graph_df, title=f'{selected_prod} Units Sold from {d[0].strftime("%d %b %Y")} to {d[1].strftime("%d %b %Y")}').mark_line().encode(x='Date', y='Units').interactive()
+    line = alt.Chart(graph_df, title=f'{selected_prod} Units Sold from {d[0].strftime("%d %b %Y")} to {d[1].strftime("%d %b %Y")}').mark_line(point=True).encode(x='Date', y='Units').interactive()
     return chart, line
 
 def display_sku(selected_prod, d, d2, dispatched_df, dispatched_sku_three_cat_df):
@@ -352,7 +352,7 @@ if(len(d) > 1):
 
             graph_df = graph_df[['Date', 'Clicks', 'Costs']]
             data = graph_df.melt('Date')
-            line = alt.Chart(data).mark_line(point=True, color="#FFAA00").encode(
+            line = alt.Chart(data).mark_line(point=True).encode(
                 x='Date',
                 y='value',
                 color='variable'
