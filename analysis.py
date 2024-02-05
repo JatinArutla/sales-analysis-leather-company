@@ -336,13 +336,20 @@ if(len(d) > 1):
         disp_ads_df = disp_ads_df[disp_ads_df['Costs'] != 0]
         disp_ads_df['Clicks per pound'] = disp_ads_df['Clicks'] / disp_ads_df['Costs']
         disp_ads_df['Clicks per pound'] = disp_ads_df['Clicks per pound'].round(2)
+        disp_ads_df['Percentage of Allocated Budget'] = disp_ads_df['Costs'] / disp_ads_df['Costs'].sum() * 100
+        disp_ads_df['Percentage of Allocated Budget'] = disp_ads_df['Percentage of Allocated Budget'].round(2)
         disp_ads_df.rename(columns={'Costs': 'Costs (£)'}, inplace=True)
         disp_ads_df.sort_values(by='Clicks', ascending=False, inplace=True)
         disp_ads_df.reset_index(drop=True, inplace=True)
         campaign_selection = dataframe_with_selections(disp_ads_df, 11)
+    
         
         if(campaign_selection['selected_rows_indices'] != []):
             selected_campaign = disp_ads_df.loc[campaign_selection['selected_rows_indices'][0]]['Campaign']
+
+            st.markdown(f'<p class="big-font"><strong>{selected_campaign} Campaign Performance from {d[0].strftime("%d %b %Y")} to {d[1].strftime("%d %b %Y")}</p>', unsafe_allow_html=True)
+            st.markdown(f'<p class="small-font"><strong>Total Budget:</strong> £{disp_ads_df['Costs (£)'].sum().astype(int)}</p>', unsafe_allow_html=True)
+            st.markdown(f'<p class="small-font"><strong>Clicks per pound:</strong> {np.round((disp_ads_df['Clicks'].sum() / disp_ads_df['Costs (£)'].sum()), 2)}</p>', unsafe_allow_html=True)
             
             graph_df = ads_df[ads_df['Campaign'] == selected_campaign]
             graph_df.rename(columns={'date': 'Date'}, inplace=True)
@@ -363,7 +370,7 @@ if(len(d) > 1):
             # line2 = alt.Chart(graph_df, title=f'{selected_campaign} performance from {d[0].strftime("%d %b %Y")} to {d[1].strftime("%d %b %Y")}').mark_line().encode(x='Date', y='Costs').interactive()
             # line = alt.layer(line1, line2).resolve_scale(color='independent')
 
-            st.write(f'{selected_campaign} Campaign Performance from {d[0].strftime("%d %b %Y")} to {d[1].strftime("%d %b %Y")}')
+            # st.write(f'{selected_campaign} Campaign Performance from {d[0].strftime("%d %b %Y")} to {d[1].strftime("%d %b %Y")}')
             st.altair_chart(line, use_container_width=True)
 
     
