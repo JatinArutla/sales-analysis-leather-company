@@ -97,7 +97,21 @@ def graph_condense(dispatched_df):
     line = alt.Chart(graph_df, title=f'{selected_prod} Units Sold from {d[0].strftime("%d %b %Y")} to {d[1].strftime("%d %b %Y")}').mark_line().encode(x='Date', y='Units').interactive()
     return chart, line
 
-def sku_summary(df, d, d2):
+def display_sku(selected_prod, d, d2, dispatched_df, dispatched_sku_three_cat_df):
+    table_column, graph_column = st.columns([0.4, 0.6])
+    table_column.markdown(f'<p class="big-font"><strong>{selected_prod}</strong></p>', unsafe_allow_html=True)
+    table_column.dataframe(dispatched_sku_three_cat_df, use_container_width=True)
+    if (len(dispatched_sku_three_cat_df) > 1):
+        columns_list = dispatched_sku_three_cat_df.columns
+        total_df = pd.DataFrame(columns=columns_list)
+        total_df.loc['Total'] = dispatched_sku_three_cat_df.select_dtypes(np.number).sum()
+        table_column.dataframe(total_df, use_container_width=True)
+        sku_summary(dispatched_sku_three_cat_df, d, d2, table_column)
+
+    chart, line = graph_condense(dispatched_df)
+    graph_column.altair_chart(line, use_container_width=True)
+
+def sku_summary(df, d, d2, table_column):
     t1, t2, t3 = df['Units'].idxmax(), df['Units Refunded'].idxmax(), df['Units'].idxmin()
     if(len(d2) <= 1):
         table_column.markdown(f"<p class='small-font'><strong>{d[0].strftime('%d %b %Y')} to {d[1].strftime('%d %b %Y')}</strong></p>", unsafe_allow_html=True)
@@ -534,18 +548,7 @@ if(len(d) > 1):
                             sku_stock_df = stock_df.groupby('Size')['Stock'].sum()
                             dispatched_sku_three_cat_df = pd.merge(dispatched_sku_three_cat_df, sku_stock_df, how="outer", on="Size")
 
-                            table_column, graph_column = st.columns([0.5, 0.5])
-                            table_column.markdown(f'<p class="big-font"><strong>{selected_prod}</strong></p>', unsafe_allow_html=True)
-                            table_column.dataframe(dispatched_sku_three_cat_df, use_container_width=True)
-                            if(len(dispatched_sku_three_cat_df) > 1):
-                                columns_list = dispatched_sku_three_cat_df.columns
-                                total_df = pd.DataFrame(columns=columns_list)
-                                total_df.loc['Total'] = dispatched_sku_three_cat_df.select_dtypes(np.number).sum()
-                                table_column.dataframe(total_df, use_container_width=True)
-                                sku_summary(dispatched_sku_three_cat_df, d, d2)
-
-                            chart, line = graph_condense(dispatched_df)
-                            graph_column.altair_chart(line, use_container_width=True)
+                            display_sku(selected_prod, d, d2, dispatched_df, dispatched_sku_three_cat_df)
 
                     else:
                         dispatched_three_cat_df = dispatched_df.groupby('T_Cat')['Units'].sum().reset_index().sort_values(by=['Units'], ascending=False).reset_index(drop=True)
@@ -584,18 +587,7 @@ if(len(d) > 1):
                                 sku_stock_df = stock_df.groupby('Size')['Stock'].sum()
                                 dispatched_sku_three_cat_df = pd.merge(dispatched_sku_three_cat_df, sku_stock_df, how="outer", on="Size")
 
-                                table_column, graph_column = st.columns([0.4, 0.6])
-                                table_column.markdown(f'<p class="big-font"><strong>{selected_prod}</strong></p>', unsafe_allow_html=True)
-                                table_column.dataframe(dispatched_sku_three_cat_df, use_container_width=True)
-                                if (len(dispatched_sku_three_cat_df) > 1):
-                                    columns_list = dispatched_sku_three_cat_df.columns
-                                    total_df = pd.DataFrame(columns=columns_list)
-                                    total_df.loc['Total'] = dispatched_sku_three_cat_df.select_dtypes(np.number).sum()
-                                    table_column.dataframe(total_df, use_container_width=True)
-                                    sku_summary(dispatched_sku_three_cat_df, d, d2)
-
-                                chart, line = graph_condense(dispatched_df)
-                                graph_column.altair_chart(line, use_container_width=True)
+                                display_sku(selected_prod, d, d2, dispatched_df, dispatched_sku_three_cat_df)
 
             else:
                 dispatched_product_two_cat_df = product_condense_dataframe(dispatched_df, refunded_df)
@@ -616,15 +608,4 @@ if(len(d) > 1):
                     product_stock_df = stock_df.groupby('Size')['Stock'].sum()
                     dispatched_sku_two_cat_df = pd.merge(dispatched_sku_two_cat_df, product_stock_df, how="outer", on="Size")
 
-                    table_column, graph_column = st.columns([0.4, 0.6])
-                    table_column.markdown(f'<p class="big-font"><strong>{selected_prod}</strong></p>', unsafe_allow_html=True)
-                    table_column.dataframe(dispatched_sku_two_cat_df, use_container_width=True)
-                    if (len(dispatched_sku_two_cat_df) > 1):
-                        columns_list = dispatched_sku_two_cat_df.columns
-                        total_df = pd.DataFrame(columns=columns_list)
-                        total_df.loc['Total'] = dispatched_sku_two_cat_df.select_dtypes(np.number).sum()
-                        table_column.dataframe(total_df, use_container_width=True)
-                        sku_summary(dispatched_sku_two_cat_df, d, d2)
-
-                    chart, line = graph_condense(dispatched_df)
-                    graph_column.altair_chart(line, use_container_width=True)
+                    display_sku(selected_prod, d, d2, dispatched_df, dispatched_sku_two_cat_df)
