@@ -348,8 +348,8 @@ if(len(d) > 1):
             selected_campaign = disp_ads_df.loc[campaign_selection['selected_rows_indices'][0]]['Campaign']
 
             st.markdown(f'<p class="big-font"><strong>{selected_campaign} Campaign Performance from {d[0].strftime("%d %b %Y")} to {d[1].strftime("%d %b %Y")}</p>', unsafe_allow_html=True)
-            st.markdown(f'<p class="small-font"><strong>Total Budget:</strong> £{int(disp_ads_df['Costs (£)'].sum())}</p>', unsafe_allow_html=True)
-            st.markdown(f'<p class="small-font"><strong>Clicks per pound:</strong> {np.round((disp_ads_df['Clicks'].sum() / disp_ads_df['Costs (£)'].sum()), 2)}</p>', unsafe_allow_html=True)
+            st.markdown(f'<p class="small-font"><strong>Total Budget:</strong> £{int(disp_ads_df["Costs (£)"].sum())}</p>', unsafe_allow_html=True)
+            st.markdown(f'<p class="small-font"><strong>Clicks per pound:</strong> {np.round((disp_ads_df["Clicks"].sum() / disp_ads_df["Costs (£)"].sum()), 2)}</p>', unsafe_allow_html=True)
             
             graph_df = ads_df[ads_df['Campaign'] == selected_campaign]
             graph_df.rename(columns={'date': 'Date'}, inplace=True)
