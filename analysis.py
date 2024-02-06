@@ -95,7 +95,48 @@ def graph_condense(dispatched_df):
     graph_df['Date'] = pd.to_datetime(graph_df['Date'])
     chart = alt.Chart(graph_df).mark_point(filled=True).encode(x='Date', y='Units')
     line = alt.Chart(graph_df, title=f'{selected_prod} Units Sold from {d[0].strftime("%d %b %Y")} to {d[1].strftime("%d %b %Y")}').mark_line(point=True).encode(x='Date', y='Units').interactive()
-    return chart, line
+
+    graph_df = graph_df[['Date', 'Units']]
+    # Create a selection that chooses the nearest point & selects based on x-value
+    nearest = alt.selection_point(nearest=True, on='mouseover',
+                            fields=['Date'], empty=False)
+
+    # The basic line
+    line = alt.Chart(graph_df, title=f'{selected_prod} Units Sold from {d[0].strftime("%d %b %Y")} to {d[1].strftime("%d %b %Y")}').mark_line().encode(
+        x='Date',
+        y='Units',
+    ).interactive()
+
+    # Transparent selectors across the chart. This is what tells us
+    # the x-value of the cursor
+    selectors = alt.Chart(graph_df).mark_point().encode(
+        x='Date',
+        y='Units',
+        opacity=alt.value(0),
+    ).add_params(
+        nearest
+    )
+
+    # Draw points on the line, and highlight based on selection
+    points = line.mark_point().encode(
+        opacity=alt.condition(nearest, alt.value(1), alt.value(0))
+    )
+
+    # Draw a rule at the location of the selection
+    rules = alt.Chart(graph_df).mark_rule(color='gray').encode(
+        x='Date',
+    ).transform_filter(
+        nearest
+    )
+
+    # Put the five layers into a chart and bind the data
+    final = alt.layer(
+        line, selectors, points, rules
+    ).properties(
+        width=600, height=300
+    )
+
+    return chart, final
 
 def display_sku(selected_prod, d, d2, dispatched_df, dispatched_sku_three_cat_df, total_weeks_cover):
     table_column, graph_column = st.columns([0.5, 0.5])
@@ -360,18 +401,59 @@ if(len(d) > 1):
 
             graph_df = graph_df[['Date', 'Clicks', 'Costs']]
             data = graph_df.melt('Date')
-            line = alt.Chart(data).mark_line(point=True).encode(
+            # line = alt.Chart(data).mark_line(point=True).encode(
+            #     x='Date',
+            #     y='value',
+            #     color='variable'
+            # ).interactive().properties(width=100, height=600)
+
+            # Create a selection that chooses the nearest point & selects based on x-value
+            nearest = alt.selection_point(nearest=True, on='mouseover',
+                                    fields=['Date'], empty=False)
+
+            # The basic line
+            line = alt.Chart(data).mark_line().encode(
                 x='Date',
                 y='value',
                 color='variable'
-            ).interactive().properties(width=100, height=600)
+            ).interactive()
+
+            # Transparent selectors across the chart. This is what tells us
+            # the x-value of the cursor
+            selectors = alt.Chart(data).mark_point().encode(
+                x='Date',
+                y='value',
+                color='variable',
+                opacity=alt.value(0),
+            ).add_params(
+                nearest
+            )
+
+            # Draw points on the line, and highlight based on selection
+            points = line.mark_point().encode(
+                opacity=alt.condition(nearest, alt.value(1), alt.value(0))
+            )
+
+            # Draw a rule at the location of the selection
+            rules = alt.Chart(data).mark_rule(color='gray').encode(
+                x='Date',
+            ).transform_filter(
+                nearest
+            )
+
+            # Put the five layers into a chart and bind the data
+            final = alt.layer(
+                line, selectors, points, rules
+            ).properties(
+                width=600, height=300
+            )
 
             # line1 = alt.Chart(graph_df, title=f'{selected_campaign} performance from {d[0].strftime("%d %b %Y")} to {d[1].strftime("%d %b %Y")}').mark_line().encode(x='Date', y='Interactions').interactive()
             # line2 = alt.Chart(graph_df, title=f'{selected_campaign} performance from {d[0].strftime("%d %b %Y")} to {d[1].strftime("%d %b %Y")}').mark_line().encode(x='Date', y='Costs').interactive()
             # line = alt.layer(line1, line2).resolve_scale(color='independent')
 
             # st.write(f'{selected_campaign} Campaign Performance from {d[0].strftime("%d %b %Y")} to {d[1].strftime("%d %b %Y")}')
-            st.altair_chart(line, use_container_width=True)
+            st.altair_chart(final, use_container_width=True)
 
     
     elif stand_options == 'None selected':
