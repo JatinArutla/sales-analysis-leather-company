@@ -314,7 +314,7 @@ if(len(d) > 1):
             key=102,
         )
 
-        stand_arr = ['None selected', 'Mean Sales for 2021, 2022 and 2023', 'Sales Forecast for 2024', 'Google Ads Performance']
+        stand_arr = ['None selected', 'Mean Sales of 2021, 2022 and 2023', 'Sales Forecast for 2024', 'Google Ads Performance']
         stand_options = st.selectbox('Standalone reports', options=stand_arr)
         if (stand_options == 'None selected'):
             df = df
@@ -328,7 +328,7 @@ if(len(d) > 1):
             else:
                 df = df[df['Revenue (£)'] == price_range[0]]
     
-    if ((stand_options == 'Mean Sales for 2021, 2022 and 2023') & (filters_check == True)):
+    if ((stand_options == 'Mean Sales of 2021, 2022 and 2023') & (filters_check == True)):
         st.markdown(f'<p class="big-font"><strong>Mean Sales for 2021, 2022 and 2023</p>', unsafe_allow_html=True)
         df = orig_df[(orig_df['order_state'] == 'Order Dispatched') | (orig_df['order_state'] == 'Order Refunded')]
         df['date'] = pd.to_datetime(df['date'])
