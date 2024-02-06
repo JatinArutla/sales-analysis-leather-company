@@ -314,7 +314,7 @@ if(len(d) > 1):
             key=102,
         )
 
-        stand_arr = ['None selected', 'Categorical sales for 2021, 2022 and 2023', 'Monthly categorical forecast', 'Google ads analysis']
+        stand_arr = ['None selected', 'Mean Sales for 2021, 2022 and 2023', 'Sales Forecast for 2024', 'Google Ads Performance']
         stand_options = st.selectbox('Standalone reports', options=stand_arr)
         if (stand_options == 'None selected'):
             df = df
@@ -328,7 +328,8 @@ if(len(d) > 1):
             else:
                 df = df[df['Revenue (£)'] == price_range[0]]
     
-    if ((stand_options == 'Categorical sales for 2021, 2022 and 2023') & (filters_check == True)):
+    if ((stand_options == 'Mean Sales for 2021, 2022 and 2023') & (filters_check == True)):
+        st.markdown(f'<p class="big-font"><strong>Mean Sales for 2021, 2022 and 2023</p>', unsafe_allow_html=True)
         df = orig_df[(orig_df['order_state'] == 'Order Dispatched') | (orig_df['order_state'] == 'Order Refunded')]
         df['date'] = pd.to_datetime(df['date'])
         l = [[2, 2021], [3, 2021], [1, 2022], [2, 2022], [3, 2022], [1, 2023], [2, 2023], [3, 2023], [4, 2021], [5, 2021], [6, 2021], [4, 2022], [5, 2022], [6, 2022],
@@ -339,35 +340,180 @@ if(len(d) > 1):
             temp_df = pd.merge(temp_df, df[(df['date'].dt.month == i[0]) & (df['date'].dt.year == i[1])].groupby('customs_description')['Units'].sum().reset_index().rename(columns={'Units': f'{i[0]}-{i[1]}'}), on='customs_description', how='outer')
         temp_df.replace({np.NaN: 0}, inplace=True)
 
-        temp_df['Mean-Jan'] = temp_df[['1-2021', '1-2022', '1-2023']].mean(axis=1).round()
-        temp_df['Mean-Feb'] = temp_df[['2-2021', '2-2022', '2-2023']].mean(axis=1).round()
-        temp_df['Mean-Mar'] = temp_df[['3-2021', '3-2022', '3-2023']].mean(axis=1).round()
-        temp_df['Mean-Apr'] = temp_df[['4-2021', '4-2022', '4-2023']].mean(axis=1).round()
-        temp_df['Mean-May'] = temp_df[['5-2021', '5-2022', '5-2023']].mean(axis=1).round()
-        temp_df['Mean-Jun'] = temp_df[['6-2021', '6-2022', '6-2023']].mean(axis=1).round()
-        temp_df['Mean-Jul'] = temp_df[['7-2021', '7-2022', '7-2023']].mean(axis=1).round()
-        temp_df['Mean-Aug'] = temp_df[['8-2021', '8-2022', '8-2023']].mean(axis=1).round()
-        temp_df['Mean-Sep'] = temp_df[['9-2021', '9-2022', '9-2023']].mean(axis=1).round()
-        temp_df['Mean-Oct'] = temp_df[['10-2021', '10-2022', '10-2023']].mean(axis=1).round()
-        temp_df['Mean-Nov'] = temp_df[['11-2021', '11-2022', '11-2023']].mean(axis=1).round()
-        temp_df['Mean-Dec'] = temp_df[['12-2021', '12-2022', '12-2023']].mean(axis=1).round()
+        temp_df['Jan'] = temp_df[['1-2021', '1-2022', '1-2023']].mean(axis=1).round()
+        temp_df['Feb'] = temp_df[['2-2021', '2-2022', '2-2023']].mean(axis=1).round()
+        temp_df['Mar'] = temp_df[['3-2021', '3-2022', '3-2023']].mean(axis=1).round()
+        temp_df['Apr'] = temp_df[['4-2021', '4-2022', '4-2023']].mean(axis=1).round()
+        temp_df['May'] = temp_df[['5-2021', '5-2022', '5-2023']].mean(axis=1).round()
+        temp_df['Jun'] = temp_df[['6-2021', '6-2022', '6-2023']].mean(axis=1).round()
+        temp_df['Jul'] = temp_df[['7-2021', '7-2022', '7-2023']].mean(axis=1).round()
+        temp_df['Aug'] = temp_df[['8-2021', '8-2022', '8-2023']].mean(axis=1).round()
+        temp_df['Sep'] = temp_df[['9-2021', '9-2022', '9-2023']].mean(axis=1).round()
+        temp_df['Oct'] = temp_df[['10-2021', '10-2022', '10-2023']].mean(axis=1).round()
+        temp_df['Nov'] = temp_df[['11-2021', '11-2022', '11-2023']].mean(axis=1).round()
+        temp_df['Dec'] = temp_df[['12-2021', '12-2022', '12-2023']].mean(axis=1).round()
 
         m = temp_df.select_dtypes(np.number)
-        temp_df[m.columns]= m.round().astype('Int64')
-        temp_df = temp_df.sort_values(by='Mean-Jan', ascending=False).reset_index(drop=True)[['customs_description', 'Mean-Jan', 'Mean-Feb', 'Mean-Mar', 'Mean-Apr', 'Mean-May', 'Mean-Jun',
-                                                                                                 'Mean-Jul', 'Mean-Aug', 'Mean-Sep', 'Mean-Oct', 'Mean-Nov', 'Mean-Dec']]
-        st.dataframe(temp_df, use_container_width=True)
+        temp_df[m.columns] = m.round().astype('Int64')
+        temp_df = temp_df.sort_values(by='Jan', ascending=False).reset_index(drop=True)[['customs_description', 'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
+                                                                                                 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']]
+        temp_df.rename(columns={'customs_description': 'Category'}, inplace=True)
+        history_selection = dataframe_with_selections(temp_df, 11)
+        if(history_selection['selected_rows_indices'] != []):
+            selected_history = temp_df.loc[history_selection['selected_rows_indices'][0]]['Category']
+            if selected_history != 'Total':
+                df = df[df['customs_description'] == selected_history]
+            else:
+                df = df
 
-    elif ((stand_options == 'Monthly categorical forecast') & (filters_check == True)):
-        mon_forecast_df = pd.read_csv('Monthly category forecast.csv')
-        st.dataframe(mon_forecast_df, hide_index=True, use_container_width=True)
+            df['date'] = pd.to_datetime(df['date'])
+            df_2021 = df[df['date'].dt.year == 2021].set_index('date')
+            df_2022 = df[df['date'].dt.year == 2022].set_index('date')
+            df_2023 = df[df['date'].dt.year == 2023].set_index('date')
+
+            df_2021 = df_2021.resample('D')['Units'].sum().fillna(0).reset_index()
+            df_2022 = df_2022.resample('D')['Units'].sum().fillna(0).reset_index()
+            df_2023 = df_2023.resample('D')['Units'].sum().fillna(0).reset_index()
+
+            mean_df = pd.concat((df_2021, df_2022, df_2023))
+
+            mean_df['date'] = mean_df['date'].astype(str)
+            temp2_df = mean_df['date'].str.split('-', expand=True)
+            temp2_df.columns = ['f_date', 's_date', 't_date']
+            mean_df['date'] = temp2_df['s_date'] + '-' + temp2_df['t_date']
+
+            mean_df = mean_df.groupby('date')['Units'].mean().reset_index().set_index('date')
+
+            mean_df.reset_index(inplace=True)
+            mean_df['date'] = '2024-' + mean_df['date']
+            mean_df.rename(columns={'date': 'Date'}, inplace=True)
+            mean_df = mean_df[['Date', 'Units']]
+            mean_df['Units'] = mean_df['Units'].round(0).astype(int)
+            mean_df['Date'] = pd.to_datetime(mean_df['Date'])
+
+
+            # Create a selection that chooses the nearest point & selects based on x-value
+            nearest = alt.selection_point(nearest=True, on='mouseover',
+                                    fields=['Date'], empty=False)
+
+            # The basic line
+            line = alt.Chart(mean_df).mark_line().encode(
+                x='Date',
+                y='Units',
+            ).interactive()
+
+            # Transparent selectors across the chart. This is what tells us
+            # the x-value of the cursor
+            selectors = alt.Chart(mean_df).mark_point().encode(
+                x='Date',
+                y='Units',
+                opacity=alt.value(0),
+            ).add_params(
+                nearest
+            )
+
+            # Draw points on the line, and highlight based on selection
+            points = line.mark_point().encode(
+                opacity=alt.condition(nearest, alt.value(1), alt.value(0))
+            )
+
+            # Draw a rule at the location of the selection
+            rules = alt.Chart(mean_df).mark_rule(color='gray').encode(
+                x='Date',
+            ).transform_filter(
+                nearest
+            )
+
+            # Put the five layers into a chart and bind the data
+            final = alt.layer(
+                line, selectors, points, rules
+            ).properties(
+                width=600, height=300
+            )
+            st.altair_chart(final, use_container_width=True)
+
+
+
+
+    elif ((stand_options == 'Sales Forecast for 2024') & (filters_check == True)):
+        st.markdown(f'<p class="big-font"><strong>Sales Forecast for 2024</p>', unsafe_allow_html=True)
+        categories = ['Total', 'Mens > Leather Jackets', 'Ladies > Leather Jackets', 'Gift & Accessories > Purses', 'Luggage > Holdall', 'Handbags > Ashwood',
+              'Ladies > Ladies Jackets & Coats', 'Mens > Man Bags & Briefcases', 'Mens > Accessories', 'Ladies > Handbags',
+              'Ladies > Purses', 'Ladies > Accessories']
+        
+        dai_forecast_df = pd.read_csv('Daily category forecast.csv')
+        dai_forecast_df['Date'] = dai_forecast_df['Date'].astype(str)
+        temp = dai_forecast_df['Date'].str.split('-', expand=True)
+        temp.columns = ['Year', 'Month', 'Day']
+        dai_forecast_df[['Year', 'Month', 'Day']] = temp[['Year', 'Month', 'Day']]
+
+        mon_forecast_df = dai_forecast_df.groupby('Month').sum().drop(['Date', 'Year', 'Day'], axis=1)
+        mon_forecast_df.reset_index(inplace=True)
+        mon_forecast_df['Month'] = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+        l = []
+        for i in categories:
+            mon_forecast_df[i] += 1
+        temp_categories = ['Month'] + categories
+        mon_forecast_df = mon_forecast_df[temp_categories]
+        temp_mon_forecast_df = mon_forecast_df.set_index('Month').T.reset_index()
+        temp_mon_forecast_df.rename(columns={'index': 'Category'}, inplace=True)
+        forecast_selection = dataframe_with_selections(temp_mon_forecast_df, 12)
         columns_list = mon_forecast_df.columns
         total_df = pd.DataFrame(columns=columns_list)
         total_df.loc['Total'] = mon_forecast_df.select_dtypes(np.number).sum()
         total_df['Month'] = 'Total'
-        st.dataframe(total_df, hide_index=True, use_container_width=True)
+        # st.dataframe(total_df, hide_index=True, use_container_width=True)
 
-    elif ((stand_options == 'Google ads analysis') & (filters_check == True)):
+        if(forecast_selection['selected_rows_indices'] != []):
+            selected_forecast = temp_mon_forecast_df.loc[forecast_selection['selected_rows_indices'][0]]['Category']
+
+            dai_forecast_df = dai_forecast_df[['Date', selected_forecast]]
+            dai_forecast_df['Date'] = pd.to_datetime(dai_forecast_df['Date'])
+
+            # Create a selection that chooses the nearest point & selects based on x-value
+            nearest = alt.selection_point(nearest=True, on='mouseover',
+                                    fields=['Date'], empty=False)
+
+            # The basic line
+            line = alt.Chart(dai_forecast_df).mark_line().encode(
+                x='Date',
+                y=selected_forecast,
+            ).interactive()
+
+            # Transparent selectors across the chart. This is what tells us
+            # the x-value of the cursor
+            selectors = alt.Chart(dai_forecast_df).mark_point().encode(
+                x='Date',
+                y=selected_forecast,
+                opacity=alt.value(0),
+            ).add_params(
+                nearest
+            )
+
+            # Draw points on the line, and highlight based on selection
+            points = line.mark_point().encode(
+                opacity=alt.condition(nearest, alt.value(1), alt.value(0))
+            )
+
+            # Draw a rule at the location of the selection
+            rules = alt.Chart(dai_forecast_df).mark_rule(color='gray').encode(
+                x='Date',
+            ).transform_filter(
+                nearest
+            )
+
+            # Put the five layers into a chart and bind the data
+            final = alt.layer(
+                line, selectors, points, rules
+            ).properties(
+                width=600, height=300
+            )
+            st.altair_chart(final, use_container_width=True)
+
+
+
+
+    elif ((stand_options == 'Google Ads Performance') & (filters_check == True)):
         ads_df = pd.read_csv('GoogleAdsCosts.csv', parse_dates=['date'])
         ads_df = ads_df[(ads_df['date'] >= pd.to_datetime(d[0])) & (ads_df['date'] <= pd.to_datetime(d[1]))]
         # disp_ads_df = ads_df.groupby('Campaign')[['Interactions', 'Clicks', 'Costs']].sum().reset_index()
@@ -386,7 +532,7 @@ if(len(d) > 1):
         st.markdown(f'<p class="small-font"><strong>Total Budget:</strong> £{int(disp_ads_df["Costs (£)"].sum())}</p>', unsafe_allow_html=True)
         st.markdown(f'<p class="small-font"><strong>Total Clicks:</strong> {int(disp_ads_df["Clicks"].sum())}</p>', unsafe_allow_html=True)
         st.markdown(f'<p class="small-font"><strong>Clicks per pound:</strong> {np.round((disp_ads_df["Clicks"].sum() / disp_ads_df["Costs (£)"].sum()), 2)}</p>', unsafe_allow_html=True)
-        campaign_selection = dataframe_with_selections(disp_ads_df, 11)
+        campaign_selection = dataframe_with_selections(disp_ads_df, 13)
     
         
         if(campaign_selection['selected_rows_indices'] != []):
