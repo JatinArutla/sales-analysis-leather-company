@@ -621,7 +621,7 @@ if(len(d) > 1):
             x='Incoming links',
             y='Google Search Position',
             color='Type',
-            tooltip=['Target page', 'Type', 'Incoming links', 'Google Search Position']
+            tooltip=['Target page', 'Type', 'Incoming links', 'Google Search Position', 'CTR']
         ).interactive()
         st.altair_chart(chart, use_container_width=True)
 
