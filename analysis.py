@@ -606,7 +606,7 @@ if(len(d) > 1):
         df_links = pd.read_csv("AlmostAllBacklinks.csv")
 
         type_arr = ['All backlinks', 'Category pages backlinks', 'Product pages backlinks']
-        type_options = st.selectbox('Select a type', options=type_arr)
+        type_options = st.selectbox('Select a page type', options=type_arr)
         if type_options == 'All backlinks':
             df_links = df_links
         elif type_options == 'Category pages backlinks':
