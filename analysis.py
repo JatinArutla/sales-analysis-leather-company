@@ -314,11 +314,6 @@ if(len(d) > 1):
             key=102,
         )
 
-        stand_arr = ['None selected', 'Mean Sales of 2021, 2022 and 2023', 'Sales Forecast for 2024', 'Google Ads Performance']
-        stand_options = st.selectbox('Standalone reports', options=stand_arr)
-        if (stand_options == 'None selected'):
-            df = df
-
         if (df['Revenue (£)'].min() < df['Revenue (£)'].max()):
             price_range = st.slider(
             'Select a range of product prices',
@@ -327,6 +322,11 @@ if(len(d) > 1):
                 df = df[(df['Revenue (£)'] >= price_range[0]) & (df['Revenue (£)'] <= price_range[1])]
             else:
                 df = df[df['Revenue (£)'] == price_range[0]]
+
+        stand_arr = ['None selected', 'Mean Sales of 2021, 2022 and 2023', 'Sales Forecast for 2024', 'Google Ads Performance', 'SEO Backlink Analysis']
+        stand_options = st.selectbox('Standalone reports', options=stand_arr)
+        if (stand_options == 'None selected'):
+            df = df
     
     if ((stand_options == 'Mean Sales of 2021, 2022 and 2023') & (filters_check == True)):
         st.markdown(f'<p class="big-font"><strong>Mean Sales for 2021, 2022 and 2023</p>', unsafe_allow_html=True)
@@ -601,7 +601,30 @@ if(len(d) > 1):
             st.write(f'{selected_campaign} Campaign Performance from {d[0].strftime("%d %b %Y")} to {d[1].strftime("%d %b %Y")}')
             st.altair_chart(final, use_container_width=True)
 
-    
+    elif ((stand_options == 'SEO Backlink Analysis') & (filters_check == True)):
+        df_pages = pd.read_csv("Pages.csv")
+        df_links = pd.read_csv("AlmostAllBacklinks.csv")
+
+        type_arr = ['All backlinks', 'Category pages backlinks', 'Product pages backlinks']
+        type_options = st.selectbox('Select a type', options=type_arr)
+        if type_options == 'All backlinks':
+            df_links = df_links
+        elif type_options == 'Category pages backlinks':
+            df_links = df_links[df_links['Type'] == 'Category']
+        elif type_options == 'Product pages backlinks':
+            df_links = df_links[df_links['Type'] == 'Product']
+
+        df = pd.merge(df_links, df_pages, on='Target page', how='left')
+        df = df.dropna().reset_index(drop=True)
+
+        chart = alt.Chart(df).mark_circle(size=60).encode(
+            x='Incoming links',
+            y='Google Search Position',
+            color='Type',
+            tooltip=['Target page', 'Type', 'Incoming links', 'Google Search Position']
+        ).interactive()
+        st.altair_chart(chart, use_container_width=True)
+
     elif stand_options == 'None selected':
         df['Revenue (£)'] = df['Revenue (£)'].astype(float)
         refunded_df = df[df['order_state'] == 'Order Refunded']
