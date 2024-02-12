@@ -195,7 +195,7 @@ df.drop_duplicates(inplace=True)
 df.rename(columns={'quantity': 'Units', 'reference': 'SKU Reference', 'title': 'Product Name', 'price_inc': 'Revenue (£)', 'attribute_summary': 'Size'}, inplace=True)
 
 stock_df = pd.read_csv('stock_levels_12_feb.csv')
-stock_df.rename(columns={'title': 'Product Name', 'stock': 'Stock', 'attribute_summary': 'Size'}, inplace=True)
+stock_df.rename(columns={'parent_title': 'Product Name', 'stock': 'Stock', 'attribute_summary': 'Size', 'product_url': 'Target page'}, inplace=True)
 temp_stock_df = stock_df['Size'].str.split(': ', expand=True)
 temp_stock_df.columns = ['F_Size', 'Size']
 stock_df['Size'] = temp_stock_df['Size']
@@ -617,13 +617,31 @@ if(len(d) > 1):
         df = pd.merge(df_links, df_pages, on='Target page', how='left')
         df = df.dropna().reset_index(drop=True)
 
-        chart = alt.Chart(df).mark_circle(size=60).encode(
-            x='Incoming links',
-            y='Google Search Position',
-            color='Type',
-            tooltip=['Target page', 'Incoming links', 'Google Search Position', 'Impressions', 'Clicks', 'CTR']
-        ).interactive()
-        st.altair_chart(chart, use_container_width=True)
+        stock_df = stock_df.groupby(['Product Name', 'Target page'])['Stock'].sum().reset_index()
+        df = pd.merge(df, stock_df, on='Target page', how='left')
+
+        if (type_options == 'Category pages backlinks'):
+            chart = alt.Chart(df).mark_circle(size=60).encode(
+                x='Incoming links',
+                y='Google Search Position',
+                color='Type',
+                tooltip=['Target page', 'Incoming links', 'Google Search Position', 'Impressions', 'Clicks', 'CTR']
+            ).interactive()
+            st.altair_chart(chart, use_container_width=True)
+        
+        else:
+            chart = alt.Chart(df).mark_circle(size=60).encode(
+                x='Incoming links',
+                y='Google Search Position',
+                color='Type',
+                tooltip=['Target page', 'Incoming links', 'Google Search Position', 'Impressions', 'Clicks', 'CTR', 'Stock']
+            ).interactive()
+            st.altair_chart(chart, use_container_width=True)
+
+        product_df = df[df['Type'] == 'Product']
+        product_df.drop(['Type'], axis=1, inplace=True)
+        if type_options != 'Category pages backlinks':
+            st.dataframe(product_df.sort_values(by='Stock').reset_index(drop=True), use_container_width=True)
 
         # chart2 = alt.Chart(df).mark_circle(size=60).encode(
         #     x='Clicks',
