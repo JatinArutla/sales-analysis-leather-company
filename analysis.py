@@ -194,7 +194,7 @@ df['date'] = pd.to_datetime(df['date'])
 df.drop_duplicates(inplace=True)
 df.rename(columns={'quantity': 'Units', 'reference': 'SKU Reference', 'title': 'Product Name', 'price_inc': 'Revenue (£)', 'attribute_summary': 'Size'}, inplace=True)
 
-stock_df = pd.read_csv('stock_levels_02_feb.csv')
+stock_df = pd.read_csv('stock_levels_12_feb.csv')
 stock_df.rename(columns={'title': 'Product Name', 'stock': 'Stock', 'attribute_summary': 'Size'}, inplace=True)
 temp_stock_df = stock_df['Size'].str.split(': ', expand=True)
 temp_stock_df.columns = ['F_Size', 'Size']
@@ -514,7 +514,7 @@ if(len(d) > 1):
 
 
     elif ((stand_options == 'Google Ads Performance') & (filters_check == True)):
-        ads_df = pd.read_csv('GoogleAdsCosts.csv', parse_dates=['date'])
+        ads_df = pd.read_csv('2024_GoogleAdsCosts.csv', parse_dates=['date'])
         ads_df = ads_df[(ads_df['date'] >= pd.to_datetime(d[0])) & (ads_df['date'] <= pd.to_datetime(d[1]))]
         # disp_ads_df = ads_df.groupby('Campaign')[['Interactions', 'Clicks', 'Costs']].sum().reset_index()
         disp_ads_df = ads_df.groupby('Campaign')[['Clicks', 'Costs']].sum().reset_index()
