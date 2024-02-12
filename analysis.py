@@ -621,9 +621,17 @@ if(len(d) > 1):
             x='Incoming links',
             y='Google Search Position',
             color='Type',
-            tooltip=['Target page', 'Type', 'Incoming links', 'Google Search Position', 'CTR']
+            tooltip=['Target page', 'Incoming links', 'Google Search Position', 'Impressions', 'Clicks', 'CTR']
         ).interactive()
         st.altair_chart(chart, use_container_width=True)
+
+        # chart2 = alt.Chart(df).mark_circle(size=60).encode(
+        #     x='Clicks',
+        #     y='Impressions',
+        #     color='Type',
+        #     tooltip=['Target page', 'Incoming links', 'Google Search Position', 'Impressions', 'Clicks', 'CTR']
+        # ).interactive()
+        # st.altair_chart(chart2, use_container_width=True)
 
     elif stand_options == 'None selected':
         df['Revenue (£)'] = df['Revenue (£)'].astype(float)
