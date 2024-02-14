@@ -254,7 +254,7 @@ if(len(d) > 1):
         options = st.selectbox('Search (Product Name, Model or SKU Reference)', options=total_options_arr)
 
         if (options != ''):
-            df = df[(df == options).any(axis=1)]    
+            df = df[(df == options).any(axis=1)]
 
         brand_sel_col, category_sel_col, sub_category_sel_col, colour_sel_col, size_sel_col = st.columns(5)
 
