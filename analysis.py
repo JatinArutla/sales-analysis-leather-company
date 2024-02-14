@@ -440,6 +440,7 @@ if(len(d) > 1):
         categories = ['Total', 'Mens > Leather Jackets', 'Ladies > Leather Jackets', 'Gift & Accessories > Purses', 'Luggage > Holdall', 'Handbags > Ashwood',
               'Ladies > Ladies Jackets & Coats', 'Mens > Man Bags & Briefcases', 'Mens > Accessories', 'Ladies > Handbags',
               'Ladies > Purses', 'Ladies > Accessories']
+        rev_categories = ['Revenue - ' + s for s in categories]
         
         dai_forecast_df = pd.read_csv('Daily category forecast.csv')
         dai_forecast_df['Date'] = dai_forecast_df['Date'].astype(str)
@@ -453,38 +454,40 @@ if(len(d) > 1):
         l = []
         for i in categories:
             mon_forecast_df[i] += 1
+
+        st.markdown(f'<p class="big-font"><strong>Units</p>', unsafe_allow_html=True)
         temp_categories = ['Month'] + categories
-        mon_forecast_df = mon_forecast_df[temp_categories]
-        temp_mon_forecast_df = mon_forecast_df.set_index('Month').T.reset_index()
-        temp_mon_forecast_df.rename(columns={'index': 'Category'}, inplace=True)
-        forecast_selection = dataframe_with_selections(temp_mon_forecast_df, 12)
-        columns_list = mon_forecast_df.columns
-        total_df = pd.DataFrame(columns=columns_list)
-        total_df.loc['Total'] = mon_forecast_df.select_dtypes(np.number).sum()
-        total_df['Month'] = 'Total'
+        mon_units_forecast_df = mon_forecast_df[temp_categories]
+        temp_mon_units_forecast_df = mon_units_forecast_df.set_index('Month').T.reset_index()
+        temp_mon_units_forecast_df.rename(columns={'index': 'Category'}, inplace=True)
+        forecast_units_selection = dataframe_with_selections(temp_mon_units_forecast_df, 13)
+        columns_units_list = mon_units_forecast_df.columns
+        total_units_df = pd.DataFrame(columns=columns_units_list)
+        total_units_df.loc['Total'] = mon_units_forecast_df.select_dtypes(np.number).sum()
+        total_units_df['Month'] = 'Total'
         # st.dataframe(total_df, hide_index=True, use_container_width=True)
 
-        if(forecast_selection['selected_rows_indices'] != []):
-            selected_forecast = temp_mon_forecast_df.loc[forecast_selection['selected_rows_indices'][0]]['Category']
+        if(forecast_units_selection['selected_rows_indices'] != []):
+            selected_units_forecast = temp_mon_units_forecast_df.loc[forecast_units_selection['selected_rows_indices'][0]]['Category']
 
-            dai_forecast_df = dai_forecast_df[['Date', selected_forecast]]
-            dai_forecast_df['Date'] = pd.to_datetime(dai_forecast_df['Date'])
+            dai_units_forecast_df = dai_forecast_df[['Date', selected_units_forecast]]
+            dai_units_forecast_df['Date'] = pd.to_datetime(dai_units_forecast_df['Date'])
 
             # Create a selection that chooses the nearest point & selects based on x-value
             nearest = alt.selection_point(nearest=True, on='mouseover',
                                     fields=['Date'], empty=False)
 
             # The basic line
-            line = alt.Chart(dai_forecast_df).mark_line().encode(
+            line = alt.Chart(dai_units_forecast_df).mark_line().encode(
                 x='Date',
-                y=selected_forecast,
+                y=selected_units_forecast,
             ).interactive()
 
             # Transparent selectors across the chart. This is what tells us
             # the x-value of the cursor
-            selectors = alt.Chart(dai_forecast_df).mark_point().encode(
+            selectors = alt.Chart(dai_units_forecast_df).mark_point().encode(
                 x='Date',
-                y=selected_forecast,
+                y=selected_units_forecast,
                 opacity=alt.value(0),
             ).add_params(
                 nearest
@@ -496,7 +499,7 @@ if(len(d) > 1):
             )
 
             # Draw a rule at the location of the selection
-            rules = alt.Chart(dai_forecast_df).mark_rule(color='gray').encode(
+            rules = alt.Chart(dai_units_forecast_df).mark_rule(color='gray').encode(
                 x='Date',
             ).transform_filter(
                 nearest
@@ -509,6 +512,67 @@ if(len(d) > 1):
                 width=600, height=300
             )
             st.altair_chart(final, use_container_width=True)
+
+
+        st.markdown(f'<p class="big-font"><strong>Revenue</p>', unsafe_allow_html=True)
+        temp_rev_categories = ['Month'] + rev_categories
+        mon_rev_forecast_df = mon_forecast_df[temp_rev_categories]
+        mon_rev_forecast_df.columns = mon_rev_forecast_df.columns.str.replace('Revenue - ','')
+        temp_mon_rev_forecast_df = mon_rev_forecast_df.set_index('Month').T.reset_index()
+        temp_mon_rev_forecast_df.rename(columns={'index': 'Category'}, inplace=True)
+        forecast_rev_selection = dataframe_with_selections(temp_mon_rev_forecast_df, 12)
+        columns_rev_list = mon_rev_forecast_df.columns
+        total_rev_df = pd.DataFrame(columns=columns_rev_list)
+        total_rev_df.loc['Total'] = mon_rev_forecast_df.select_dtypes(np.number).sum()
+        total_rev_df['Month'] = 'Total'
+        # st.dataframe(total_df, hide_index=True, use_container_width=True)
+
+        if(forecast_rev_selection['selected_rows_indices'] != []):
+            selected_rev_forecast = temp_mon_rev_forecast_df.loc[forecast_rev_selection['selected_rows_indices'][0]]['Category']
+            selected_rev_forecast = 'Revenue - ' + selected_rev_forecast
+
+            dai_rev_forecast_df = dai_forecast_df[['Date', selected_rev_forecast]]
+            dai_rev_forecast_df['Date'] = pd.to_datetime(dai_rev_forecast_df['Date'])
+
+            # Create a selection that chooses the nearest point & selects based on x-value
+            nearest_rev = alt.selection_point(nearest=True, on='mouseover',
+                                    fields=['Date'], empty=False)
+
+            # The basic line
+            line_rev = alt.Chart(dai_rev_forecast_df).mark_line().encode(
+                x='Date',
+                y=selected_rev_forecast,
+            ).interactive()
+
+            # Transparent selectors across the chart. This is what tells us
+            # the x-value of the cursor
+            selectors_rev = alt.Chart(dai_rev_forecast_df).mark_point().encode(
+                x='Date',
+                y=selected_rev_forecast,
+                opacity=alt.value(0),
+            ).add_params(
+                nearest_rev
+            )
+
+            # Draw points on the line, and highlight based on selection
+            points_rev = line_rev.mark_point().encode(
+                opacity=alt.condition(nearest_rev, alt.value(1), alt.value(0))
+            )
+
+            # Draw a rule at the location of the selection
+            rules_rev = alt.Chart(dai_rev_forecast_df).mark_rule(color='gray').encode(
+                x='Date',
+            ).transform_filter(
+                nearest_rev
+            )
+
+            # Put the five layers into a chart and bind the data
+            final_rev = alt.layer(
+                line_rev, selectors_rev, points_rev, rules_rev
+            ).properties(
+                width=600, height=300
+            )
+            st.altair_chart(final_rev, use_container_width=True)
 
 
 
