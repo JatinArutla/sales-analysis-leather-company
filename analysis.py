@@ -782,7 +782,7 @@ if(len(d) > 1):
 
             c1 = c1.container(border=True)
             c1.markdown(f'<p class="small-font">Total Revenue</p>', unsafe_allow_html=True)
-            c1.markdown(f'<p class="big-font">£<strong>{int(np.round(dispatched_df["Revenue (£)"].sum(), 0)):,}</strong></p>', unsafe_allow_html=True)
+            c1.markdown(f'<p class="big-font"><strong>£{int(np.round(dispatched_df["Revenue (£)"].sum(), 0)):,}</strong></p>', unsafe_allow_html=True)
 
             c2 = c2.container(border=True)
             c2.markdown(f'<p class="small-font">Units Sold</p>', unsafe_allow_html=True)
@@ -790,7 +790,7 @@ if(len(d) > 1):
 
             c3 = c3.container(border=True)
             c3.markdown(f'<p class="small-font">Total Refund</p>', unsafe_allow_html=True)
-            c3.markdown(f'<p class="big-font">£<strong>{int(np.round(refunded_df["Total Refund (£)"].sum(), 0)):,}</strong></p>', unsafe_allow_html=True)
+            c3.markdown(f'<p class="big-font"><strong>£{int(np.round(refunded_df["Total Refund (£)"].sum(), 0)):,}</strong></p>', unsafe_allow_html=True)
 
             c4 = c4.container(border=True)
             c4.markdown(f'<p class="small-font">Units Refunded</p>', unsafe_allow_html=True)
@@ -804,11 +804,11 @@ if(len(d) > 1):
             c1 = c1.container(border=True)
             c1.markdown(f'<p class="small-font">Total Revenue</p>', unsafe_allow_html=True)
             if p1 > 0:
-                c1.markdown(f'<p class="big-font">£<strong>{int(np.round(dispatched_df["Revenue (£)"].sum(), 0)):,}</strong><span style="color: green;"> (+{p1}%)</span></p>', unsafe_allow_html=True)
+                c1.markdown(f'<p class="big-font"><strong>£{int(np.round(dispatched_df["Revenue (£)"].sum(), 0)):,}</strong><span style="color: green;"> (+{p1}%)</span></p>', unsafe_allow_html=True)
             elif p1 == 0:
-                c1.markdown(f'<p class="big-font">£<strong>{int(np.round(dispatched_df["Revenue (£)"].sum(), 0)):,}</strong><span style="color: black;"> (0%)</span></p>', unsafe_allow_html=True)
+                c1.markdown(f'<p class="big-font"><strong>£{int(np.round(dispatched_df["Revenue (£)"].sum(), 0)):,}</strong><span style="color: black;"> (0%)</span></p>', unsafe_allow_html=True)
             else:
-                c1.markdown(f'<p class="big-font">£<strong>{int(np.round(dispatched_df["Revenue (£)"].sum(), 0)):,}</strong><span style="color: red;"> ({p1}%)</span></p>', unsafe_allow_html=True)
+                c1.markdown(f'<p class="big-font"><strong>£{int(np.round(dispatched_df["Revenue (£)"].sum(), 0)):,}</strong><span style="color: red;"> ({p1}%)</span></p>', unsafe_allow_html=True)
 
             p2 = percentage_change(dispatched_df_temp['Units'].sum(), dispatched_df2['Units'].sum())
             c2 = c2.container(border=True)
@@ -824,11 +824,11 @@ if(len(d) > 1):
             c3 = c3.container(border=True)
             c3.markdown(f'<p class="small-font">Total Refund</p>', unsafe_allow_html=True)
             if p3 > 0:
-                c3.markdown(f'<p class="big-font">£<strong>{int(np.round(refunded_df["Total Refund (£)"].sum(), 0)):,}</strong><span style="color: red;"> (+{p3}%)</span></p>', unsafe_allow_html=True)
+                c3.markdown(f'<p class="big-font"><strong>£{int(np.round(refunded_df["Total Refund (£)"].sum(), 0)):,}</strong><span style="color: red;"> (+{p3}%)</span></p>', unsafe_allow_html=True)
             elif p3 == 0:
-                c3.markdown(f'<p class="big-font">£<strong>{int(np.round(refunded_df["Total Refund (£)"].sum(), 0)):,}</strong><span style="color: black;"> (0%)</span></p>', unsafe_allow_html=True)
+                c3.markdown(f'<p class="big-font"><strong>£{int(np.round(refunded_df["Total Refund (£)"].sum(), 0)):,}</strong><span style="color: black;"> (0%)</span></p>', unsafe_allow_html=True)
             else:
-                c3.markdown(f'<p class="big-font">£<strong>{int(np.round(refunded_df["Total Refund (£)"].sum(), 0)):,}</strong><span style="color: green;"> ({p3}%)</span></p>', unsafe_allow_html=True)
+                c3.markdown(f'<p class="big-font"><strong>£{int(np.round(refunded_df["Total Refund (£)"].sum(), 0)):,}</strong><span style="color: green;"> ({p3}%)</span></p>', unsafe_allow_html=True)
 
             p4 = percentage_change(refunded_df_temp['Units Refunded'].sum(), refunded_df2['Units Refunded'].sum())
             c4 = c4.container(border=True)
