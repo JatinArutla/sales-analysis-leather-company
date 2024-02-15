@@ -893,9 +893,9 @@ if(len(d) > 1):
                         dispatched_product_three_cat_df['Stock'] = dispatched_product_three_cat_df['Stock'].replace(np.NaN, 0)
                         dispatched_product_three_cat_df['Weeks Cover'] = (dispatched_product_three_cat_df['Stock'] * 52) / (dispatched_product_three_cat_df['Weeks Cover'])
                         dispatched_product_three_cat_df['Weeks Cover'] = dispatched_product_three_cat_df['Weeks Cover'].astype(int)
-                        dispatched_product_three_cat_df['index'] = range(1, len(dispatched_product_three_cat_df) + 1)
-                        column_to_move = dispatched_product_three_cat_df.pop("index")
-                        dispatched_product_three_cat_df.insert(0, "index", column_to_move)
+                        # dispatched_product_three_cat_df['index'] = range(1, len(dispatched_product_three_cat_df) + 1)
+                        # column_to_move = dispatched_product_three_cat_df.pop("index")
+                        # dispatched_product_three_cat_df.insert(0, "index", column_to_move)
                         
                         selection4 = dataframe_with_selections(dispatched_product_three_cat_df, 4)
                         if(selection4['selected_rows_indices'] != []):
@@ -961,9 +961,9 @@ if(len(d) > 1):
                             dispatched_product_three_cat_df['Stock'] = dispatched_product_three_cat_df['Stock'].replace(np.NaN, 0)
                             dispatched_product_three_cat_df['Weeks Cover'] = (dispatched_product_three_cat_df['Stock'] * 52) / (dispatched_product_three_cat_df['Weeks Cover'])                            
                             dispatched_product_three_cat_df['Weeks Cover'] = dispatched_product_three_cat_df['Weeks Cover'].astype(int)
-                            dispatched_product_three_cat_df['index'] = range(1, len(dispatched_product_three_cat_df) + 1)
-                            column_to_move = dispatched_product_three_cat_df.pop("index")
-                            dispatched_product_three_cat_df.insert(0, "index", column_to_move)
+                            # dispatched_product_three_cat_df['index'] = range(1, len(dispatched_product_three_cat_df) + 1)
+                            # column_to_move = dispatched_product_three_cat_df.pop("index")
+                            # dispatched_product_three_cat_df.insert(0, "index", column_to_move)
 
                             selection5 = dataframe_with_selections(dispatched_product_three_cat_df, 5)
                             if(selection5['selected_rows_indices'] != []):
@@ -1011,9 +1011,9 @@ if(len(d) > 1):
                 dispatched_product_two_cat_df['Stock'] = dispatched_product_two_cat_df['Stock'].replace(np.NaN, 0)
                 dispatched_product_two_cat_df['Weeks Cover'] = (dispatched_product_two_cat_df['Stock'] * 52) / (dispatched_product_two_cat_df['Weeks Cover'])
                 dispatched_product_two_cat_df['Weeks Cover'] = dispatched_product_two_cat_df['Weeks Cover'].astype(int)
-                dispatched_product_two_cat_df['index'] = range(1, len(dispatched_product_two_cat_df) + 1)
-                column_to_move = dispatched_product_two_cat_df.pop("index")
-                dispatched_product_two_cat_df.insert(0, "index", column_to_move)
+                # dispatched_product_two_cat_df['index'] = range(1, len(dispatched_product_two_cat_df) + 1)
+                # column_to_move = dispatched_product_two_cat_df.pop("index")
+                # dispatched_product_two_cat_df.insert(0, "index", column_to_move)
 
                 selection4 = dataframe_with_selections(dispatched_product_two_cat_df, 4)
                 if(selection4['selected_rows_indices'] != []):
