@@ -194,7 +194,7 @@ df['date'] = pd.to_datetime(df['date'])
 df.drop_duplicates(inplace=True)
 df.rename(columns={'quantity': 'Units', 'reference': 'SKU Reference', 'title': 'Product Name', 'price_inc': 'Revenue (£)', 'attribute_summary': 'Size'}, inplace=True)
 
-stock_df = pd.read_csv('stock_levels_15_feb.csv')
+stock_df = pd.read_csv('stock_levels_19_feb.csv')
 stock_df.rename(columns={'parent_title': 'Product Name', 'stock': 'Stock', 'attribute_summary': 'Size', 'product_url': 'Target page'}, inplace=True)
 temp_stock_df = stock_df['Size'].str.split(': ', expand=True)
 temp_stock_df.columns = ['F_Size', 'Size']
@@ -442,7 +442,7 @@ if(len(d) > 1):
               'Ladies > Purses', 'Ladies > Accessories']
         rev_categories = ['Revenue - ' + s for s in categories]
         
-        dai_forecast_df = pd.read_csv('Daily category forecast.csv')
+        dai_forecast_df = pd.read_csv('Daily category forecast [no features].csv')
         dai_forecast_df['Date'] = dai_forecast_df['Date'].astype(str)
         temp = dai_forecast_df['Date'].str.split('-', expand=True)
         temp.columns = ['Year', 'Month', 'Day']
