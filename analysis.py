@@ -208,14 +208,14 @@ orig_df.rename(columns={'quantity': 'Units', 'reference': 'SKU Reference', 'titl
 today = datetime.datetime.now()
 prev_year = today.year - 3
 next_year = today.year
-jan_1 = datetime.date(prev_year, 1, 1)
-dec_31 = datetime.date(next_year, 2, 23)
+first_date = datetime.date(prev_year, 1, 1)
+last_date = datetime.date(next_year, 2, 23)
 
 d = st.date_input(
     "Select dates",
     (),
-    jan_1,
-    dec_31,
+    first_date,
+    last_date,
     format="DD.MM.YYYY",
     key=101,
 )
@@ -308,8 +308,8 @@ if(len(d) > 1):
         d2 = st.date_input(
             "Comparison dates",
             (),
-            jan_1,
-            dec_31,
+            first_date,
+            last_date,
             format="DD.MM.YYYY",
             key=102,
         )
