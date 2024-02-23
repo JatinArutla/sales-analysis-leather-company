@@ -209,7 +209,7 @@ today = datetime.datetime.now()
 prev_year = today.year - 3
 next_year = today.year
 jan_1 = datetime.date(prev_year, 1, 1)
-dec_31 = datetime.date(next_year, 2, 11)
+dec_31 = datetime.date(next_year, 2, 23)
 
 d = st.date_input(
     "Select dates",
@@ -884,14 +884,14 @@ if(len(d) > 1):
                         product_stock_df = stock_df.groupby('Product Name')['Stock'].sum()
                         dispatched_product_three_cat_df = pd.merge(dispatched_product_three_cat_df, product_stock_df, how="left", on="Product Name")
 
-                        temp_dispatched_df = dispatched_df[dispatched_df['date'] >= pd.to_datetime((d[1] - datetime.timedelta(days=(52*7))), dayfirst=True)]
+                        temp_dispatched_df = dispatched_df[dispatched_df['date'] >= pd.to_datetime((d[1] - datetime.timedelta(days=(12*7))), dayfirst=True)]
                         temp_dispatched_df = temp_dispatched_df.groupby('Product Name')['Units'].sum().reset_index().sort_values(by=['Units'], ascending=False).reset_index(drop=True)
                         temp_dispatched_df.rename(columns={'Units': 'Weeks Cover'}, inplace=True)
                         dispatched_product_three_cat_df = pd.merge(dispatched_product_three_cat_df, temp_dispatched_df, how="outer", on="Product Name")
                         dispatched_product_three_cat_df['Weeks Cover'] = dispatched_product_three_cat_df['Weeks Cover'].replace(0, 1)
                         dispatched_product_three_cat_df['Weeks Cover'] = dispatched_product_three_cat_df['Weeks Cover'].replace(np.NaN, 1)
                         dispatched_product_three_cat_df['Stock'] = dispatched_product_three_cat_df['Stock'].replace(np.NaN, 0)
-                        dispatched_product_three_cat_df['Weeks Cover'] = (dispatched_product_three_cat_df['Stock'] * 52) / (dispatched_product_three_cat_df['Weeks Cover'])
+                        dispatched_product_three_cat_df['Weeks Cover'] = (dispatched_product_three_cat_df['Stock'] * 12) / (dispatched_product_three_cat_df['Weeks Cover'])
                         dispatched_product_three_cat_df['Weeks Cover'] = dispatched_product_three_cat_df['Weeks Cover'].astype(int)
                         # dispatched_product_three_cat_df['index'] = range(1, len(dispatched_product_three_cat_df) + 1)
                         # column_to_move = dispatched_product_three_cat_df.pop("index")
@@ -911,7 +911,7 @@ if(len(d) > 1):
                             sku_stock_df = stock_df.groupby('Size')['Stock'].sum()
                             dispatched_sku_three_cat_df = pd.merge(dispatched_sku_three_cat_df, sku_stock_df, how="outer", on="Size")
 
-                            temp_dispatched_df = dispatched_df[dispatched_df['date'] >= pd.to_datetime((d[1] - datetime.timedelta(days=(52*7))), dayfirst=True)]
+                            temp_dispatched_df = dispatched_df[dispatched_df['date'] >= pd.to_datetime((d[1] - datetime.timedelta(days=(12*7))), dayfirst=True)]
                             temp_dispatched_df = temp_dispatched_df.groupby(['Size', 'SKU Reference'])['Units'].sum().reset_index().sort_values(by=['Units'], ascending=False).reset_index(drop=True)
                             temp_dispatched_df.rename(columns={'Units': 'Weeks Cover'}, inplace=True)
                             temp_dispatched_df.replace(np.NaN, 0, inplace=True)
@@ -923,7 +923,7 @@ if(len(d) > 1):
                             dispatched_sku_three_cat_df['Weeks Cover'] = dispatched_sku_three_cat_df['Weeks Cover'].replace(0, 1)
                             dispatched_sku_three_cat_df['Weeks Cover'] = dispatched_sku_three_cat_df['Weeks Cover'].replace(np.NaN, 1)
                             dispatched_sku_three_cat_df['Stock'] = dispatched_sku_three_cat_df['Stock'].replace(np.NaN, 0)
-                            dispatched_sku_three_cat_df['Weeks Cover'] = (dispatched_sku_three_cat_df['Stock'] * 52) / (dispatched_sku_three_cat_df['Weeks Cover'])
+                            dispatched_sku_three_cat_df['Weeks Cover'] = (dispatched_sku_three_cat_df['Stock'] * 12) / (dispatched_sku_three_cat_df['Weeks Cover'])
                             dispatched_sku_three_cat_df['Weeks Cover'] = dispatched_sku_three_cat_df['Weeks Cover'].astype(int)
 
                             display_sku(selected_prod, d, d2, dispatched_df, dispatched_sku_three_cat_df, total_weeks_cover)
@@ -952,14 +952,14 @@ if(len(d) > 1):
                             product_stock_df = stock_df.groupby('Product Name')['Stock'].sum()
                             dispatched_product_three_cat_df = pd.merge(dispatched_product_three_cat_df, product_stock_df, how="left", on="Product Name")
 
-                            temp_dispatched_df = dispatched_df[dispatched_df['date'] >= pd.to_datetime((d[1] - datetime.timedelta(days=(52*7))), dayfirst=True)]
+                            temp_dispatched_df = dispatched_df[dispatched_df['date'] >= pd.to_datetime((d[1] - datetime.timedelta(days=(12*7))), dayfirst=True)]
                             temp_dispatched_df = temp_dispatched_df.groupby('Product Name')['Units'].sum().reset_index().sort_values(by=['Units'], ascending=False).reset_index(drop=True)
                             temp_dispatched_df.rename(columns={'Units': 'Weeks Cover'}, inplace=True)
                             dispatched_product_three_cat_df = pd.merge(dispatched_product_three_cat_df, temp_dispatched_df, how="outer", on="Product Name")
                             dispatched_product_three_cat_df['Weeks Cover'] = dispatched_product_three_cat_df['Weeks Cover'].replace(0, 1)
                             dispatched_product_three_cat_df['Weeks Cover'] = dispatched_product_three_cat_df['Weeks Cover'].replace(np.NaN, 1)
                             dispatched_product_three_cat_df['Stock'] = dispatched_product_three_cat_df['Stock'].replace(np.NaN, 0)
-                            dispatched_product_three_cat_df['Weeks Cover'] = (dispatched_product_three_cat_df['Stock'] * 52) / (dispatched_product_three_cat_df['Weeks Cover'])                            
+                            dispatched_product_three_cat_df['Weeks Cover'] = (dispatched_product_three_cat_df['Stock'] * 12) / (dispatched_product_three_cat_df['Weeks Cover'])                            
                             dispatched_product_three_cat_df['Weeks Cover'] = dispatched_product_three_cat_df['Weeks Cover'].astype(int)
                             # dispatched_product_three_cat_df['index'] = range(1, len(dispatched_product_three_cat_df) + 1)
                             # column_to_move = dispatched_product_three_cat_df.pop("index")
@@ -979,7 +979,7 @@ if(len(d) > 1):
                                 sku_stock_df = stock_df.groupby('Size')['Stock'].sum()
                                 dispatched_sku_three_cat_df = pd.merge(dispatched_sku_three_cat_df, sku_stock_df, how="outer", on="Size")
 
-                                temp_dispatched_df = dispatched_df[dispatched_df['date'] >= pd.to_datetime((d[1] - datetime.timedelta(days=(52*7))), dayfirst=True)]
+                                temp_dispatched_df = dispatched_df[dispatched_df['date'] >= pd.to_datetime((d[1] - datetime.timedelta(days=(12*7))), dayfirst=True)]
                                 temp_dispatched_df = temp_dispatched_df.groupby(['Size', 'SKU Reference'])['Units'].sum().reset_index().sort_values(by=['Units'], ascending=False).reset_index(drop=True)
                                 temp_dispatched_df.rename(columns={'Units': 'Weeks Cover'}, inplace=True)
                                 temp_dispatched_df.replace(np.NaN, 0, inplace=True)
@@ -991,7 +991,7 @@ if(len(d) > 1):
                                 dispatched_sku_three_cat_df['Weeks Cover'] = dispatched_sku_three_cat_df['Weeks Cover'].replace(0, 1)
                                 dispatched_sku_three_cat_df['Weeks Cover'] = dispatched_sku_three_cat_df['Weeks Cover'].replace(np.NaN, 1)
                                 dispatched_sku_three_cat_df['Stock'] = dispatched_sku_three_cat_df['Stock'].replace(np.NaN, 0)
-                                dispatched_sku_three_cat_df['Weeks Cover'] = (dispatched_sku_three_cat_df['Stock'] * 52) / (dispatched_sku_three_cat_df['Weeks Cover'])
+                                dispatched_sku_three_cat_df['Weeks Cover'] = (dispatched_sku_three_cat_df['Stock'] * 12) / (dispatched_sku_three_cat_df['Weeks Cover'])
                                 dispatched_sku_three_cat_df['Weeks Cover'] = dispatched_sku_three_cat_df['Weeks Cover'].astype(int)
 
                                 display_sku(selected_prod, d, d2, dispatched_df, dispatched_sku_three_cat_df, total_weeks_cover)
@@ -1002,14 +1002,14 @@ if(len(d) > 1):
                 product_stock_df = stock_df.groupby('Product Name')['Stock'].sum()
                 dispatched_product_two_cat_df = pd.merge(dispatched_product_two_cat_df, product_stock_df, how="left", on="Product Name")
 
-                temp_dispatched_df = dispatched_df[dispatched_df['date'] >= pd.to_datetime((d[1] - datetime.timedelta(days=(52*7))), dayfirst=True)]
+                temp_dispatched_df = dispatched_df[dispatched_df['date'] >= pd.to_datetime((d[1] - datetime.timedelta(days=(12*7))), dayfirst=True)]
                 temp_dispatched_df = temp_dispatched_df.groupby('Product Name')['Units'].sum().reset_index().sort_values(by=['Units'], ascending=False).reset_index(drop=True)
                 temp_dispatched_df.rename(columns={'Units': 'Weeks Cover'}, inplace=True)
                 dispatched_product_two_cat_df = pd.merge(dispatched_product_two_cat_df, temp_dispatched_df, how="outer", on="Product Name")
                 dispatched_product_two_cat_df['Weeks Cover'] = dispatched_product_two_cat_df['Weeks Cover'].replace(0, 1)
                 dispatched_product_two_cat_df['Weeks Cover'] = dispatched_product_two_cat_df['Weeks Cover'].replace(np.NaN, 1)
                 dispatched_product_two_cat_df['Stock'] = dispatched_product_two_cat_df['Stock'].replace(np.NaN, 0)
-                dispatched_product_two_cat_df['Weeks Cover'] = (dispatched_product_two_cat_df['Stock'] * 52) / (dispatched_product_two_cat_df['Weeks Cover'])
+                dispatched_product_two_cat_df['Weeks Cover'] = (dispatched_product_two_cat_df['Stock'] * 12) / (dispatched_product_two_cat_df['Weeks Cover'])
                 dispatched_product_two_cat_df['Weeks Cover'] = dispatched_product_two_cat_df['Weeks Cover'].astype(int)
                 # dispatched_product_two_cat_df['index'] = range(1, len(dispatched_product_two_cat_df) + 1)
                 # column_to_move = dispatched_product_two_cat_df.pop("index")
@@ -1029,7 +1029,7 @@ if(len(d) > 1):
                     product_stock_df = stock_df.groupby('Size')['Stock'].sum()
                     dispatched_sku_two_cat_df = pd.merge(dispatched_sku_two_cat_df, product_stock_df, how="outer", on="Size")
 
-                    temp_dispatched_df = dispatched_df[dispatched_df['date'] >= pd.to_datetime((d[1] - datetime.timedelta(days=(52*7))), dayfirst=True)]
+                    temp_dispatched_df = dispatched_df[dispatched_df['date'] >= pd.to_datetime((d[1] - datetime.timedelta(days=(12*7))), dayfirst=True)]
                     temp_dispatched_df = temp_dispatched_df.groupby(['Size', 'SKU Reference'])['Units'].sum().reset_index().sort_values(by=['Units'], ascending=False).reset_index(drop=True)
                     temp_dispatched_df.rename(columns={'Units': 'Weeks Cover'}, inplace=True)
                     temp_dispatched_df.replace(np.NaN, 0, inplace=True)
@@ -1041,7 +1041,7 @@ if(len(d) > 1):
                     dispatched_sku_two_cat_df['Weeks Cover'] = dispatched_sku_two_cat_df['Weeks Cover'].replace(0, 1)
                     dispatched_sku_two_cat_df['Weeks Cover'] = dispatched_sku_two_cat_df['Weeks Cover'].replace(np.NaN, 1)
                     dispatched_sku_two_cat_df['Stock'] = dispatched_sku_two_cat_df['Stock'].replace(np.NaN, 0)
-                    dispatched_sku_two_cat_df['Weeks Cover'] = (dispatched_sku_two_cat_df['Stock'] * 52) / (dispatched_sku_two_cat_df['Weeks Cover'])
+                    dispatched_sku_two_cat_df['Weeks Cover'] = (dispatched_sku_two_cat_df['Stock'] * 12) / (dispatched_sku_two_cat_df['Weeks Cover'])
                     dispatched_sku_two_cat_df['Weeks Cover'] = dispatched_sku_two_cat_df['Weeks Cover'].astype(int)
 
                     display_sku(selected_prod, d, d2, dispatched_df, dispatched_sku_two_cat_df, total_weeks_cover)
