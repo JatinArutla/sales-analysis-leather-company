@@ -358,12 +358,12 @@ if(len(d) > 1):
         if(category_selection['selected_rows_indices'] != []):
             selected_history = temp_df.loc[category_selection['selected_rows_indices'][0]]['Category']
             if selected_history != 'Total':
-                df = df[df['customs_description'] == selected_history]
+                some_df = df[df['customs_description'] == selected_history]
             else:
-                df = df
+                some_df = df
 
-            df['date'] = pd.to_datetime(df['date'])
-            mean_df = df[df['date'].dt.year == year_options].set_index('date')
+            some_df['date'] = pd.to_datetime(some_df['date'])
+            mean_df = some_df[some_df['date'].dt.year == year_options].set_index('date')
             mean_df = mean_df.resample('D')['Units'].sum().fillna(0).reset_index()
 
             mean_df = mean_df.groupby('date')['Units'].mean().reset_index().set_index('date')
@@ -417,6 +417,7 @@ if(len(d) > 1):
 
 
         st.markdown(f'<p class="big-font"><strong>Revenue (£)</p>', unsafe_allow_html=True)
+        df = orig_df[(orig_df['order_state'] == 'Order Dispatched') | (orig_df['order_state'] == 'Order Refunded')]
         df['month'] = df['date'].dt.month
         temp_df_rev = df.groupby(['month', 'customs_description'])['Revenue (£)'].sum().reset_index()
         newf_rev = temp_df_rev.pivot(index='customs_description', columns='month')
@@ -436,12 +437,12 @@ if(len(d) > 1):
         if(category_selection_rev['selected_rows_indices'] != []):
             selected_history_rev = temp_df_rev.loc[category_selection_rev['selected_rows_indices'][0]]['Category']
             if selected_history_rev != 'Total':
-                df = df[df['customs_description'] == selected_history_rev]
+                some_df = df[df['customs_description'] == selected_history_rev]
             else:
-                df = df
+                some_df = df
 
-            df['date'] = pd.to_datetime(df['date'])
-            mean_df = df[df['date'].dt.year == year_options].set_index('date')
+            some_df['date'] = pd.to_datetime(some_df['date'])
+            mean_df = some_df[some_df['date'].dt.year == year_options].set_index('date')
             mean_df = mean_df.resample('D')['Revenue (£)'].sum().fillna(0).reset_index()
 
             mean_df = mean_df.groupby('date')['Revenue (£)'].mean().reset_index().set_index('date')
