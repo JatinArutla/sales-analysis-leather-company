@@ -882,6 +882,7 @@ if(len(d) > 1):
 
                         product_stock_df = stock_df.groupby('Product Name')['Stock'].sum()
                         dispatched_product_three_cat_df = pd.merge(dispatched_product_three_cat_df, product_stock_df, how="left", on="Product Name")
+                        dispatched_product_three_cat_df['Stock'] = dispatched_product_three_cat_df['Stock'].replace(np.NaN, 0)
 
                         # dispatched_product_three_cat_df['index'] = range(1, len(dispatched_product_three_cat_df) + 1)
                         # column_to_move = dispatched_product_three_cat_df.pop("index")
@@ -899,6 +900,7 @@ if(len(d) > 1):
 
                             sku_stock_df = stock_df.groupby('Size')['Stock'].sum()
                             dispatched_sku_three_cat_df = pd.merge(dispatched_sku_three_cat_df, sku_stock_df, how="outer", on="Size")
+                            dispatched_sku_three_cat_df['Stock'] = dispatched_sku_three_cat_df['Stock'].replace(np.NaN, 0)
 
                             display_sku(selected_prod, d, d2, dispatched_df, dispatched_sku_three_cat_df)
 
@@ -925,6 +927,7 @@ if(len(d) > 1):
 
                             product_stock_df = stock_df.groupby('Product Name')['Stock'].sum()
                             dispatched_product_three_cat_df = pd.merge(dispatched_product_three_cat_df, product_stock_df, how="left", on="Product Name")
+                            dispatched_product_three_cat_df['Stock'] = dispatched_product_three_cat_df['Stock'].replace(np.NaN, 0)
 
                             # dispatched_product_three_cat_df['index'] = range(1, len(dispatched_product_three_cat_df) + 1)
                             # column_to_move = dispatched_product_three_cat_df.pop("index")
@@ -942,6 +945,7 @@ if(len(d) > 1):
 
                                 sku_stock_df = stock_df.groupby('Size')['Stock'].sum()
                                 dispatched_sku_three_cat_df = pd.merge(dispatched_sku_three_cat_df, sku_stock_df, how="outer", on="Size")
+                                dispatched_sku_three_cat_df['Stock'] = dispatched_sku_three_cat_df['Stock'].replace(np.NaN, 0)
 
                                 display_sku(selected_prod, d, d2, dispatched_df, dispatched_sku_three_cat_df)
 
@@ -950,6 +954,7 @@ if(len(d) > 1):
 
                 product_stock_df = stock_df.groupby('Product Name')['Stock'].sum()
                 dispatched_product_two_cat_df = pd.merge(dispatched_product_two_cat_df, product_stock_df, how="left", on="Product Name")
+                dispatched_product_two_cat_df['Stock'] = dispatched_product_two_cat_df['Stock'].replace(np.NaN, 0)
 
                 # dispatched_product_two_cat_df['index'] = range(1, len(dispatched_product_two_cat_df) + 1)
                 # column_to_move = dispatched_product_two_cat_df.pop("index")
@@ -967,5 +972,6 @@ if(len(d) > 1):
 
                     product_stock_df = stock_df.groupby('Size')['Stock'].sum()
                     dispatched_sku_two_cat_df = pd.merge(dispatched_sku_two_cat_df, product_stock_df, how="outer", on="Size")
+                    dispatched_sku_two_cat_df['Stock'] = dispatched_sku_two_cat_df['Stock'].replace(np.NaN, 0)
 
                     display_sku(selected_prod, d, d2, dispatched_df, dispatched_sku_two_cat_df)
