@@ -158,6 +158,7 @@ def sku_summary(df, d, d2, table_column):
         table_column.markdown(f"<p class='small-font'><strong>{d[0].strftime('%d %b %Y')} to {d[1].strftime('%d %b %Y')}</strong></p>", unsafe_allow_html=True)
     elif(len(d2) > 1):
         table_column.markdown(f"<p class='small-font'><strong>{d[0].strftime('%d %b %Y')} to {d[1].strftime('%d %b %Y')} and {d2[0].strftime('%d %b %Y')} to {d2[1].strftime('%d %b %Y')}</strong></p>", unsafe_allow_html=True)
+    temp_units = df.iloc[t1]['Units'].astype(int)
     if(df.iloc[t1]['Units'].astype(int) > 1):
         table_column.markdown(f'<p class="small-font"><strong>Best Seller:</strong> {df.iloc[t1]["Units"].astype(int)} units of size: {df.iloc[t1]["Size"]} with a revenue of £{(df.iloc[t1]["Revenue (£)"].astype(int)):,}</p>', unsafe_allow_html=True)
     elif(df.iloc[t1]['Units'].astype(int) == 1):
@@ -166,10 +167,11 @@ def sku_summary(df, d, d2, table_column):
         table_column.markdown(f'<p class="small-font"><strong>Most Refunded:</strong> {df.iloc[t2]["Units Refunded"].astype(int)} units of size: {df.iloc[t2]["Size"]} with a revenue of £{(df.iloc[t2]["Total Refund (£)"].astype(int)):,}</p>', unsafe_allow_html=True)
     elif (df.iloc[t2]['Units Refunded'].astype(int) == 1):
         table_column.markdown(f'<p class="small-font"><strong>Most Refunded:</strong> {df.iloc[t2]["Units Refunded"].astype(int)} unit of size: {df.iloc[t2]["Size"]} with a revenue of £{(df.iloc[t2]["Total Refund (£)"].astype(int)):,}</p>', unsafe_allow_html=True)
-    if (df.iloc[t3]['Units'].astype(int) > 1):
-        table_column.markdown(f'<p class="small-font"><strong>Least Sold:</strong> {df.iloc[t3]["Units"].astype(int)} units of size: {df.iloc[t3]["Size"]} with a revenue of £{(df.iloc[t3]["Revenue (£)"].astype(int)):,}</p>', unsafe_allow_html=True)
-    elif (df.iloc[t3]['Units'].astype(int) == 1):
-        table_column.markdown(f'<p class="small-font"><strong>Least Sold:</strong> {df.iloc[t3]["Units"].astype(int)} unit of size: {df.iloc[t3]["Size"]} with a revenue of £{(df.iloc[t3]["Revenue (£)"].astype(int)):,}</p>', unsafe_allow_html=True)
+    if (temp_units != df.iloc[t3]['Units'].astype(int)):
+        if (df.iloc[t3]['Units'].astype(int) > 1):
+            table_column.markdown(f'<p class="small-font"><strong>Least Sold:</strong> {df.iloc[t3]["Units"].astype(int)} units of size: {df.iloc[t3]["Size"]} with a revenue of £{(df.iloc[t3]["Revenue (£)"].astype(int)):,}</p>', unsafe_allow_html=True)
+        elif (df.iloc[t3]['Units'].astype(int) == 1):
+            table_column.markdown(f'<p class="small-font"><strong>Least Sold:</strong> {df.iloc[t3]["Units"].astype(int)} unit of size: {df.iloc[t3]["Size"]} with a revenue of £{(df.iloc[t3]["Revenue (£)"].astype(int)):,}</p>', unsafe_allow_html=True)
 
 st.markdown("""
 <style>
