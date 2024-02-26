@@ -324,11 +324,179 @@ if(len(d) > 1):
             else:
                 df = df[df['Revenue (£)'] == price_range[0]]
 
-        stand_arr = ['None selected', 'Mean Sales of 2021, 2022 and 2023', 'Sales Forecast for 2024', 'Google Ads Performance', 'SEO Backlink Analysis']
+        stand_arr = ['None selected', 'Year-wise Sales', 'Mean Sales of 2021, 2022 and 2023', 'Sales Forecast for 2024', 'Google Ads Performance', 'SEO Backlink Analysis']
         stand_options = st.selectbox('Standalone reports', options=stand_arr)
         if (stand_options == 'None selected'):
             df = df
     
+
+    if ((stand_options == 'Year-wise Sales') & (filters_check == True)):
+        year_options_arr = [2021, 2022, 2023]
+        year_options = st.selectbox('Select Year', options=year_options_arr)
+        df = orig_df[(orig_df['order_state'] == 'Order Dispatched') | (orig_df['order_state'] == 'Order Refunded')]
+        df['date'] = pd.to_datetime(df['date'])
+        df['year'] = df['date'].dt.year
+        df = df[df['year'] == year_options]
+
+        st.markdown(f'<p class="big-font"><strong>Units</p>', unsafe_allow_html=True)
+        df['month'] = df['date'].dt.month
+        temp_df = df.groupby(['month', 'customs_description'])['Units'].sum().reset_index()
+        newf = temp_df.pivot(index='customs_description', columns='month')
+        newf.columns = newf.columns.droplevel(0)
+        newf = newf.reindex(sorted(newf.columns), axis=1)
+        month_columns = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+        newf.columns = month_columns
+        newf.loc['Total'] = newf.sum(numeric_only=True)
+        newf.replace({np.NaN: 0}, inplace=True)
+        newf = newf.astype(int)
+        # newf.loc['Total', 'customs_description'] = 'Total'
+        # newf.reset_index(drop=True, inplace=True)
+        temp_df = newf.sort_values(by='Jan', ascending=False).reset_index()
+        temp_df.rename(columns={'customs_description': 'Category'}, inplace=True)
+        category_selection = dataframe_with_selections(temp_df, 21)
+
+        if(category_selection['selected_rows_indices'] != []):
+            selected_history = temp_df.loc[category_selection['selected_rows_indices'][0]]['Category']
+            if selected_history != 'Total':
+                df = df[df['customs_description'] == selected_history]
+            else:
+                df = df
+
+            df['date'] = pd.to_datetime(df['date'])
+            mean_df = df[df['date'].dt.year == year_options].set_index('date')
+            mean_df = mean_df.resample('D')['Units'].sum().fillna(0).reset_index()
+
+            mean_df = mean_df.groupby('date')['Units'].mean().reset_index().set_index('date')
+
+            mean_df.reset_index(inplace=True)
+            mean_df.rename(columns={'date': 'Date'}, inplace=True)
+            mean_df = mean_df[['Date', 'Units']]
+            mean_df['Units'] = mean_df['Units'].round(0).astype(int)
+            mean_df['Date'] = pd.to_datetime(mean_df['Date'])
+
+
+            # Create a selection that chooses the nearest point & selects based on x-value
+            nearest = alt.selection_point(nearest=True, on='mouseover',
+                                    fields=['Date'], empty=False)
+
+            # The basic line
+            line = alt.Chart(mean_df).mark_line().encode(
+                x='Date',
+                y='Units',
+            ).interactive()
+
+            # Transparent selectors across the chart. This is what tells us
+            # the x-value of the cursor
+            selectors = alt.Chart(mean_df).mark_point().encode(
+                x='Date',
+                y='Units',
+                opacity=alt.value(0),
+            ).add_params(
+                nearest
+            )
+
+            # Draw points on the line, and highlight based on selection
+            points = line.mark_point().encode(
+                opacity=alt.condition(nearest, alt.value(1), alt.value(0))
+            )
+
+            # Draw a rule at the location of the selection
+            rules = alt.Chart(mean_df).mark_rule(color='gray').encode(
+                x='Date',
+            ).transform_filter(
+                nearest
+            )
+
+            # Put the five layers into a chart and bind the data
+            final = alt.layer(
+                line, selectors, points, rules
+            ).properties(
+                width=600, height=300
+            )
+            st.altair_chart(final, use_container_width=True)
+
+
+        st.markdown(f'<p class="big-font"><strong>Revenue (£)</p>', unsafe_allow_html=True)
+        df['month'] = df['date'].dt.month
+        temp_df_rev = df.groupby(['month', 'customs_description'])['Revenue (£)'].sum().reset_index()
+        newf_rev = temp_df_rev.pivot(index='customs_description', columns='month')
+        newf_rev.columns = newf_rev.columns.droplevel(0)
+        newf_rev = newf_rev.reindex(sorted(newf_rev.columns), axis=1)
+        month_columns = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+        newf_rev.columns = month_columns
+        newf_rev.loc['Total'] = newf_rev.sum(numeric_only=True)
+        newf_rev.replace({np.NaN: 0}, inplace=True)
+        newf_rev = newf_rev.astype(int)
+        # newf.loc['Total', 'customs_description'] = 'Total'
+        # newf.reset_index(drop=True, inplace=True)
+        temp_df_rev = newf_rev.sort_values(by='Jan', ascending=False).reset_index()
+        temp_df_rev.rename(columns={'customs_description': 'Category'}, inplace=True)
+        category_selection_rev = dataframe_with_selections(temp_df_rev, 22)
+
+        if(category_selection_rev['selected_rows_indices'] != []):
+            selected_history_rev = temp_df_rev.loc[category_selection_rev['selected_rows_indices'][0]]['Category']
+            if selected_history_rev != 'Total':
+                df = df[df['customs_description'] == selected_history_rev]
+            else:
+                df = df
+
+            df['date'] = pd.to_datetime(df['date'])
+            mean_df = df[df['date'].dt.year == year_options].set_index('date')
+            mean_df = mean_df.resample('D')['Revenue (£)'].sum().fillna(0).reset_index()
+
+            mean_df = mean_df.groupby('date')['Revenue (£)'].mean().reset_index().set_index('date')
+
+            mean_df.reset_index(inplace=True)
+            mean_df.rename(columns={'date': 'Date'}, inplace=True)
+            mean_df = mean_df[['Date', 'Revenue (£)']]
+            mean_df['Revenue (£)'] = mean_df['Revenue (£)'].round(0).astype(int)
+            mean_df['Date'] = pd.to_datetime(mean_df['Date'])
+
+
+            # Create a selection that chooses the nearest point & selects based on x-value
+            nearest = alt.selection_point(nearest=True, on='mouseover',
+                                    fields=['Date'], empty=False)
+
+            # The basic line
+            line = alt.Chart(mean_df).mark_line().encode(
+                x='Date',
+                y='Revenue (£)',
+            ).interactive()
+
+            # Transparent selectors across the chart. This is what tells us
+            # the x-value of the cursor
+            selectors = alt.Chart(mean_df).mark_point().encode(
+                x='Date',
+                y='Revenue (£)',
+                opacity=alt.value(0),
+            ).add_params(
+                nearest
+            )
+
+            # Draw points on the line, and highlight based on selection
+            points = line.mark_point().encode(
+                opacity=alt.condition(nearest, alt.value(1), alt.value(0))
+            )
+
+            # Draw a rule at the location of the selection
+            rules = alt.Chart(mean_df).mark_rule(color='gray').encode(
+                x='Date',
+            ).transform_filter(
+                nearest
+            )
+
+            # Put the five layers into a chart and bind the data
+            final = alt.layer(
+                line, selectors, points, rules
+            ).properties(
+                width=600, height=300
+            )
+            st.altair_chart(final, use_container_width=True)            
+
+
+
+
+
     if ((stand_options == 'Mean Sales of 2021, 2022 and 2023') & (filters_check == True)):
         st.markdown(f'<p class="big-font"><strong>Mean Sales for 2021, 2022 and 2023</p>', unsafe_allow_html=True)
         df = orig_df[(orig_df['order_state'] == 'Order Dispatched') | (orig_df['order_state'] == 'Order Refunded')]
@@ -518,7 +686,7 @@ if(len(d) > 1):
             st.altair_chart(final, use_container_width=True)
 
 
-        st.markdown(f'<p class="big-font"><strong>Revenue</p>', unsafe_allow_html=True)
+        st.markdown(f'<p class="big-font"><strong>Revenue (£)</p>', unsafe_allow_html=True)
         temp_rev_categories = ['Month'] + rev_categories
         mon_rev_forecast_df = mon_forecast_df[temp_rev_categories]
         mon_rev_forecast_df.columns = mon_rev_forecast_df.columns.str.replace('Revenue - ','')
