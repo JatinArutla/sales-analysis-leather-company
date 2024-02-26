@@ -417,7 +417,6 @@ if(len(d) > 1):
 
 
         st.markdown(f'<p class="big-font"><strong>Revenue (£)</p>', unsafe_allow_html=True)
-        df = orig_df[(orig_df['order_state'] == 'Order Dispatched') | (orig_df['order_state'] == 'Order Refunded')]
         df['month'] = df['date'].dt.month
         temp_df_rev = df.groupby(['month', 'customs_description'])['Revenue (£)'].sum().reset_index()
         newf_rev = temp_df_rev.pivot(index='customs_description', columns='month')
