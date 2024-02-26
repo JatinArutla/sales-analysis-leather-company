@@ -356,9 +356,12 @@ if(len(d) > 1):
 
         m = temp_df.select_dtypes(np.number)
         temp_df[m.columns] = m.round().astype('Int64')
-        temp_df = temp_df.sort_values(by='Jan', ascending=False).reset_index(drop=True)[['customs_description', 'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
-                                                                                                 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']]
         temp_df.rename(columns={'customs_description': 'Category'}, inplace=True)
+        temp_df.loc['Total'] = temp_df.sum(numeric_only=True)
+        temp_df.loc['Total', 'Category'] = 'Total'
+        temp_df.reset_index(drop=True, inplace=True)
+        temp_df = temp_df.sort_values(by='Jan', ascending=False).reset_index(drop=True)[['Category', 'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
+                                                                                                 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']]
         history_selection = dataframe_with_selections(temp_df, 11)
         if(history_selection['selected_rows_indices'] != []):
             selected_history = temp_df.loc[history_selection['selected_rows_indices'][0]]['Category']
