@@ -210,7 +210,7 @@ today = datetime.datetime.now()
 prev_year = today.year - 3
 next_year = today.year
 first_date = datetime.date(prev_year, 1, 1)
-last_date = datetime.date(next_year, 2, 23)
+last_date = datetime.date(next_year, 12, 31)
 
 d = st.date_input(
     "Select dates",
