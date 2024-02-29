@@ -324,7 +324,8 @@ if(len(d) > 1):
             else:
                 df = df[df['Revenue (£)'] == price_range[0]]
 
-        stand_arr = ['None selected', 'Year-wise Sales', 'Mean Sales of 2021, 2022 and 2023', 'Sales Forecast for 2024', 'Google Ads Performance', 'SEO Backlink Analysis']
+        stand_arr = ['None selected', 'Year-wise Sales', 'Mean Sales of 2021, 2022 and 2023', 'Sales Forecast for 2024',
+                     'Google Ads Performance', 'SEO Backlink Analysis', 'Landing Page Engagement Rate']
         stand_options = st.selectbox('Standalone reports', options=stand_arr)
         if (stand_options == 'None selected'):
             df = df
@@ -886,6 +887,14 @@ if(len(d) > 1):
         #     tooltip=['Target page', 'Incoming links', 'Google Search Position', 'Impressions', 'Clicks', 'CTR']
         # ).interactive()
         # st.altair_chart(chart2, use_container_width=True)
+
+    elif ((stand_options == 'Landing Page Engagement Rate') & (filters_check == True)):
+        df_eng = pd.read_csv('EngagementBounceRate.csv', skiprows=9)
+        df_eng.rename(columns={'Average engagement time per session': 'Average engagement time'}, inplace=True)
+        df_eng['Average engagement time'] = df_eng['Average engagement time'].round(2)
+        df_eng['Engagement rate'] = df_eng['Engagement rate'].round(2)
+        df_eng['Bounce rate'] = df_eng['Bounce rate'].round(2)
+        st.dataframe(df_eng, use_container_width=True)
 
     elif stand_options == 'None selected':
         df['Revenue (£)'] = df['Revenue (£)'].astype(float)
