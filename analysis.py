@@ -190,7 +190,7 @@ st.title('Sales Analysis')
 
 
 
-df = pd.read_csv('2024_feb_unduplicated_orders.csv')
+df = pd.read_csv('2024_feb_unduplicated_orders fixed_categories.csv')
 df['date'] = pd.to_datetime(df['date'])
 df.drop_duplicates(inplace=True)
 df.rename(columns={'quantity': 'Units', 'reference': 'SKU Reference', 'title': 'Product Name', 'price_inc': 'Revenue (£)', 'attribute_summary': 'Size'}, inplace=True)
@@ -201,7 +201,7 @@ temp_stock_df = stock_df['Size'].str.split(': ', expand=True)
 temp_stock_df.columns = ['F_Size', 'Size']
 stock_df['Size'] = temp_stock_df['Size']
 
-orig_df = pd.read_csv('2024_feb_unduplicated_orders.csv')
+orig_df = pd.read_csv('2024_feb_unduplicated_orders fixed_categories.csv')
 orig_df['date'] = pd.to_datetime(orig_df['date'])
 orig_df.drop_duplicates(inplace=True)
 orig_df.rename(columns={'quantity': 'Units', 'reference': 'SKU Reference', 'title': 'Product Name', 'price_inc': 'Revenue (£)', 'attribute_summary': 'Size'}, inplace=True)
