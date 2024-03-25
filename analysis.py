@@ -50,16 +50,16 @@ def percentage_change_df(df, orig, new, col_name):
     return df
 
 def sku_condense_dataframe(dispatched_df, refunded_df):
-    dispatched_sku_three_cat_df = dispatched_df.groupby(['Size', 'SKU Reference'])['Units'].sum().reset_index().sort_values(by=['Units'], ascending=False).reset_index(drop=True)
-    dispatched_sku_rev_three_cat_df = dispatched_df.groupby(['Size', 'SKU Reference'])['Revenue (£)'].sum().reset_index().sort_values(by=['Revenue (£)'], ascending=False).reset_index(drop=True)
-    refunded_sku_three_cat_df = refunded_df.groupby(['Size', 'SKU Reference'])['Units Refunded'].sum().reset_index().sort_values(by=['Units Refunded'], ascending=False).reset_index(drop=True)
-    refunded_sku_rev_three_cat_df = refunded_df.groupby(['Size', 'SKU Reference'])['Total Refund (£)'].sum().reset_index().sort_values(by=['Total Refund (£)'], ascending=False).reset_index(drop=True)
+    dispatched_sku_three_cat_df = dispatched_df.groupby(['Size', 'SKU Reference', 'Channel'])['Units'].sum().reset_index().sort_values(by=['Units'], ascending=False).reset_index(drop=True)
+    dispatched_sku_rev_three_cat_df = dispatched_df.groupby(['Size', 'SKU Reference', 'Channel'])['Revenue (£)'].sum().reset_index().sort_values(by=['Revenue (£)'], ascending=False).reset_index(drop=True)
+    refunded_sku_three_cat_df = refunded_df.groupby(['Size', 'SKU Reference', 'Channel'])['Units Refunded'].sum().reset_index().sort_values(by=['Units Refunded'], ascending=False).reset_index(drop=True)
+    refunded_sku_rev_three_cat_df = refunded_df.groupby(['Size', 'SKU Reference', 'Channel'])['Total Refund (£)'].sum().reset_index().sort_values(by=['Total Refund (£)'], ascending=False).reset_index(drop=True)
 
     dispatched_sku_rev_three_cat_df['Revenue (£)'] = np.round(dispatched_sku_rev_three_cat_df['Revenue (£)'], 0)
-    dispatched_sku_three_cat_df = pd.merge(dispatched_sku_three_cat_df, dispatched_sku_rev_three_cat_df, how="outer", on=['Size', 'SKU Reference'])
+    dispatched_sku_three_cat_df = pd.merge(dispatched_sku_three_cat_df, dispatched_sku_rev_three_cat_df, how="outer", on=['Size', 'SKU Reference', 'Channel'])
     refunded_sku_rev_three_cat_df['Total Refund (£)'] = np.round(refunded_sku_rev_three_cat_df['Total Refund (£)'], 0)
-    refunded_sku_three_cat_df = pd.merge(refunded_sku_three_cat_df, refunded_sku_rev_three_cat_df, how="outer", on=['Size', 'SKU Reference'])
-    dispatched_sku_three_cat_df = pd.merge(dispatched_sku_three_cat_df, refunded_sku_three_cat_df, how="outer", on=['Size', 'SKU Reference'])
+    refunded_sku_three_cat_df = pd.merge(refunded_sku_three_cat_df, refunded_sku_rev_three_cat_df, how="outer", on=['Size', 'SKU Reference', 'Channel'])
+    dispatched_sku_three_cat_df = pd.merge(dispatched_sku_three_cat_df, refunded_sku_three_cat_df, how="outer", on=['Size', 'SKU Reference', 'Channel'])
     dispatched_sku_three_cat_df.replace(np.NaN, 0, inplace=True)
     temp2_df = dispatched_sku_three_cat_df['Size'].str.split(': ', expand=True)
     temp2_df.columns = ['F_Size', 'Size']
@@ -190,18 +190,20 @@ st.title('Sales Analysis')
 
 
 
-df = pd.read_csv('2024_feb_unduplicated_orders fixed_categories.csv')
+# df = pd.read_csv('2024_feb_unduplicated_orders fixed_categories.csv')
+df = pd.read_csv('All orders - short custom description.csv', low_memory=False)
 df['date'] = pd.to_datetime(df['date'])
 df.drop_duplicates(inplace=True)
 df.rename(columns={'quantity': 'Units', 'reference': 'SKU Reference', 'title': 'Product Name', 'price_inc': 'Revenue (£)', 'attribute_summary': 'Size'}, inplace=True)
 
-stock_df = pd.read_csv('stock_levels_23_feb.csv')
+stock_df = pd.read_csv('stock_levels_25_mar.csv')
 stock_df.rename(columns={'parent_title': 'Product Name', 'stock': 'Stock', 'attribute_summary': 'Size', 'product_url': 'Target page'}, inplace=True)
 temp_stock_df = stock_df['Size'].str.split(': ', expand=True)
 temp_stock_df.columns = ['F_Size', 'Size']
 stock_df['Size'] = temp_stock_df['Size']
 
-orig_df = pd.read_csv('2024_feb_unduplicated_orders fixed_categories.csv')
+# orig_df = pd.read_csv('2024_feb_unduplicated_orders fixed_categories.csv')
+orig_df = pd.read_csv('All orders - short custom description.csv', low_memory=False)
 orig_df['date'] = pd.to_datetime(orig_df['date'])
 orig_df.drop_duplicates(inplace=True)
 orig_df.rename(columns={'quantity': 'Units', 'reference': 'SKU Reference', 'title': 'Product Name', 'price_inc': 'Revenue (£)', 'attribute_summary': 'Size'}, inplace=True)
@@ -257,7 +259,7 @@ if(len(d) > 1):
         if (options != ''):
             df = df[(df == options).any(axis=1)]
 
-        brand_sel_col, category_sel_col, sub_category_sel_col, colour_sel_col, size_sel_col = st.columns(5)
+        brand_sel_col, category_sel_col, sub_category_sel_col, colour_sel_col, size_sel_col, channel_sel_col = st.columns(6)
 
         brand_arr = df['manufacturer_name'].unique().tolist()
         brand_arr = np.sort(brand_arr).tolist()
@@ -305,6 +307,15 @@ if(len(d) > 1):
             df = df
         else:
             df = df[df['Size'] == size_options]
+        
+        channel_arr = df['Channel'].unique().tolist()
+        channel_arr = np.sort(channel_arr).tolist()
+        channel_arr = ['All channels'] + channel_arr
+        channel_options = channel_sel_col.selectbox('Select a channel', options=channel_arr)
+        if (channel_options == 'All channels'):
+            df = df
+        else:
+            df = df[df['Channel'] == channel_options]
 
         d2 = st.date_input(
             "Comparison dates",
