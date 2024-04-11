@@ -259,7 +259,7 @@ if(len(d) > 1):
         if (options != ''):
             df = df[(df == options).any(axis=1)]
 
-        brand_sel_col, category_sel_col, sub_category_sel_col, colour_sel_col, size_sel_col, channel_sel_col = st.columns(6)
+        brand_sel_col, category_sel_col, sub_category_sel_col, colour_sel_col, size_sel_col = st.columns(5)
 
         brand_arr = df['manufacturer_name'].unique().tolist()
         brand_arr = np.sort(brand_arr).tolist()
@@ -308,14 +308,6 @@ if(len(d) > 1):
         else:
             df = df[df['Size'] == size_options]
         
-        channel_arr = df['Channel'].unique().tolist()
-        channel_arr = np.sort(channel_arr).tolist()
-        channel_arr = ['All channels'] + channel_arr
-        channel_options = channel_sel_col.selectbox('Select a channel', options=channel_arr)
-        if (channel_options == 'All channels'):
-            df = df
-        else:
-            df = df[df['Channel'] == channel_options]
 
         d2 = st.date_input(
             "Comparison dates",
@@ -335,12 +327,24 @@ if(len(d) > 1):
             else:
                 df = df[df['Revenue (£)'] == price_range[0]]
 
+
         stand_arr = ['None selected', 'Year-wise Sales', 'Mean Sales of 2021, 2022 and 2023', 'Sales Forecast for 2024',
                      'Google Ads Performance', 'SEO Backlink Analysis', 'Landing Page Engagement Rate']
         stand_options = st.selectbox('Standalone reports', options=stand_arr)
         if (stand_options == 'None selected'):
             df = df
-    
+
+
+    channel_arr = df['Channel'].unique().tolist()
+    channel_arr = np.sort(channel_arr).tolist()
+    channel_arr = ['All channels'] + channel_arr
+    channel_options = st.selectbox('Select a channel', options=channel_arr)
+    if (channel_options == 'All channels'):
+        df = df
+    else:
+        df = df[df['Channel'] == channel_options]
+
+
 
     if ((stand_options == 'Year-wise Sales') & (filters_check == True)):
         year_options_arr = [2021, 2022, 2023]
@@ -507,8 +511,6 @@ if(len(d) > 1):
 
 
 
-
-
     if ((stand_options == 'Mean Sales of 2021, 2022 and 2023') & (filters_check == True)):
         st.markdown(f'<p class="big-font"><strong>Mean Sales for 2021, 2022 and 2023</p>', unsafe_allow_html=True)
         df = orig_df[(orig_df['order_state'] == 'Order Dispatched') | (orig_df['order_state'] == 'Order Refunded')]
@@ -615,7 +617,6 @@ if(len(d) > 1):
                 width=600, height=300
             )
             st.altair_chart(final, use_container_width=True)
-
 
 
 
@@ -760,7 +761,6 @@ if(len(d) > 1):
 
 
 
-
     elif ((stand_options == 'Google Ads Performance') & (filters_check == True)):
         ads_df = pd.read_csv('2024_GoogleAdsCosts.csv', parse_dates=['date'])
         ads_df = ads_df[(ads_df['date'] >= pd.to_datetime(d[0])) & (ads_df['date'] <= pd.to_datetime(d[1]))]
@@ -849,6 +849,8 @@ if(len(d) > 1):
             st.write(f'{selected_campaign} Campaign Performance from {d[0].strftime("%d %b %Y")} to {d[1].strftime("%d %b %Y")}')
             st.altair_chart(final, use_container_width=True)
 
+
+
     elif ((stand_options == 'SEO Backlink Analysis') & (filters_check == True)):
         df_pages = pd.read_csv("Pages.csv")
         df_links = pd.read_csv("AlmostAllBacklinks.csv")
@@ -899,6 +901,8 @@ if(len(d) > 1):
         # ).interactive()
         # st.altair_chart(chart2, use_container_width=True)
 
+
+
     elif ((stand_options == 'Landing Page Engagement Rate') & (filters_check == True)):
         df_eng = pd.read_csv('EngagementBounceRate.csv', skiprows=9)
         df_eng.rename(columns={'Average engagement time per session': 'Average engagement time'}, inplace=True)
@@ -906,6 +910,8 @@ if(len(d) > 1):
         df_eng['Engagement rate'] = df_eng['Engagement rate'].round(2)
         df_eng['Bounce rate'] = df_eng['Bounce rate'].round(2)
         st.dataframe(df_eng, use_container_width=True)
+
+
 
     elif stand_options == 'None selected':
         df['Revenue (£)'] = df['Revenue (£)'].astype(float)
