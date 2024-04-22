@@ -140,7 +140,7 @@ def graph_condense(dispatched_df):
 
 def display_sku(selected_prod, d, d2, dispatched_df, dispatched_sku_three_cat_df):
     dispatched_sku_three_cat_df.drop(['Channel'], axis=1, inplace=True)
-    table_column, graph_column = st.columns([0.55, 0.45])
+    table_column, graph_column = st.columns([0.5, 0.5])
     table_column.markdown(f'<p class="big-font"><strong>{selected_prod}</strong></p>', unsafe_allow_html=True)
     table_column.dataframe(dispatched_sku_three_cat_df, use_container_width=True)
     if (len(dispatched_sku_three_cat_df) > 1):
