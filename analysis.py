@@ -139,7 +139,8 @@ def graph_condense(dispatched_df):
     return chart, final
 
 def display_sku(selected_prod, d, d2, dispatched_df, dispatched_sku_three_cat_df):
-    table_column, graph_column = st.columns([0.5, 0.5])
+    dispatched_sku_three_cat_df.drop(['Channel'], axis=1, inplace=True)
+    table_column, graph_column = st.columns([0.55, 0.45])
     table_column.markdown(f'<p class="big-font"><strong>{selected_prod}</strong></p>', unsafe_allow_html=True)
     table_column.dataframe(dispatched_sku_three_cat_df, use_container_width=True)
     if (len(dispatched_sku_three_cat_df) > 1):
@@ -904,11 +905,12 @@ if(len(d) > 1):
 
 
     elif ((stand_options == 'Landing Page Engagement Rate') & (filters_check == True)):
-        df_eng = pd.read_csv('EngagementBounceRate.csv', skiprows=9)
-        df_eng.rename(columns={'Average engagement time per session': 'Average engagement time'}, inplace=True)
+        # df_eng = pd.read_csv('EngagementBounceRate.csv', skiprows=9)
+        df_eng = pd.read_csv('OrganicAnalytics2503-2104.csv', skiprows=9)
+        # df_eng.rename(columns={'Average engagement time per session': 'Average engagement time'}, inplace=True)
         df_eng['Average engagement time'] = df_eng['Average engagement time'].round(2)
         df_eng['Engagement rate'] = df_eng['Engagement rate'].round(2)
-        df_eng['Bounce rate'] = df_eng['Bounce rate'].round(2)
+        # df_eng['Bounce rate'] = df_eng['Bounce rate'].round(2)
         st.dataframe(df_eng, use_container_width=True)
 
 
