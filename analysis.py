@@ -140,39 +140,39 @@ def graph_condense(dispatched_df):
 
 def display_sku(selected_prod, d, d2, dispatched_df, dispatched_sku_three_cat_df):
     dispatched_sku_three_cat_df.drop(['Channel'], axis=1, inplace=True)
-    table_column, graph_column = st.columns([0.5, 0.5])
-    table_column.markdown(f'<p class="big-font"><strong>{selected_prod}</strong></p>', unsafe_allow_html=True)
-    table_column.dataframe(dispatched_sku_three_cat_df, use_container_width=True)
+    # table_column, graph_column = st.columns([0.5, 0.5])
+    st.markdown(f'<p class="big-font"><strong>{selected_prod}</strong></p>', unsafe_allow_html=True)
+    st.dataframe(dispatched_sku_three_cat_df, use_container_width=True)
     if (len(dispatched_sku_three_cat_df) > 1):
         columns_list = dispatched_sku_three_cat_df.columns
         total_df = pd.DataFrame(columns=columns_list)
         total_df.loc['Total'] = dispatched_sku_three_cat_df.select_dtypes(np.number).sum()
-        table_column.dataframe(total_df, use_container_width=True)
-        sku_summary(dispatched_sku_three_cat_df, d, d2, table_column)
+        st.dataframe(total_df, use_container_width=True)
+        sku_summary(dispatched_sku_three_cat_df, d, d2)
 
     chart, line = graph_condense(dispatched_df)
-    graph_column.altair_chart(line, use_container_width=True)
+    st.altair_chart(line, use_container_width=True)
 
-def sku_summary(df, d, d2, table_column):
+def sku_summary(df, d, d2):
     t1, t2, t3 = df['Units'].idxmax(), df['Units Refunded'].idxmax(), df['Units'].idxmin()
     if(len(d2) <= 1):
-        table_column.markdown(f"<p class='small-font'><strong>{d[0].strftime('%d %b %Y')} to {d[1].strftime('%d %b %Y')}</strong></p>", unsafe_allow_html=True)
+        st.markdown(f"<p class='small-font'><strong>{d[0].strftime('%d %b %Y')} to {d[1].strftime('%d %b %Y')}</strong></p>", unsafe_allow_html=True)
     elif(len(d2) > 1):
-        table_column.markdown(f"<p class='small-font'><strong>{d[0].strftime('%d %b %Y')} to {d[1].strftime('%d %b %Y')} and {d2[0].strftime('%d %b %Y')} to {d2[1].strftime('%d %b %Y')}</strong></p>", unsafe_allow_html=True)
+        st.markdown(f"<p class='small-font'><strong>{d[0].strftime('%d %b %Y')} to {d[1].strftime('%d %b %Y')} and {d2[0].strftime('%d %b %Y')} to {d2[1].strftime('%d %b %Y')}</strong></p>", unsafe_allow_html=True)
     temp_units = df.iloc[t1]['Units'].astype(int)
     if(df.iloc[t1]['Units'].astype(int) > 1):
-        table_column.markdown(f'<p class="small-font"><strong>Best Seller:</strong> {df.iloc[t1]["Units"].astype(int)} units of size: {df.iloc[t1]["Size"]} with a revenue of £{(df.iloc[t1]["Revenue (£)"].astype(int)):,}</p>', unsafe_allow_html=True)
+        st.markdown(f'<p class="small-font"><strong>Best Seller:</strong> {df.iloc[t1]["Units"].astype(int)} units of size: {df.iloc[t1]["Size"]} with a revenue of £{(df.iloc[t1]["Revenue (£)"].astype(int)):,}</p>', unsafe_allow_html=True)
     elif(df.iloc[t1]['Units'].astype(int) == 1):
-        table_column.markdown(f'<p class="small-font"><strong>Best Seller:</strong> {df.iloc[t1]["Units"].astype(int)} unit of size: {df.iloc[t1]["Size"]} with a revenue of £{(df.iloc[t1]["Revenue (£)"].astype(int)):,}</p>', unsafe_allow_html=True)
+        st.markdown(f'<p class="small-font"><strong>Best Seller:</strong> {df.iloc[t1]["Units"].astype(int)} unit of size: {df.iloc[t1]["Size"]} with a revenue of £{(df.iloc[t1]["Revenue (£)"].astype(int)):,}</p>', unsafe_allow_html=True)
     if (df.iloc[t2]['Units Refunded'].astype(int) > 1):
-        table_column.markdown(f'<p class="small-font"><strong>Most Refunded:</strong> {df.iloc[t2]["Units Refunded"].astype(int)} units of size: {df.iloc[t2]["Size"]} with a revenue of £{(df.iloc[t2]["Total Refund (£)"].astype(int)):,}</p>', unsafe_allow_html=True)
+        st.markdown(f'<p class="small-font"><strong>Most Refunded:</strong> {df.iloc[t2]["Units Refunded"].astype(int)} units of size: {df.iloc[t2]["Size"]} with a revenue of £{(df.iloc[t2]["Total Refund (£)"].astype(int)):,}</p>', unsafe_allow_html=True)
     elif (df.iloc[t2]['Units Refunded'].astype(int) == 1):
-        table_column.markdown(f'<p class="small-font"><strong>Most Refunded:</strong> {df.iloc[t2]["Units Refunded"].astype(int)} unit of size: {df.iloc[t2]["Size"]} with a revenue of £{(df.iloc[t2]["Total Refund (£)"].astype(int)):,}</p>', unsafe_allow_html=True)
+        st.markdown(f'<p class="small-font"><strong>Most Refunded:</strong> {df.iloc[t2]["Units Refunded"].astype(int)} unit of size: {df.iloc[t2]["Size"]} with a revenue of £{(df.iloc[t2]["Total Refund (£)"].astype(int)):,}</p>', unsafe_allow_html=True)
     if (temp_units != df.iloc[t3]['Units'].astype(int)):
         if (df.iloc[t3]['Units'].astype(int) > 1):
-            table_column.markdown(f'<p class="small-font"><strong>Least Sold:</strong> {df.iloc[t3]["Units"].astype(int)} units of size: {df.iloc[t3]["Size"]} with a revenue of £{(df.iloc[t3]["Revenue (£)"].astype(int)):,}</p>', unsafe_allow_html=True)
+            st.markdown(f'<p class="small-font"><strong>Least Sold:</strong> {df.iloc[t3]["Units"].astype(int)} units of size: {df.iloc[t3]["Size"]} with a revenue of £{(df.iloc[t3]["Revenue (£)"].astype(int)):,}</p>', unsafe_allow_html=True)
         elif (df.iloc[t3]['Units'].astype(int) == 1):
-            table_column.markdown(f'<p class="small-font"><strong>Least Sold:</strong> {df.iloc[t3]["Units"].astype(int)} unit of size: {df.iloc[t3]["Size"]} with a revenue of £{(df.iloc[t3]["Revenue (£)"].astype(int)):,}</p>', unsafe_allow_html=True)
+            st.markdown(f'<p class="small-font"><strong>Least Sold:</strong> {df.iloc[t3]["Units"].astype(int)} unit of size: {df.iloc[t3]["Size"]} with a revenue of £{(df.iloc[t3]["Revenue (£)"].astype(int)):,}</p>', unsafe_allow_html=True)
 
 st.markdown("""
 <style>
@@ -271,14 +271,14 @@ if(len(d) > 1):
         else:
             df = df[df['manufacturer_name'] == brand_options]
 
-        category_arr = df['Category'].unique().tolist()
+        category_arr = df['customs_description'].unique().tolist()
         category_arr = np.sort(category_arr).tolist()
         category_arr = ['All categories'] + category_arr
         category_options = category_sel_col.selectbox('Select a category', options=category_arr)
         if (category_options == 'All categories'):
             df = df
         else:
-            df = df[df['Category'] == category_options]
+            df = df[df['customs_description'] == category_options]
 
         sub_category_arr = df['T_Cat'].unique().tolist()
         if(np.NaN in sub_category_arr):
@@ -942,7 +942,7 @@ if(len(d) > 1):
             if (category_options == 'All categories'):
                 df2 = df2
             else:
-                df2 = df2[df2['Category'] == category_options]
+                df2 = df2[df2['customs_description'] == category_options]
 
             if (sub_category_options == 'All sub categories'):
                 df2 = df2
