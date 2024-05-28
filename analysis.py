@@ -197,7 +197,7 @@ df['date'] = pd.to_datetime(df['date'])
 df.drop_duplicates(inplace=True)
 df.rename(columns={'quantity': 'Units', 'reference': 'SKU Reference', 'title': 'Product Name', 'price_inc': 'Revenue (£)', 'attribute_summary': 'Size'}, inplace=True)
 
-stock_df = pd.read_csv('stock_levels_18_apr.csv')
+stock_df = pd.read_csv('stock_levels_16_may.csv')
 stock_df.rename(columns={'parent_title': 'Product Name', 'stock': 'Stock', 'attribute_summary': 'Size', 'product_url': 'Target page'}, inplace=True)
 temp_stock_df = stock_df['Size'].str.split(': ', expand=True)
 temp_stock_df.columns = ['F_Size', 'Size']
